@@ -21,7 +21,7 @@ namespace SpotifyPlaylistMixer
             new KeyValuePair<string, string>("1121849657", "Kolja"),
             new KeyValuePair<string, string>("1121873909", "Björn"),
             new KeyValuePair<string, string>("invader_zim85", "Andreas"),
-            //new KeyValuePair<string, string>("1129153595", "Philipp")
+            new KeyValuePair<string, string>("1129153595", "Philipp")
         };
         private readonly string _erpPlaylist; // EMP-ERP Mix der Woche
 
