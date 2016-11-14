@@ -68,8 +68,10 @@ namespace SpotifyPlaylistMixer
             while (tracks.HasNextPage())
             {
                 tracks = _spotify.GetPlaylistTracks(userIdFrom, playlistIdFrom, limit: tracks.Limit, offset: tracks.Offset + tracks.Limit);
-                uriList = AddTracksToUriList(tracks.Items);
+                uriList.AddRange(AddTracksToUriList(tracks.Items));
             }
+            tracks = _spotify.GetPlaylistTracks(userIdFrom, playlistIdFrom, limit: tracks.Limit, offset: tracks.Offset + tracks.Limit);
+            uriList.AddRange(AddTracksToUriList(tracks.Items));
             var response = _spotify.AddPlaylistTracks(userIdTo, playlistIdTo, uriList);
             WriteResponse(response);
         }
@@ -91,13 +93,15 @@ namespace SpotifyPlaylistMixer
         {
             WriteLine("Loading \"EMP-ERP Mix der Woche\"-Playlist..");
             var erpMix = _spotify.GetPlaylistTracks(userId, playlistId);
-            WriteLine($"Gathering and deleting {erpMix.Offset} - {erpMix.Limit} of {erpMix.Total} from \"EMP-ERP Mix der Woche\"");
+            var total = erpMix.Total;
+            var offset = erpMix.Offset;
+            WriteLine($"Gathering and deleting {offset} - {offset + erpMix.Limit} of {total} from \"EMP-ERP Mix der Woche\"");
             RemoveTracksFromPlaylist(erpMix.Items, userId, playlistId);
             while (erpMix.HasNextPage())
             {
-                erpMix = _spotify.GetPlaylistTracks(userId, playlistId, limit: erpMix.Limit,
-                    offset: erpMix.Offset + erpMix.Limit);
-                WriteLine($"Gathering and deleting {erpMix.Offset} - {erpMix.Limit} of {erpMix.Total} from \"EMP-ERP Mix der Woche\"");
+                erpMix = _spotify.GetPlaylistTracks(userId, playlistId);
+                offset = offset + erpMix.Limit;
+                WriteLine($"Gathering and deleting {offset} - {offset + erpMix.Limit} of {total} from \"EMP-ERP Mix der Woche\"");
                 RemoveTracksFromPlaylist(erpMix.Items, userId, playlistId);
             }
         }
