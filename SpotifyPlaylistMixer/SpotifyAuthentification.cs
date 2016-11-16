@@ -1,4 +1,5 @@
-﻿using SpotifyAPI.Web;
+﻿using Newtonsoft.Json;
+using SpotifyAPI.Web;
 using SpotifyAPI.Web.Auth;
 using SpotifyAPI.Web.Enums;
 using SpotifyAPI.Web.Models;
@@ -24,6 +25,7 @@ namespace SpotifyPlaylistMixer
             new KeyValuePair<string, string>("1129153595", "Philipp")
         };
         private readonly string _erpPlaylist; // EMP-ERP Mix der Woche
+        private List<KeyValuePair<string, List<string>>> _personSongs = new List<KeyValuePair<string, List<string>>>();
 
         public SpotifyAuthentification()
         {
@@ -55,23 +57,31 @@ namespace SpotifyPlaylistMixer
                 if (playlist != null)
                 {
                     WriteLine($"Begin adding tracks \"Dein Mix der Woche\" from {user.Value} \"EMP-ERP Mix der Woche\"");
-                    AddTracksFromPlaylistToPlaylist("spotifydiscover", playlist.Id, _profile.Id, _erpPlaylist);
+                    AddTracksFromPlaylistToPlaylist("spotifydiscover", playlist.Id, _profile.Id, _erpPlaylist, user.Value);
                 }
             }
+
+            var ci = System.Threading.Thread.CurrentThread.CurrentCulture;
+            var fdow = ci.DateTimeFormat.FirstDayOfWeek;
+            var today = DateTime.Now.DayOfWeek;
+            var sow = DateTime.Now.AddDays(-(today - fdow)).Date;
+
+            var json = JsonConvert.SerializeObject(_personSongs, Formatting.Indented);
+            System.IO.File.WriteAllText($@"N:\EDV\IT-ERP - Intern\ERP Mix der Woche\{sow.ToShortDateString().Replace('.', '_')}.json", json);
         }
 
         private void AddTracksFromPlaylistToPlaylist(string userIdFrom, string playlistIdFrom, string userIdTo,
-            string playlistIdTo)
+            string playlistIdTo, string user)
         {
             var tracks = _spotify.GetPlaylistTracks(userIdFrom, playlistIdFrom);
-            var uriList = AddTracksToUriList(tracks.Items);
+            var uriList = AddTracksToUriList(tracks.Items, user);
             while (tracks.HasNextPage())
             {
                 tracks = _spotify.GetPlaylistTracks(userIdFrom, playlistIdFrom, limit: tracks.Limit, offset: tracks.Offset + tracks.Limit);
-                uriList.AddRange(AddTracksToUriList(tracks.Items));
+                uriList.AddRange(AddTracksToUriList(tracks.Items, user));
             }
             tracks = _spotify.GetPlaylistTracks(userIdFrom, playlistIdFrom, limit: tracks.Limit, offset: tracks.Offset + tracks.Limit);
-            uriList.AddRange(AddTracksToUriList(tracks.Items));
+            uriList.AddRange(AddTracksToUriList(tracks.Items, user));
             var response = _spotify.AddPlaylistTracks(userIdTo, playlistIdTo, uriList);
             WriteResponse(response);
         }
@@ -84,9 +94,21 @@ namespace SpotifyPlaylistMixer
                 WriteLine(response.Error);
         }
 
-        private static List<string> AddTracksToUriList(List<PlaylistTrack> tracks)
+        private List<string> AddTracksToUriList(List<PlaylistTrack> tracks, string user)
         {
-            return tracks.Select(playlistTrack => playlistTrack.Track.Uri).ToList();
+            var uriList = new List<string>();
+            var songList = new List<string>();
+            foreach (var playlistTrack in tracks)
+            {
+                uriList.Add(playlistTrack.Track.Uri);
+                var artists =
+                    playlistTrack.Track.Artists.Aggregate(string.Empty,
+                        (current, simpleArtist) => current + $"{simpleArtist.Name}, ").TrimEnd(' ', ',');
+                songList.Add($"{artists} --- {playlistTrack.Track.Name}");
+            }
+            if (songList.Any())
+                _personSongs.Add(new KeyValuePair<string, List<string>>($"{user}", songList));
+            return uriList;
         }
 
         private void RemoveTracksFromPlaylist(string userId, string playlistId)
