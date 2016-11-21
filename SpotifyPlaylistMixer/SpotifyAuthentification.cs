@@ -65,9 +65,50 @@ namespace SpotifyPlaylistMixer
             var fdow = ci.DateTimeFormat.FirstDayOfWeek;
             var today = DateTime.Now.DayOfWeek;
             var sow = DateTime.Now.AddDays(-(today - fdow)).Date;
-
+            var filePath = $@"N:\EDV\IT-ERP - Intern\ERP Mix der Woche\{sow.ToShortDateString().Replace('.', '_')}.json";
+            WriteLine($"Saving \"EMP-ERP Mix der Woche\"-playlist-JSON to \"{filePath}\"");
             var json = JsonConvert.SerializeObject(_personSongs, Formatting.Indented);
-            System.IO.File.WriteAllText($@"N:\EDV\IT-ERP - Intern\ERP Mix der Woche\{sow.ToShortDateString().Replace('.', '_')}.json", json);
+            System.IO.File.WriteAllText(filePath, json);
+
+            WriteLine("Removing duplicates from \"EMP-ERP Mix der Woche\"");
+            RemovingDuplicates(_profile.Id, _erpPlaylist);
+        }
+
+        private void RemovingDuplicates(string userId, string playlistId)
+        {
+            WriteLine("Loading \"EMP-ERP Mix der Woche\"-playlist tracks..");
+            var paging = _spotify.GetPlaylistTracks(userId, playlistId);
+            var playlistTracks = paging.Items;
+            var total = paging.Total;
+            WriteLine($"Gathering {paging.Offset} - {paging.Offset + paging.Limit} of {total} from \"EMP-ERP Mix der Woche\"");
+            while (paging.HasNextPage())
+            {
+                paging.Offset = paging.Offset + paging.Limit;
+                WriteLine($"Gathering {paging.Offset} - {paging.Offset + paging.Limit} of {total} from \"EMP-ERP Mix der Woche\"");
+                paging = _spotify.GetPlaylistTracks(userId, playlistId, offset: paging.Offset);
+                playlistTracks.AddRange(paging.Items);
+            }
+            WriteLine("Finding duplicates");
+            var duplicates = playlistTracks
+                .GroupBy(x => x.Track.Id)
+                .Where(g => g.Count() > 1)
+                .Select(y => new { Element = y.Key, Counter = y.Count() });
+            foreach (var duplicate in duplicates)
+            {
+                var track = playlistTracks.FirstOrDefault(x => x.Track.Id.Equals(duplicate.Element));
+                if (track != null)
+                {
+                    var artists =
+                        track.Track.Artists.Aggregate(string.Empty,
+                            (current, simpleArtist) => current + $"{simpleArtist.Name}, ").TrimEnd(' ', ',');
+                    WriteLine($"Removing all \"{artists} --- {track.Track.Name}\" (was {duplicate.Counter} times in the playlist)");
+                    var response = _spotify.RemovePlaylistTrack(userId, playlistId, new DeleteTrackUri(track.Track.Uri));
+                    WriteResponse(response);
+                    WriteLine($"Reading one time \"{artists} --- {track.Track.Name}\"");
+                    response = _spotify.AddPlaylistTrack(userId, playlistId, track.Track.Uri);
+                    WriteResponse(response);
+                }
+            }
         }
 
         private void AddTracksFromPlaylistToPlaylist(string userIdFrom, string playlistIdFrom, string userIdTo,
