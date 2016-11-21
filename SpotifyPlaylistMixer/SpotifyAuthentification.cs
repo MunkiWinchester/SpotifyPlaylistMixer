@@ -70,12 +70,12 @@ namespace SpotifyPlaylistMixer
             var json = JsonConvert.SerializeObject(_personSongs, Formatting.Indented);
             System.IO.File.WriteAllText(filePath, json);
 
-            WriteLine("Removing duplicates from \"EMP-ERP Mix der Woche\"");
-            RemovingDuplicates(_profile.Id, _erpPlaylist);
+            //RemovingDuplicates(_profile.Id, _erpPlaylist);
         }
 
         private void RemovingDuplicates(string userId, string playlistId)
         {
+            WriteLine("Removing duplicates from \"EMP-ERP Mix der Woche\"");
             WriteLine("Loading \"EMP-ERP Mix der Woche\"-playlist tracks..");
             var paging = _spotify.GetPlaylistTracks(userId, playlistId);
             var playlistTracks = paging.Items;
