@@ -5,7 +5,9 @@ using SpotifyAPI.Web.Enums;
 using SpotifyAPI.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using SpotifyPlaylistMixer.DataObjects;
 using static System.Console;
 
 namespace SpotifyPlaylistMixer
@@ -13,51 +15,45 @@ namespace SpotifyPlaylistMixer
     public class SpotifyAuthentification
     {
         private SpotifyWebAPI _spotify;
-
-        private PrivateProfile _profile;
-        private readonly List<KeyValuePair<string, string>> _users = new List<KeyValuePair<string, string>>
-        {
-            new KeyValuePair<string, string>("pc_suchti", "Artur"),
-            new KeyValuePair<string, string>("munki666", "Eike"),
-            new KeyValuePair<string, string>("1121849657", "Kolja"),
-            new KeyValuePair<string, string>("1121873909", "Björn"),
-            new KeyValuePair<string, string>("invader_zim85", "Andreas"),
-            new KeyValuePair<string, string>("1129153595", "Philipp")
-        };
-        private readonly string _erpPlaylist; // EMP-ERP Mix der Woche
-        private List<KeyValuePair<string, List<string>>> _personSongs = new List<KeyValuePair<string, List<string>>>();
+        private readonly Config _config;
+        private readonly List<KeyValuePair<string, List<string>>> _personSongs = new List<KeyValuePair<string, List<string>>>();
 
         public SpotifyAuthentification()
         {
-            _erpPlaylist = "0GNGC39QMDX6lwwOwEac5N";
+            const string filePath = @"N:\EDV\IT-ERP - Intern\ERP Mix der Woche\Config.json";
+            if (File.Exists(filePath))
+            {
+                _config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(filePath));
+            }
+            else
+            {
+                _config = JsonConvert.DeserializeObject<Config>(File.ReadAllText("Config.json"));
+                File.Copy("Config.json", filePath);
+            }
             RunAuthentication();
         }
 
         private void InitialSetup()
         {
-            WriteLine("Get private profile..");
-            _profile = _spotify.GetPrivateProfile();
-
-            //_playlists = GetPlaylists();
-
             WriteLine("Starting with the \"Mix der Woche\" history!");
             GetMixDerWoche();
         }
 
         private void GetMixDerWoche()
         {
-            RemoveTracksFromPlaylist(_profile.Id, _erpPlaylist);
-            foreach (var user in _users)
+            RemoveTracksFromPlaylist(_config.TargetPlaylist.Owner.Identifier, _config.TargetPlaylist.Identifier);
+            foreach (var user in _config.Users)
             {
-                WriteLine($"Loading playlists from {user.Value}");
-                var playlists = GetPlaylists(user.Key);
-                WriteLine($"Loading playlist \"Dein Mix der Woche\" from {user.Value}");
-                var playlist = playlists.FirstOrDefault(x => x.Name.Equals("Dein Mix der Woche"));
+                WriteLine($"Loading playlists from {user.Name}");
+                var playlists = GetPlaylists(user.Identifier);
+                WriteLine($"Loading playlist \"Dein Mix der Woche\" from {user.Name}");
+                var playlist = playlists.FirstOrDefault(x => x.Name.Equals(_config.SourcePlaylist.Name));
                 // Mix der Woche gehört Spotify
                 if (playlist != null)
                 {
-                    WriteLine($"Begin adding tracks \"Dein Mix der Woche\" from {user.Value} \"EMP-ERP Mix der Woche\"");
-                    AddTracksFromPlaylistToPlaylist("spotifydiscover", playlist.Id, _profile.Id, _erpPlaylist, user.Value);
+                    WriteLine($"Begin adding tracks \"Dein Mix der Woche\" from {user.Name} \"EMP-ERP Mix der Woche\"");
+                    AddTracksFromPlaylistToPlaylist(_config.SourcePlaylist.Owner.Identifier, playlist.Id,
+                        _config.TargetPlaylist.Owner.Identifier, _config.TargetPlaylist.Identifier, user.Identifier);
                 }
             }
 
@@ -68,11 +64,12 @@ namespace SpotifyPlaylistMixer
             var filePath = $@"N:\EDV\IT-ERP - Intern\ERP Mix der Woche\{sow.ToShortDateString().Replace('.', '_')}.json";
             WriteLine($"Saving \"EMP-ERP Mix der Woche\"-playlist-JSON to \"{filePath}\"");
             var json = JsonConvert.SerializeObject(_personSongs, Formatting.Indented);
-            System.IO.File.WriteAllText(filePath, json);
+            File.WriteAllText(filePath, json);
 
             //RemovingDuplicates(_profile.Id, _erpPlaylist);
         }
 
+        // ReSharper disable once UnusedMember.Local
         private void RemovingDuplicates(string userId, string playlistId)
         {
             WriteLine("Removing duplicates from \"EMP-ERP Mix der Woche\"");
