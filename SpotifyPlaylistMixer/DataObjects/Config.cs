@@ -2,7 +2,7 @@
 
 namespace SpotifyPlaylistMixer.DataObjects
 {
-    class Config
+    public class Config
     {
         public Playlist SourcePlaylist { get; set; }
         public Playlist TargetPlaylist { get; set; }

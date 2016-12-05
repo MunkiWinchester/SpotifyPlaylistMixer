@@ -55,11 +55,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\FileHandler.cs" />
+    <Compile Include="Business\PlaylistHandler.cs" />
     <Compile Include="DataObjects\Config.cs" />
     <Compile Include="DataObjects\Playlist.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpotifyAuthentification.cs" />
+    <Compile Include="Business\SpotifyAuthentification.cs" />
     <Compile Include="DataObjects\User.cs" />
   </ItemGroup>
   <ItemGroup>
