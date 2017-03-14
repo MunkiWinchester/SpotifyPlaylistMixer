@@ -9,18 +9,17 @@ namespace SpotifyPlaylistMixer.Business
 {
     public static class FileHandler
     {
-        public static Config LoadConfig()
+        public static Config LoadConfig(string path = @"N:\EDV\IT-ERP - Intern\ERP Mix der Woche\Config.json")
         {
             Config config;
-            const string filePath = @"N:\EDV\IT-ERP - Intern\ERP Mix der Woche\Config.json";
-            if (File.Exists(filePath))
+            if (File.Exists(path))
             {
-                config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(filePath));
+                config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(path));
             }
             else
             {
                 config = JsonConvert.DeserializeObject<Config>(File.ReadAllText("Config.json"));
-                File.Copy("Config.json", filePath);
+                File.Copy("Config.json", path);
             }
             return config;
         }

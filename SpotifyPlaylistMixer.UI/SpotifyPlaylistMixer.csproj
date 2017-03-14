@@ -96,31 +96,32 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="UserControls\GenreView.xaml.cs">
+    <Compile Include="ViewModels\SettingViewModel.cs" />
+    <Compile Include="Views\UserControls\GenreView.xaml.cs">
       <DependentUpon>GenreView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\PlaylistView.xaml.cs">
+    <Compile Include="Views\UserControls\PlaylistView.xaml.cs">
       <DependentUpon>PlaylistView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\SettingView.xaml.cs">
+    <Compile Include="Views\UserControls\SettingView.xaml.cs">
       <DependentUpon>SettingView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\UserView.xaml.cs">
+    <Compile Include="Views\UserControls\UserView.xaml.cs">
       <DependentUpon>UserView.xaml</DependentUpon>
     </Compile>
-    <Page Include="UserControls\GenreView.xaml">
+    <Page Include="Views\UserControls\GenreView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\PlaylistView.xaml">
+    <Page Include="Views\UserControls\PlaylistView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\SettingView.xaml">
+    <Page Include="Views\UserControls\SettingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -128,11 +129,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="UserControls\UserView.xaml">
+    <Page Include="Views\UserControls\UserView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -166,9 +167,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SpotifyPlaylistMixer.MVVM\SpotifyPlaylistMixer.MVVM.csproj">
-      <Project>{2939da62-416b-411d-b629-72d5e4ed7938}</Project>
-      <Name>SpotifyPlaylistMixer.MVVM</Name>
+    <ProjectReference Include="..\SpotifyPlaylistMixer\SpotifyPlaylistMixer.Console.csproj">
+      <Project>{7465391d-fd9e-420d-9801-6240ca4f4782}</Project>
+      <Name>SpotifyPlaylistMixer.Console</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
