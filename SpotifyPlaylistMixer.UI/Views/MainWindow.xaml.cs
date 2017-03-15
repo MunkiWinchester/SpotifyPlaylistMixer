@@ -1,30 +1,13 @@
-﻿using System.Windows;
-using ReactiveUI;
-using SpotifyPlaylistMixer.UI.ViewModels;
-
-namespace SpotifyPlaylistMixer.UI.Views
+﻿namespace SpotifyPlaylistMixer.UI.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : IViewFor<SettingViewModel>
+    public partial class MainWindow
     {
         public MainWindow()
         {
-            ViewModel = new SettingViewModel();
             InitializeComponent();
-
-            DataContext = ViewModel;
-            
-            ViewModel.Path = @"Config.json";
         }
-
-        object IViewFor.ViewModel
-        {
-            get { return ViewModel; }
-            set { ViewModel = (SettingViewModel) value; }
-        }
-
-        public SettingViewModel ViewModel { get; set; }
     }
 }

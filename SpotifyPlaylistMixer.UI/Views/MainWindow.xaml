@@ -7,8 +7,9 @@
         xmlns:wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:userControls="clr-namespace:SpotifyPlaylistMixer.UI.Views.UserControls"
         xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
-        mc:Ignorable="d"
-        Title="Spotify Mixer" Height="700" Width="600">
+        xmlns:settingViewComponents="clr-namespace:SpotifyPlaylistMixer.UI.Views.UserControls.SettingViewComponents"
+        mc:Ignorable="d" Icon="/SpotifyPlaylistMixer.UI;component/Resources/spotifyIcon.ico"
+        Title="Spotify Mixer" Height="700" Width="600" ShowIconOnTitleBar="False">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -26,6 +27,9 @@
         </controls:WindowCommands>
     </controls:MetroWindow.LeftWindowCommands>
     <TabControl>
+        <TabItem Header="Playlist">
+            <userControls:PlaylistView />
+        </TabItem>
         <TabItem Header="Settings">
             <userControls:SettingView />
         </TabItem>

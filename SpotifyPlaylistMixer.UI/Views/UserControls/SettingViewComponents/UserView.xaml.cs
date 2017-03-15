@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace SpotifyPlaylistMixer.UI.Views.UserControls
+namespace SpotifyPlaylistMixer.UI.Views.UserControls.SettingViewComponents
 {
     /// <summary>
     /// Interaction logic for UserView.xaml

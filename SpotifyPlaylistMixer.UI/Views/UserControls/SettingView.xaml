@@ -5,17 +5,20 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:userControls="clr-namespace:SpotifyPlaylistMixer.UI.Views.UserControls"
              xmlns:dataObjects="clr-namespace:SpotifyPlaylistMixer.DataObjects;assembly=SpotifyPlaylistMixer"
+             xmlns:settingViewComponents="clr-namespace:SpotifyPlaylistMixer.UI.Views.UserControls.SettingViewComponents"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type dataObjects:User}">
             <Border Background="Transparent" BorderBrush="Black" BorderThickness="1" Margin="3">
-                <userControls:UserView x:Name="us" />
+                <settingViewComponents:UserView x:Name="us" />
+                    <!-- TODO: hinzufügen/entfernen -->
             </Border>
         </DataTemplate>
         <DataTemplate DataType="{x:Type dataObjects:Playlist}">
             <Border Background="Transparent" BorderBrush="Black" BorderThickness="1" Margin="3">
-                <userControls:PlaylistView x:Name="pl" />
+                <settingViewComponents:PlaylistView x:Name="pl" />
+                <!-- TODO: hinzufügen/entfernen -->
             </Border>
         </DataTemplate>
     </UserControl.Resources>
@@ -30,6 +33,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.Column="0" Content="Config Path:"/>
+        <!-- TODO: dropdown (config ordner) -->
         <TextBox Grid.Row="0" Grid.Column="1" Margin="3"  Text="{Binding Path}" />
         <ScrollViewer Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto">
             <Grid>
@@ -48,7 +52,7 @@
                 </Grid.ColumnDefinitions>
                 <Separator Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2"/>
                 <Label Grid.Row="1" Grid.Column="0" Content="Target Playlist:"/>
-                <userControls:PlaylistView Grid.Row="1" Grid.Column="1" Margin="3" DataContext="{Binding Config.TargetPlaylist}"/>
+                <settingViewComponents:PlaylistView Grid.Row="1" Grid.Column="1" Margin="3" DataContext="{Binding Config.TargetPlaylist}"/>
                 <Separator Grid.Row="2" Grid.Column="0"  Grid.ColumnSpan="2"/>
                 <Label Grid.Row="3" Grid.Column="0" Content="Users:"/>
                 <ItemsControl Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Config.Users}" />
