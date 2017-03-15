@@ -7,7 +7,7 @@ namespace SpotifyPlaylistMixer.UI.Views
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, IViewFor<SettingViewModel>
+    public partial class MainWindow : IViewFor<SettingViewModel>
     {
         public MainWindow()
         {

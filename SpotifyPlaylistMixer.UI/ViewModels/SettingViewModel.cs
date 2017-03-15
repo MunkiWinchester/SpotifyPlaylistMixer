@@ -35,11 +35,11 @@ namespace SpotifyPlaylistMixer.UI.ViewModels
 
             var canConfirmConfigObservable = this.WhenAny(vm => vm.Config,
                 s =>
-                    !string.IsNullOrWhiteSpace(s.Value.TargetPlaylist?.Identifier)
-                    && !string.IsNullOrWhiteSpace(s.Value.TargetPlaylist.Owner.Identifier)
+                    !string.IsNullOrEmpty(s.Value.TargetPlaylist?.Identifier)
+                    && !string.IsNullOrEmpty(s.Value.TargetPlaylist.Owner.Identifier)
                     && s.Value.SourcePlaylists.Any()
-                    && !string.IsNullOrWhiteSpace(s.Value.SourcePlaylists.FirstOrDefault()?.Name)
-                    && !string.IsNullOrWhiteSpace(s.Value.SourcePlaylists.FirstOrDefault()?.Owner.Identifier)
+                    && !string.IsNullOrEmpty(s.Value.SourcePlaylists.FirstOrDefault()?.Name)
+                    && !string.IsNullOrEmpty(s.Value.SourcePlaylists.FirstOrDefault()?.Owner.Identifier)
                 );
             ConfirmCommand = ReactiveCommand.Create(ChangeConfig, canConfirmConfigObservable);
         }

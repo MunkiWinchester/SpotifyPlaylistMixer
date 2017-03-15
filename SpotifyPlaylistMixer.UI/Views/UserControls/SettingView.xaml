@@ -4,35 +4,61 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:userControls="clr-namespace:SpotifyPlaylistMixer.UI.Views.UserControls"
+             xmlns:dataObjects="clr-namespace:SpotifyPlaylistMixer.DataObjects;assembly=SpotifyPlaylistMixer"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type dataObjects:User}">
+            <Border Background="Transparent" BorderBrush="Black" BorderThickness="1" Margin="3">
+                <userControls:UserView x:Name="us" />
+            </Border>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type dataObjects:Playlist}">
+            <Border Background="Transparent" BorderBrush="Black" BorderThickness="1" Margin="3">
+                <userControls:PlaylistView x:Name="pl" />
+            </Border>
+        </DataTemplate>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="28" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="28" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="100" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.Column="0" Content="Config Path:"/>
-        <Label Grid.Row="1" Grid.Column="0" Content="Target Playlist:"/>
-        <Label Grid.Row="2" Grid.Column="0" Content="Users:"/>
-        <Label Grid.Row="3" Grid.Column="0" Content="Source Playlists:"/>
-        <TextBox Grid.Row="0" Grid.Column="1" Margin="2"  Text="{Binding Path}" />
-        <userControls:PlaylistView x:Name="tgp" Grid.Column="1" Grid.Row="1" Margin="3" DataContext="{Binding Config.TargetPlaylist}"/>
-        <StackPanel Grid.Column="1" Grid.Row="2" Margin="3" >
-            <Border Background="Transparent" BorderBrush="Black" BorderThickness="1">
-            <userControls:UserView x:Name="us" DataContext="{Binding Config.Users}" />
-            </Border>
-        </StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="3" Margin="3">
-            <userControls:PlaylistView x:Name="pl" DataContext="{Binding Config.SourcePlaylists}" />
-        </StackPanel>
-        <Button Grid.Column="1" Grid.Row="4" HorizontalAlignment="Right" 
+        <TextBox Grid.Row="0" Grid.Column="1" Margin="3"  Text="{Binding Path}" />
+        <ScrollViewer Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Separator Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2"/>
+                <Label Grid.Row="1" Grid.Column="0" Content="Target Playlist:"/>
+                <userControls:PlaylistView Grid.Row="1" Grid.Column="1" Margin="3" DataContext="{Binding Config.TargetPlaylist}"/>
+                <Separator Grid.Row="2" Grid.Column="0"  Grid.ColumnSpan="2"/>
+                <Label Grid.Row="3" Grid.Column="0" Content="Users:"/>
+                <ItemsControl Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Config.Users}" />
+                <Separator Grid.Row="4" Grid.Column="0"  Grid.ColumnSpan="2"/>
+                <Label Grid.Row="5" Grid.Column="0" Content="Source Playlists:"/>
+                <ItemsControl Grid.Row="5" Grid.Column="1" ItemsSource="{Binding Config.SourcePlaylists}" />
+                <Separator Grid.Row="6" Grid.Column="0"  Grid.ColumnSpan="2"/>
+            </Grid>
+        </ScrollViewer>
+        <Button Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" 
             MinWidth="80" Margin="3" Content="Confirm" Command="{Binding ConfirmCommand}" />
     </Grid>
 </UserControl>
