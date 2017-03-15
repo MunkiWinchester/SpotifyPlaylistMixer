@@ -3,12 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:userControls="clr-namespace:SpotifyPlaylistMixer.Views.UserControls"
              xmlns:settingViewComponents="clr-namespace:SpotifyPlaylistMixer.Views.UserControls.SettingViewComponents"
-             xmlns:userControls1="clr-namespace:SpotifyPlaylistMixer.Views.UserControls"
-             xmlns:settingViewComponents1="clr-namespace:SpotifyPlaylistMixer.Views.UserControls.SettingViewComponents"
              mc:Ignorable="d" 
              d:DesignHeight="120" d:DesignWidth="350">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/SpotifyPlaylistMixer;component/Resources/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Border Background="Transparent" BorderBrush="Black" BorderThickness="1">
         <Grid>
             <Grid.RowDefinitions>
@@ -23,12 +27,21 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0"  Grid.Row="0" Grid.ColumnSpan="3" Content="Playlist:" FontWeight="Bold"/>
-            <userControls1:RemoveButtonView Grid.Column="3"  Grid.Row="0" VerticalAlignment="Top" Width="25" Height="25" HorizontalAlignment="Right" />
+            <Button Grid.Column="3"  Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="25" Height="25" BorderThickness="0" >
+                <Button.Content>
+                    <Rectangle Width="20" Height="20" Margin="-5"
+                     Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Uniform" Visual="{DynamicResource appbar_close}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                </Button.Content>
+            </Button>
             <Label Grid.Column="0"  Grid.Row="1" Content="Identifier:"/>
             <Label Grid.Column="2"  Grid.Row="1" Content="Name:"/>
             <TextBox Grid.Column="1" Grid.Row="1" Margin="2" Text="{Binding Identifier}" />
             <TextBox Grid.Column="3" Grid.Row="1" Margin="2" Text="{Binding Name}" />
-            <settingViewComponents1:UserView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" DataContext="{Binding Owner}" />
+            <settingViewComponents:UserView Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4" DataContext="{Binding Owner}" />
         </Grid>
     </Border>
 </UserControl>

@@ -13,8 +13,16 @@
             <Border Background="Transparent" BorderBrush="Black" BorderThickness="1" Margin="3">
                 <Grid>
                     <settingViewComponents:UserView x:Name="us" />
-                    <userControls:RemoveButtonView />
-                    <!-- TODO: hinzufügen/entfernen -->
+                    <Button HorizontalAlignment="Right" VerticalAlignment="Top" Width="25" Height="25" BorderThickness="0" >
+                        <Button.Content>
+                            <Rectangle Width="20" Height="20" Margin="-5"
+                     Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Stretch="Uniform" Visual="{DynamicResource appbar_close}" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                        </Button.Content>
+                    </Button>
                 </Grid>
             </Border>
         </DataTemplate>
