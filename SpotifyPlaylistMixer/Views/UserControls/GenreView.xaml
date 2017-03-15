@@ -7,7 +7,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <wpf:PieChart LegendLocation="Right" HoverPushOut="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0"  Grid.Column="0" Content="Genre for:" />
+        <ComboBox Grid.Row="0" Grid.Column="1" Margin="3" ItemsSource="{Binding Playlists}" SelectedValue="{Binding SelectedPlaylist}" />
+            <wpf:PieChart Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2" LegendLocation="Right" HoverPushOut="10">
             <wpf:PieChart.Series>
                 <wpf:PieSeries Title="Maria" Values="3" DataLabels="True" 
                                LabelPoint="{Binding PointLabel}"/>

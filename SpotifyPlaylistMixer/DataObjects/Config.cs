@@ -7,5 +7,12 @@ namespace SpotifyPlaylistMixer.DataObjects
         public List<Playlist> SourcePlaylists { get; set; }
         public Playlist TargetPlaylist { get; set; }
         public List<User> Users { get; set; }
+
+        public Config()
+        {
+            SourcePlaylists = new List<Playlist>();
+            TargetPlaylist = new Playlist();
+            Users = new List<User>();
+        }
     }
 }

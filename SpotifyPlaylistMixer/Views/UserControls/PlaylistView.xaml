@@ -36,7 +36,7 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <ComboBox Grid.Row="0" Grid.Column="0" Margin="3" ItemsSource="{Binding ExistingPlaylists}" SelectedValue="{Binding SelectedPlaylist}" />
+        <ComboBox Grid.Row="0" Grid.Column="0" Margin="3" ItemsSource="{Binding ExistingPlaylists}" SelectedValue="{Binding SelectedPlaylistPath}" />
         <!-- TODO: Config wahl für generieren -->
         <!-- TODO: authentifizierung nicht immer "anmelden" -->
         <Button Grid.Row="0" Grid.Column="1" Margin="3" Content="Generate Current" Command="{Binding GenerateCurrentPlaylistCommand}"/>

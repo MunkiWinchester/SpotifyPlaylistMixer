@@ -155,6 +155,9 @@
     <Compile Include="DataObjects\User.cs" />
     <Compile Include="ViewModels\PlaylistViewModel.cs" />
     <Compile Include="ViewModels\SettingViewModel.cs" />
+    <Compile Include="Views\UserControls\AddButtonView.xaml.cs">
+      <DependentUpon>AddButtonView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\GenreView.xaml.cs">
       <DependentUpon>GenreView.xaml</DependentUpon>
     </Compile>
@@ -184,6 +187,10 @@
     <Page Include="Resources\IconsNonShared.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\AddButtonView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\GenreView.xaml">
       <SubType>Designer</SubType>

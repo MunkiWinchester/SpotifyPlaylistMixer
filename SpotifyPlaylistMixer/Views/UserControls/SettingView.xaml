@@ -7,7 +7,7 @@
              xmlns:settingViewComponents="clr-namespace:SpotifyPlaylistMixer.Views.UserControls.SettingViewComponents"
              xmlns:userControls="clr-namespace:SpotifyPlaylistMixer.Views.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="600" d:DesignWidth="300">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type dataObjects:User}">
             <Border Background="Transparent" BorderBrush="Black" BorderThickness="1" Margin="3">
@@ -24,9 +24,15 @@
                 <!-- TODO: hinzufügen/entfernen -->
             </Border>
         </DataTemplate>
+        <ResourceDictionary x:Key="Dictionary">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/SpotifyPlaylistMixer;component/Resources/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
@@ -35,12 +41,27 @@
             <ColumnDefinition Width="100" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Content="Config Path:"/>
-        <!-- TODO: dropdown (config ordner) -->
-        <TextBox Grid.Row="0" Grid.Column="1" Margin="3"  Text="{Binding Path}" />
-        <ScrollViewer Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto">
+        <Label Grid.Row="0" Grid.Column="0" Content="Config Folder:"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path}" Margin="3" />
+        <Label Grid.Row="1" Grid.Column="0" Content="Current Config:"/>
+        <Grid Grid.Row="1" Grid.Column="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="3" ItemsSource="{Binding ExistingConfigs}" SelectedValue="{Binding SelectedConfigPath}" />
+            <TextBox Grid.Row="1" Grid.Column="0" Margin="3" Text="{Binding PathNewConfig}" />
+            <Button Content="Add" Grid.Row="1" Grid.Column="1" Margin="5" Command="{Binding AddConfigCommand}" />
+        </Grid>
+        <ScrollViewer Grid.Row="2" Grid.Column="0"  Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto">
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -59,13 +80,15 @@
                 <Separator Grid.Row="2" Grid.Column="0"  Grid.ColumnSpan="2"/>
                 <Label Grid.Row="3" Grid.Column="0" Content="Users:"/>
                 <ItemsControl Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Config.Users}" />
-                <Separator Grid.Row="4" Grid.Column="0"  Grid.ColumnSpan="2"/>
-                <Label Grid.Row="5" Grid.Column="0" Content="Source Playlists:"/>
-                <ItemsControl Grid.Row="5" Grid.Column="1" ItemsSource="{Binding Config.SourcePlaylists}" />
-                <Separator Grid.Row="6" Grid.Column="0"  Grid.ColumnSpan="2"/>
+                <Button Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Content="Add" Command="{Binding AddUserCommand}" />
+                <Separator Grid.Row="5" Grid.Column="0"  Grid.ColumnSpan="2"/>
+                <Label Grid.Row="6" Grid.Column="0" Content="Source Playlists:"/>
+                <ItemsControl Grid.Row="6" Grid.Column="1" ItemsSource="{Binding Config.SourcePlaylists}" />
+                <Button Grid.Row="7" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Content="Add" Command="{Binding AddPlaylistToSourceCommand}" />
+                <Separator Grid.Row="8" Grid.Column="0"  Grid.ColumnSpan="2"/>
             </Grid>
         </ScrollViewer>
-        <Button Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" 
+        <Button Grid.Column="1" Grid.Row="3" HorizontalAlignment="Right" 
             MinWidth="80" Margin="3" Content="Confirm" Command="{Binding ConfirmCommand}" />
     </Grid>
 </UserControl>

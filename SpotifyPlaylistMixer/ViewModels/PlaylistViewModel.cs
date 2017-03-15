@@ -20,19 +20,19 @@ namespace SpotifyPlaylistMixer.ViewModels
             set { this.RaiseAndSetIfChanged(ref _path, value); }
         }
 
-        private string _selectedPlaylist;
+        private string _selectedPlaylistPath;
 
-        public string SelectedPlaylist
+        public string SelectedPlaylistPath
         {
-            get { return _selectedPlaylist; }
-            set { this.RaiseAndSetIfChanged(ref _selectedPlaylist, value); }
+            get { return _selectedPlaylistPath; }
+            set { this.RaiseAndSetIfChanged(ref _selectedPlaylistPath, value); }
         }
 
         public ReactiveCommand<string, List<string>> LoadExistingPlaylists { get; protected set; }
         private readonly ObservableAsPropertyHelper<List<string>> _existingPlaylists;
         public List<string> ExistingPlaylists => _existingPlaylists.Value;
 
-        public ReactiveCommand<string, List<PlaylistElement>> LoadExistingPlaylist { get;
+        public ReactiveCommand<string, List<PlaylistElement>> LoadExistingPlaylistCommand { get;
             protected set; }
         private readonly ObservableAsPropertyHelper<List<PlaylistElement>> _existingPlaylist;
         public List<PlaylistElement> ExistingPlaylist => _existingPlaylist.Value;
@@ -48,13 +48,13 @@ namespace SpotifyPlaylistMixer.ViewModels
                 .InvokeCommand(LoadExistingPlaylists);
             _existingPlaylists = LoadExistingPlaylists.ToProperty(this, x => x.ExistingPlaylists, new List<string>());
 
-            LoadExistingPlaylist =
+            LoadExistingPlaylistCommand =
                 ReactiveCommand.Create<string, List<PlaylistElement>>(LoadExistingPlaylistFromPath);
-            this.WhenAnyValue(x => x.SelectedPlaylist)
+            this.WhenAnyValue(x => x.SelectedPlaylistPath)
                 .Select(x => x?.Trim())
                 .Where(x => !string.IsNullOrWhiteSpace(x))
-                .InvokeCommand(LoadExistingPlaylist);
-            _existingPlaylist = LoadExistingPlaylist.ToProperty(this, x => x.ExistingPlaylist,
+                .InvokeCommand(LoadExistingPlaylistCommand);
+            _existingPlaylist = LoadExistingPlaylistCommand.ToProperty(this, x => x.ExistingPlaylist,
                 new List<PlaylistElement>());
 
             GenerateCurrentPlaylistCommand = ReactiveCommand.Create(GenerateCurrentPlaylist);

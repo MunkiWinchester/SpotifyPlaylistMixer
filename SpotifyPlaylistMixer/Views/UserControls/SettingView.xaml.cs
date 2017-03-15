@@ -17,7 +17,7 @@ namespace SpotifyPlaylistMixer.Views.UserControls
             DataContext = ViewModel;
 
             var dir = Directory.GetCurrentDirectory();
-            ViewModel.Path = $@"{dir}\Resources\Examples\Config\Config.json";
+            ViewModel.Path = $@"{dir}\Resources\Examples\Config\";
         }
 
         object IViewFor.ViewModel
