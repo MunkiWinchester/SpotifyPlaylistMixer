@@ -41,7 +41,7 @@
         <!-- TODO: Config wahl für generieren -->
         <!-- TODO: authentifizierung nicht immer "anmelden" -->
         <Button Grid.Row="0" Grid.Column="1" Margin="3" Content="Generate Current" Command="{Binding GenerateCurrentPlaylistCommand}"/>
-        <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Top" ItemsSource="{Binding ExistingPlaylist}" AutoGenerateColumns="False">
+        <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Top" ItemsSource="{Binding ExistingPlaylist}" AutoGenerateColumns="False" SelectionUnit="Cell" IsReadOnly="True" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding User}" Width="*" />
                 <DataGridTextColumn Header="Artists" Binding="{Binding Artists, Converter={StaticResource ListStringToStringConverter}}" Width="*" />

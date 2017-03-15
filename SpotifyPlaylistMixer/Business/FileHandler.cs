@@ -9,7 +9,7 @@ namespace SpotifyPlaylistMixer.Business
 {
     public static class FileHandler
     {
-        public static Config LoadConfig(string path = @"N:\EDV\IT-ERP - Intern\ERP Mix der Woche\Config.json")
+        public static Config LoadConfig(string path = @"N:\EDV\IT-ERP - Intern\ERP Mix der Woche\Config\Config.json")
         {
             Config config;
             if (File.Exists(path))

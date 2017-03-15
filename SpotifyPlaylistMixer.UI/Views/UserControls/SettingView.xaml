@@ -11,8 +11,11 @@
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type dataObjects:User}">
             <Border Background="Transparent" BorderBrush="Black" BorderThickness="1" Margin="3">
-                <settingViewComponents:UserView x:Name="us" />
+                <Grid>
+                    <settingViewComponents:UserView x:Name="us" />
+                    <userControls:RemoveButtonView />
                     <!-- TODO: hinzufügen/entfernen -->
+                </Grid>
             </Border>
         </DataTemplate>
         <DataTemplate DataType="{x:Type dataObjects:Playlist}">
