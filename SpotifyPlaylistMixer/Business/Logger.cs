@@ -78,7 +78,8 @@ namespace SpotifyPlaylistMixer.Business
         /// <param name="callerPath"></param>
         /// <param name="callerMember"></param>
         /// <param name="callerLine"></param>
-        private static void Log(LogLevel level, string message, Exception exception = null, string callerPath = "", string callerMember = "", int callerLine = 0)
+        private static void Log(LogLevel level, string message, Exception exception = null, string callerPath = "",
+            string callerMember = "", int callerLine = 0)
         {
             // get the source-file-specific logger
             var logger = LogManager.GetLogger(callerPath);

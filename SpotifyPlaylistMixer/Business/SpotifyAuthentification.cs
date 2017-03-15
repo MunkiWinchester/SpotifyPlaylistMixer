@@ -6,7 +6,6 @@ using SpotifyAPI.Web;
 using SpotifyAPI.Web.Auth;
 using SpotifyAPI.Web.Enums;
 using SpotifyAPI.Web.Models;
-using static SpotifyPlaylistMixer.Business.Extensions;
 
 namespace SpotifyPlaylistMixer.Business
 {
@@ -25,26 +24,26 @@ namespace SpotifyPlaylistMixer.Business
 
             try
             {
-                WriteColoredConsole("Get authorazation!", ConsoleColor.White);
+                Extensions.WriteColoredConsole("Get authorazation!", ConsoleColor.White);
                 _spotify = await webApiFactory.GetWebApi();
             }
             catch (Exception ex)
             {
-                WriteColoredConsole(ex.Message, ConsoleColor.Red);
+                Extensions.WriteColoredConsole(ex.Message, ConsoleColor.Red);
             }
 
             if (_spotify != null) return true;
 
-            WriteColoredConsole("Authorazation failed!", ConsoleColor.Red);
+            Extensions.WriteColoredConsole("Authorazation failed!", ConsoleColor.Red);
             return false;
         }
 
         private static void WriteResponse(BasicModel response)
         {
             if (!response.HasError())
-                WriteColoredConsole("Success", ConsoleColor.Green);
+                Extensions.WriteColoredConsole("Success", ConsoleColor.Green);
             else
-                WriteColoredConsole(response.Error.Message, ConsoleColor.Red);
+                Extensions.WriteColoredConsole(response.Error.Message, ConsoleColor.Red);
         }
 
         public IEnumerable<SimplePlaylist> GetPlaylists(string userId)

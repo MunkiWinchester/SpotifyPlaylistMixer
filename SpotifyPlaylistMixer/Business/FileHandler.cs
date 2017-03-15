@@ -3,23 +3,17 @@ using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using SpotifyPlaylistMixer.DataObjects;
-using static SpotifyPlaylistMixer.Business.Extensions;
 
 namespace SpotifyPlaylistMixer.Business
 {
     public static class FileHandler
     {
-        public static Config LoadConfig(string path = @"N:\EDV\IT-ERP - Intern\ERP Mix der Woche\Config\Config.json")
+        public static Config LoadConfig(string path)
         {
-            Config config;
+            var config = new Config();
             if (File.Exists(path))
             {
                 config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(path));
-            }
-            else
-            {
-                config = JsonConvert.DeserializeObject<Config>(File.ReadAllText("Config.json"));
-                File.Copy("Config.json", path);
             }
             return config;
         }
@@ -31,7 +25,7 @@ namespace SpotifyPlaylistMixer.Business
             var today = DateTime.Now.DayOfWeek;
             var sow = DateTime.Now.AddDays(-(today - fdow)).Date;
             var filePath = $@"N:\EDV\IT-ERP - Intern\ERP Mix der Woche\{sow.ToShortDateString().Replace('.', '_')}.json";
-            WriteColoredConsole($"Saving \"{playlistName}\"-playlist-JSON to \"{filePath}\"", ConsoleColor.Magenta);
+            Extensions.WriteColoredConsole($"Saving \"{playlistName}\"-playlist-JSON to \"{filePath}\"", ConsoleColor.Magenta);
             var json = JsonConvert.SerializeObject(playlist, Formatting.Indented);
             File.WriteAllText(filePath, json);
         }

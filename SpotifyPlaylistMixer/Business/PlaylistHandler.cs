@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using SpotifyAPI.Web.Models;
 using SpotifyPlaylistMixer.DataObjects;
-using static SpotifyPlaylistMixer.Business.Extensions;
 
 namespace SpotifyPlaylistMixer.Business
 {
@@ -18,19 +18,19 @@ namespace SpotifyPlaylistMixer.Business
 
         public PlaylistHandler(SpotifyAuthentification spotifyAuthentification)
         {
-            _config = FileHandler.LoadConfig();
+            _config = FileHandler.LoadConfig($@"{Directory.GetCurrentDirectory()}\Resources\Examples\Config\Config.json");
             _spotifyAuthentification = spotifyAuthentification;
         }
 
         public void CreateMixDerWoche()
         {
-            WriteColoredConsole($"Starting with the \"{_config.SourcePlaylists.ToSeperatedString()}\" history!", ConsoleColor.White);
+            Extensions.WriteColoredConsole($"Starting with the \"{_config.SourcePlaylists.ToSeperatedString()}\" history!", ConsoleColor.White);
             RemoveTracksFromPlaylist(_config.TargetPlaylist.Owner.Identifier, _config.TargetPlaylist.Identifier);
             foreach (var user in _config.Users)
             {
-                WriteColoredConsole($"Loading playlists from \"{user.Name}\"", ConsoleColor.White);
+                Extensions.WriteColoredConsole($"Loading playlists from \"{user.Name}\"", ConsoleColor.White);
                 var playlists = _spotifyAuthentification.GetPlaylists(user.Identifier).ToList();
-                WriteColoredConsole($"Loading playlist {_config.SourcePlaylists.ToSeperatedString()} from \"{user.Name}\"", ConsoleColor.White);
+                Extensions.WriteColoredConsole($"Loading playlist {_config.SourcePlaylists.ToSeperatedString()} from \"{user.Name}\"", ConsoleColor.White);
                 SimplePlaylist hit = null;
                 foreach (var configSourcePlaylist in _config.SourcePlaylists)
                 {
@@ -44,7 +44,7 @@ namespace SpotifyPlaylistMixer.Business
                 // Mix der Woche gehört Spotify
                 if (hit != null)
                 {
-                    WriteColoredConsole(
+                    Extensions.WriteColoredConsole(
                         $"Begin adding tracks from \"{user.Name}\"s \"{hit.Name}\" to \"{_config.TargetPlaylist.Name}\"", ConsoleColor.Cyan);
                     AddTracksFromPlaylistToPlaylist(hit.Owner.Id, hit.Id,
                         _config.TargetPlaylist.Owner.Identifier, _config.TargetPlaylist.Identifier, user.Name);
@@ -59,22 +59,22 @@ namespace SpotifyPlaylistMixer.Business
         // ReSharper disable once UnusedMember.Local
         private void RemovingDuplicates(string userId, string playlistId)
         {
-            WriteColoredConsole($"Removing duplicates from \"{_config.TargetPlaylist.Name}\"", ConsoleColor.Blue);
-            WriteColoredConsole($"Loading \"{_config.TargetPlaylist.Name}\"-playlist tracks..", ConsoleColor.White);
+            Extensions.WriteColoredConsole($"Removing duplicates from \"{_config.TargetPlaylist.Name}\"", ConsoleColor.Blue);
+            Extensions.WriteColoredConsole($"Loading \"{_config.TargetPlaylist.Name}\"-playlist tracks..", ConsoleColor.White);
             var paging = _spotifyAuthentification.GetPlaylistTracks(userId, playlistId);
             var playlistTracks = paging.Items;
             var total = paging.Total;
-            WriteColoredConsole(
+            Extensions.WriteColoredConsole(
                 $"Gathering {paging.Offset} - {paging.Offset + paging.Limit} of {total} from \"{_config.TargetPlaylist.Name}\"", ConsoleColor.White);
             while (paging.HasNextPage())
             {
                 paging.Offset = paging.Offset + paging.Limit;
-                WriteColoredConsole(
+                Extensions.WriteColoredConsole(
                     $"Gathering {paging.Offset} - {paging.Offset + paging.Limit} of {total} from \"{_config.TargetPlaylist.Name}\"", ConsoleColor.White);
                 paging = _spotifyAuthentification.GetPlaylistTracks(userId, playlistId, paging.Offset);
                 playlistTracks.AddRange(paging.Items);
             }
-            WriteColoredConsole("Finding duplicates", ConsoleColor.Blue);
+            Extensions.WriteColoredConsole("Finding duplicates", ConsoleColor.Blue);
             var duplicates = playlistTracks
                 .GroupBy(x => x.Track.Id)
                 .Where(g => g.Count() > 1)
@@ -87,10 +87,10 @@ namespace SpotifyPlaylistMixer.Business
                     var artists =
                         track.Track.Artists.Aggregate(string.Empty,
                             (current, simpleArtist) => current + $"{simpleArtist.Name}, ").TrimEnd(' ', ',');
-                    WriteColoredConsole(
+                    Extensions.WriteColoredConsole(
                         $"Removing all \"{artists} --- {track.Track.Name}\" (was {duplicate.Counter} times in the playlist)", ConsoleColor.Red);
                     _spotifyAuthentification.RemovePlaylistTrack(userId, playlistId, new DeleteTrackUri(track.Track.Uri));
-                    WriteColoredConsole($"Readding one \"{artists} --- {track.Track.Name}\"", ConsoleColor.Yellow);
+                    Extensions.WriteColoredConsole($"Readding one \"{artists} --- {track.Track.Name}\"", ConsoleColor.Yellow);
                     _spotifyAuthentification.AddPlaylistTrack(userId, playlistId, track.Track.Uri);
                 }
             }
@@ -105,18 +105,18 @@ namespace SpotifyPlaylistMixer.Business
 
         private void RemoveTracksFromPlaylist(string userId, string playlistId)
         {
-            WriteColoredConsole($"Loading \"{_config.TargetPlaylist.Name}\"-Playlist..", ConsoleColor.White);
+            Extensions.WriteColoredConsole($"Loading \"{_config.TargetPlaylist.Name}\"-Playlist..", ConsoleColor.White);
             var erpMix = _spotifyAuthentification.GetPlaylistTracks(userId, playlistId);
             var total = erpMix.Total;
             var offset = erpMix.Offset;
-            WriteColoredConsole(
+            Extensions.WriteColoredConsole(
                 $"Gathering and deleting {offset} - {offset + erpMix.Limit} of {total} from \"{_config.TargetPlaylist.Name}\"", ConsoleColor.Red);
             RemoveTracksFromPlaylist(erpMix.Items, userId, playlistId);
             while (erpMix.HasNextPage())
             {
                 erpMix = _spotifyAuthentification.GetPlaylistTracks(userId, playlistId);
                 offset = offset + erpMix.Limit;
-                WriteColoredConsole(
+                Extensions.WriteColoredConsole(
                     $"Gathering and deleting {offset} - {offset + erpMix.Limit} of {total} from \"{_config.TargetPlaylist.Name}\"", ConsoleColor.Red);
                 RemoveTracksFromPlaylist(erpMix.Items, userId, playlistId);
             }
