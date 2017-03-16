@@ -14,3 +14,4 @@
 * Playlist Tab und Chart Tab um Punkt "All" erweitern (Übersicht über alle bisherigen Playlists)
 * Generelle UI-Verbesserung
 * Listen-Spalten (Genre und Artists) sortierbar machen
+* Remove-Buttons "verstecken" und nur beim Hovern über dem Control einblenden
