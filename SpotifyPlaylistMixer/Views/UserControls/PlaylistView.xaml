@@ -11,9 +11,10 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <converter:ListStringToStringConverter x:Key="ListStringToStringConverter" />
-                <DataTemplate DataType="{x:Type dataObjects:PlaylistElement}">
+                <DataTemplate DataType="{x:Type dataObjects:PlaylistElementReal}">
                 <Grid>
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
@@ -23,6 +24,7 @@
                     <Label Grid.Row="0" Grid.Column="1"  Content="{Binding Artists}" />
                     <Label Grid.Row="0" Grid.Column="2"  Content="{Binding Track}"/>
                     <Label Grid.Row="0" Grid.Column="3"  Content="{Binding Genres}"/>
+                    <Label Grid.Row="0" Grid.Column="4"  Content="{Binding TrackId}"/>
                 </Grid>
             </DataTemplate>
         </ResourceDictionary>
@@ -46,6 +48,7 @@
                 <DataGridTextColumn Header="Artists" Binding="{Binding Artists, Converter={StaticResource ListStringToStringConverter}}" Width="*" />
                 <DataGridTextColumn Header="Track" Binding="{Binding Track}" Width="*" />
                 <DataGridTextColumn Header="Genres" Binding="{Binding Genres, Converter={StaticResource ListStringToStringConverter}}" Width="*" />
+                <DataGridTextColumn Header="TrackId" Binding="{Binding TrackId}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

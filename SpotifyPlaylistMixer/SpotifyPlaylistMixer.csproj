@@ -151,8 +151,10 @@
     <Compile Include="Converter\ListStringToStringConverter.cs" />
     <Compile Include="DataObjects\Config.cs" />
     <Compile Include="DataObjects\Playlist.cs" />
+    <Compile Include="DataObjects\PlaylistElementReal.cs" />
     <Compile Include="DataObjects\PlaylistElement.cs" />
     <Compile Include="DataObjects\User.cs" />
+    <Compile Include="ViewModels\GenreViewModel.cs" />
     <Compile Include="ViewModels\PlaylistViewModel.cs" />
     <Compile Include="ViewModels\SettingViewModel.cs" />
     <Compile Include="Views\UserControls\GenreView.xaml.cs">

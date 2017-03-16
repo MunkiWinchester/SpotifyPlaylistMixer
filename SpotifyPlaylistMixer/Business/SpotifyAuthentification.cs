@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using SpotifyAPI.Web;
 using SpotifyAPI.Web.Auth;
 using SpotifyAPI.Web.Enums;
 using SpotifyAPI.Web.Models;
+using SpotifyPlaylistMixer.DataObjects;
 
 namespace SpotifyPlaylistMixer.Business
 {
@@ -81,6 +83,77 @@ namespace SpotifyPlaylistMixer.Business
         public void AddPlaylistTracks(string userId, string playlistId, List<string> uriList)
         {
             WriteResponse(_spotify.AddPlaylistTracks(userId, playlistId, uriList));
+        }
+
+        public List<PlaylistElementReal> MockThisShit(List<PlaylistElement> playlist)
+        {
+            var list = new List<KeyValuePair<string, FullTrack>>();
+            var mockedPlaylist = new List<PlaylistElementReal>();
+            foreach (var song in playlist)
+            {
+                var artists = song.Artists[0];
+                var splittedArtists =
+                    artists.Split(',').ToList().Select(splittedArtist => splittedArtist.Trim()).ToList();
+                var artist = splittedArtists.Aggregate("", (current, splittedArtist) => current + $"\"{splittedArtist}\"");
+
+                var searchItems = _spotify.SearchItems($"artist:{artist}%20track:\"{song.Track}\"", SearchType.Track, 1,
+                    0, "DE");
+                var item = searchItems.Tracks?.Items?.FirstOrDefault();
+                if (item != null)
+                    list.Add(new KeyValuePair<string, FullTrack>(song.User, item));
+                else
+                    mockedPlaylist.Add(new PlaylistElementReal
+                    {
+                        User = song.User,
+                        Artists = splittedArtists,
+                        Genres = new List<string>(),
+                        Track = song.Track,
+                        TrackId = ""
+                    });
+            }
+
+            foreach (var searchItem in list)
+            {
+                var track = searchItem.Value;
+                if (track != null)
+                {
+                    var playlistElement = new PlaylistElementReal { User = searchItem.Key, Track = track.Name, TrackId = track.Id };
+
+                    var ids = track.Artists.Select(a => a.Id).ToList();
+                    var artists = GetSeveralArtists(ids);
+
+                    var artistsList = new List<string>();
+                    var genresList = new List<string>();
+                    if(artists.Artists != null)
+                    foreach (var fullArtist in artists.Artists)
+                    {
+                        artistsList.Add(fullArtist.Name);
+                        genresList.AddRange(fullArtist.Genres);
+                    }
+                    track.Artists.Sort();
+                    artistsList.Sort();
+                    genresList.Sort();
+                    playlistElement.Artists = artistsList.Any() ? artistsList : track.Artists.Select(x => x.Name).ToList();
+                    playlistElement.Genres = genresList.Any() ? genresList : new List<string>();
+
+                    mockedPlaylist.Add(playlistElement);
+                }
+            }
+            return mockedPlaylist;
+        }
+
+        private SeveralArtists GetSeveralArtists(List<string> ids)
+        {
+            var artists = _spotify.GetSeveralArtists(ids);
+            if (artists.HasError())
+            {
+                if (artists.Error.Status == 429)
+                {
+                    Thread.Sleep((int) TimeSpan.FromSeconds(5).TotalMilliseconds);
+                    GetSeveralArtists(ids);
+                }
+            }
+            return artists;
         }
     }
 }

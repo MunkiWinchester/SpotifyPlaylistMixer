@@ -2,7 +2,6 @@
 using System.IO;
 using System.Linq;
 using System.Reactive.Linq;
-using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using ReactiveUI;
 using SpotifyPlaylistMixer.Business;
@@ -32,10 +31,10 @@ namespace SpotifyPlaylistMixer.ViewModels
         private readonly ObservableAsPropertyHelper<List<string>> _existingPlaylists;
         public List<string> ExistingPlaylists => _existingPlaylists.Value;
 
-        public ReactiveCommand<string, List<PlaylistElement>> LoadExistingPlaylistCommand { get;
+        public ReactiveCommand<string, List<PlaylistElementReal>> LoadExistingPlaylistCommand { get;
             protected set; }
-        private readonly ObservableAsPropertyHelper<List<PlaylistElement>> _existingPlaylist;
-        public List<PlaylistElement> ExistingPlaylist => _existingPlaylist.Value;
+        private readonly ObservableAsPropertyHelper<List<PlaylistElementReal>> _existingPlaylist;
+        public List<PlaylistElementReal> ExistingPlaylist => _existingPlaylist.Value;
 
         public ReactiveCommand GenerateCurrentPlaylistCommand { get; private set; }
 
@@ -49,38 +48,39 @@ namespace SpotifyPlaylistMixer.ViewModels
             _existingPlaylists = LoadExistingPlaylists.ToProperty(this, x => x.ExistingPlaylists, new List<string>());
 
             LoadExistingPlaylistCommand =
-                ReactiveCommand.Create<string, List<PlaylistElement>>(LoadExistingPlaylistFromPath);
+                ReactiveCommand.Create<string, List<PlaylistElementReal>>(LoadExistingPlaylistFromPath);
             this.WhenAnyValue(x => x.SelectedPlaylistPath)
                 .Select(x => x?.Trim())
                 .Where(x => !string.IsNullOrWhiteSpace(x))
                 .InvokeCommand(LoadExistingPlaylistCommand);
             _existingPlaylist = LoadExistingPlaylistCommand.ToProperty(this, x => x.ExistingPlaylist,
-                new List<PlaylistElement>());
+                new List<PlaylistElementReal>());
 
             GenerateCurrentPlaylistCommand = ReactiveCommand.Create(GenerateCurrentPlaylist);
         }
 
-        private List<PlaylistElement> LoadExistingPlaylistFromPath(string path)
+        private List<PlaylistElementReal> LoadExistingPlaylistFromPath(string path)
         {
-            var elements = JsonConvert.DeserializeObject<IEnumerable<KeyValuePair<string, List<string>>>>(
+            var elements = JsonConvert.DeserializeObject<IEnumerable<PlaylistElementReal>>(
                 File.ReadAllText(path)).ToList();
-            var list = new List<PlaylistElement>();
-            foreach (var element in elements)
-            {
-                // TODO: mock this to real "playlist" files and implement the json properly
-                list.AddRange(
-                    element.Value.Select(song => Regex.Split(song, " --- "))
-                        .Select(
-                            spli =>
-                                new PlaylistElement
-                                {
-                                    User = element.Key,
-                                    Artists = new List<string> { spli[0] },
-                                    Track = spli[1],
-                                    Genres = new List<string> { "death" }
-                                    }));
-            }
-            return list;
+            return elements;
+            //var list = new List<PlaylistElementReal>();
+            //foreach (var element in elements)
+            //{
+            //    // TODO: mock this to real "playlist" files and implement the json properly
+            //    list.AddRange(
+            //        element.Value.Select(song => Regex.Split(song, " --- "))
+            //            .Select(
+            //                spli =>
+            //                    new PlaylistElement
+            //                    {
+            //                        User = element.Key,
+            //                        Artists = new List<string> { spli[0] },
+            //                        Track = spli[1],
+            //                        Genres = new List<string> { "death" }
+            //                        }));
+            //}
+            //return list;
         }
 
         private void GenerateCurrentPlaylist()
@@ -90,8 +90,13 @@ namespace SpotifyPlaylistMixer.ViewModels
             authenticate.Wait();
             if (authenticate.Result)
             {
-                var playlistHandler = new PlaylistHandler(spotifyAuthentification);
-                playlistHandler.CreateMixDerWoche();
+                //var list = spotifyAuthentification.MockThisShit(ExistingPlaylist);
+                var dir = Directory.GetCurrentDirectory();
+                var path = $@"{dir}\Resources\Examples\NewPlaylist\{System.IO.Path.GetFileName(SelectedPlaylistPath)}";
+                //var json = JsonConvert.SerializeObject(list, Formatting.Indented);
+                //File.WriteAllText(path, json);
+                //var playlistHandler = new PlaylistHandler(spotifyAuthentification);
+                //playlistHandler.CreateMixDerWoche();
             }
         }
 

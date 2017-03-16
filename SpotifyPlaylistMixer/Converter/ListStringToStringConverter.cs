@@ -12,7 +12,7 @@ namespace SpotifyPlaylistMixer.Converter
         {
             var list = value as List<string>;
             var connectedString = "";
-            if (list != null)
+            if (list != null && list.Any())
             {
                 connectedString = list.Aggregate((s, next) => $"{s}; {next}");
             }

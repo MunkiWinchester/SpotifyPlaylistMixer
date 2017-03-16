@@ -4,6 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:dataObjects="clr-namespace:SpotifyPlaylistMixer.DataObjects"
+             xmlns:converter="clr-namespace:SpotifyPlaylistMixer.Converter"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
@@ -16,8 +18,8 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0"  Grid.Column="0" Content="Genre for:" />
-        <ComboBox Grid.Row="0" Grid.Column="1" Margin="3" ItemsSource="{Binding Playlists}" SelectedValue="{Binding SelectedPlaylist}" />
-            <wpf:PieChart Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2" LegendLocation="Right" HoverPushOut="10">
+        <ComboBox Grid.Row="0" Grid.Column="1" Margin="3" ItemsSource="{Binding ExistingPlaylists}" SelectedValue="{Binding SelectedPlaylistPath}" />
+        <wpf:PieChart Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2" LegendLocation="Right" HoverPushOut="10" >
             <wpf:PieChart.Series>
                 <wpf:PieSeries Title="Maria" Values="3" DataLabels="True" 
                                LabelPoint="{Binding PointLabel}"/>

@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace SpotifyPlaylistMixer.Views
+﻿namespace SpotifyPlaylistMixer.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
