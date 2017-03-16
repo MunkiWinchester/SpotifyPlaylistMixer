@@ -16,3 +16,4 @@
 * Listen-Spalten (Genre und Artists) sortierbar machen
 * Remove-Buttons "verstecken" und nur beim Hovern über dem Control einblenden
 * Beim Hovern über dem Taskbar-Icon passendes Icon benutzen (nicht das Standard "App" Icon)
+* Config für das generieren der Playlist wählen können/müssen
