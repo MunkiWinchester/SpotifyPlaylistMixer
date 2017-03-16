@@ -8,6 +8,7 @@ using SpotifyAPI.Web.Auth;
 using SpotifyAPI.Web.Enums;
 using SpotifyAPI.Web.Models;
 using SpotifyPlaylistMixer.DataObjects;
+using System.Web;
 
 namespace SpotifyPlaylistMixer.Business
 {
@@ -94,10 +95,12 @@ namespace SpotifyPlaylistMixer.Business
                 var artists = song.Artists[0];
                 var splittedArtists =
                     artists.Split(',').ToList().Select(splittedArtist => splittedArtist.Trim()).ToList();
-                var artist = splittedArtists.Aggregate("", (current, splittedArtist) => current + $"\"{splittedArtist}\"");
+                var artist = splittedArtists.Aggregate("", (current, splittedArtist) => current + $",{HttpUtility.UrlEncode(splittedArtist)}");
 
-                var searchItems = _spotify.SearchItems($"artist:{artist}%20track:\"{song.Track}\"", SearchType.Track, 1,
-                    0, "DE");
+                var searchItems =
+                    _spotify.SearchItems($"artist:{artist}%20track:{HttpUtility.UrlEncode(song.Track.Trim())}",
+                        SearchType.Track, 1);
+                Thread.Sleep(600);
                 var item = searchItems.Tracks?.Items?.FirstOrDefault();
                 if (item != null)
                     list.Add(new KeyValuePair<string, FullTrack>(song.User, item));
@@ -130,10 +133,11 @@ namespace SpotifyPlaylistMixer.Business
                         artistsList.Add(fullArtist.Name);
                         genresList.AddRange(fullArtist.Genres);
                     }
-                    track.Artists.Sort();
                     artistsList.Sort();
                     genresList.Sort();
-                    playlistElement.Artists = artistsList.Any() ? artistsList : track.Artists.Select(x => x.Name).ToList();
+                    var artistList = track.Artists.Select(x => x.Name).ToList();
+                    artistList.Sort();
+                    playlistElement.Artists = artistsList.Any() ? artistsList : artistList;
                     playlistElement.Genres = genresList.Any() ? genresList : new List<string>();
 
                     mockedPlaylist.Add(playlistElement);
@@ -153,6 +157,7 @@ namespace SpotifyPlaylistMixer.Business
                     GetSeveralArtists(ids);
                 }
             }
+            Thread.Sleep(600);
             return artists;
         }
     }
