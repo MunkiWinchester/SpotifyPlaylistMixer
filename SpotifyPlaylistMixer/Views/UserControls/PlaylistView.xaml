@@ -11,7 +11,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <converter:ListStringToStringConverter x:Key="ListStringToStringConverter" />
-                <DataTemplate DataType="{x:Type dataObjects:PlaylistElementReal}">
+                <DataTemplate DataType="{x:Type dataObjects:PlaylistElement}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -44,11 +44,11 @@
         <Button Grid.Row="0" Grid.Column="1" Margin="3" Content="Generate Current" Command="{Binding GenerateCurrentPlaylistCommand}"/>
         <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Top" ItemsSource="{Binding ExistingPlaylist}" AutoGenerateColumns="False" SelectionUnit="Cell" IsReadOnly="True" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding User}" Width="*" />
+                <DataGridTextColumn Header="Name" Binding="{Binding User}" Width="0.4*" />
                 <DataGridTextColumn Header="Artists" Binding="{Binding Artists, Converter={StaticResource ListStringToStringConverter}}" Width="*" />
                 <DataGridTextColumn Header="Track" Binding="{Binding Track}" Width="*" />
                 <DataGridTextColumn Header="Genres" Binding="{Binding Genres, Converter={StaticResource ListStringToStringConverter}}" Width="*" />
-                <DataGridTextColumn Header="TrackId" Binding="{Binding TrackId}" Width="*" />
+                <DataGridTextColumn Header="TrackId" Binding="{Binding TrackId}" Width="*" Visibility="Hidden" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

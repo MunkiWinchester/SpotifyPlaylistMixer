@@ -27,13 +27,13 @@ namespace SpotifyPlaylistMixer.ViewModels
             set { this.RaiseAndSetIfChanged(ref _selectedPlaylistPath, value); }
         }
         
-        public ReactiveCommand<string, List<PlaylistElementReal>> LoadExistingPlaylistCommand
+        public ReactiveCommand<string, List<PlaylistElement>> LoadExistingPlaylistCommand
         {
             get;
             protected set;
         }
-        private readonly ObservableAsPropertyHelper<List<PlaylistElementReal>> _existingPlaylist;
-        public List<PlaylistElementReal> ExistingPlaylist => _existingPlaylist.Value;
+        private readonly ObservableAsPropertyHelper<List<PlaylistElement>> _existingPlaylist;
+        public List<PlaylistElement> ExistingPlaylist => _existingPlaylist.Value;
 
         public ReactiveCommand<string, List<string>> LoadExistingPlaylists { get; protected set; }
         private readonly ObservableAsPropertyHelper<List<string>> _existingPlaylists;
@@ -43,13 +43,13 @@ namespace SpotifyPlaylistMixer.ViewModels
         public GenreViewModel()
         {
             LoadExistingPlaylistCommand =
-                ReactiveCommand.Create<string, List<PlaylistElementReal>>(LoadExistingPlaylistFromPath);
+                ReactiveCommand.Create<string, List<PlaylistElement>>(LoadExistingPlaylistFromPath);
             this.WhenAnyValue(x => x.SelectedPlaylistPath)
                 .Select(x => x?.Trim())
                 .Where(x => !string.IsNullOrWhiteSpace(x))
                 .InvokeCommand(LoadExistingPlaylistCommand);
             _existingPlaylist = LoadExistingPlaylistCommand.ToProperty(this, x => x.ExistingPlaylist,
-                new List<PlaylistElementReal>());
+                new List<PlaylistElement>());
 
             LoadExistingPlaylistCommand.Subscribe(result =>
             {
@@ -66,9 +66,9 @@ namespace SpotifyPlaylistMixer.ViewModels
             _existingPlaylists = LoadExistingPlaylists.ToProperty(this, x => x.ExistingPlaylists, new List<string>());
         }
 
-        private List<PlaylistElementReal> LoadExistingPlaylistFromPath(string path)
+        private List<PlaylistElement> LoadExistingPlaylistFromPath(string path)
         {
-            var elements = JsonConvert.DeserializeObject<IEnumerable<PlaylistElementReal>>(
+            var elements = JsonConvert.DeserializeObject<IEnumerable<PlaylistElement>>(
                 File.ReadAllText(path)).ToList();
             return elements;
         }

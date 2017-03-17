@@ -62,24 +62,8 @@ namespace SpotifyPlaylistMixer.ViewModels
 
         private List<PlaylistElement> LoadExistingPlaylistFromPath(string path)
         {
-            var elements = JsonConvert.DeserializeObject<List<KeyValuePair<string, List<string>>>>(
+            return JsonConvert.DeserializeObject<List<PlaylistElement>>(
                 File.ReadAllText(path));
-            var list = new List<PlaylistElement>();
-            foreach (var element in elements)
-            {
-                list.AddRange(
-                    element.Value.Select(song => Regex.Split(song, " --- "))
-                        .Select(
-                            spli =>
-                                new PlaylistElement
-                                {
-                                    User = element.Key,
-                                    Artists = new List<string> { spli[0] },
-                                    Track = spli[1],
-                                    Genres = new List<string>()
-                                }));
-            }
-            return list;
         }
 
         private void GenerateCurrentPlaylist()
@@ -89,13 +73,8 @@ namespace SpotifyPlaylistMixer.ViewModels
             authenticate.Wait();
             if (authenticate.Result)
             {
-                var list = spotifyAuthentification.MockThisShit(ExistingPlaylist);
-                var dir = Directory.GetCurrentDirectory();
-                var path = $@"{dir}\Resources\Examples\NewPlaylist\{System.IO.Path.GetFileName(SelectedPlaylistPath)}";
-                var json = JsonConvert.SerializeObject(list, Formatting.Indented);
-                File.WriteAllText(path, json);
-                //var playlistHandler = new PlaylistHandler(spotifyAuthentification);
-                //playlistHandler.CreateMixDerWoche();
+                var playlistHandler = new PlaylistHandler(spotifyAuthentification);
+                playlistHandler.CreateMixDerWoche();
             }
         }
 

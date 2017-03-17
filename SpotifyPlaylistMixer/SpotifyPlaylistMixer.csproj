@@ -152,7 +152,6 @@
     <Compile Include="Converter\ListStringToStringConverter.cs" />
     <Compile Include="DataObjects\Config.cs" />
     <Compile Include="DataObjects\Playlist.cs" />
-    <Compile Include="DataObjects\PlaylistElementReal.cs" />
     <Compile Include="DataObjects\PlaylistElement.cs" />
     <Compile Include="DataObjects\User.cs" />
     <Compile Include="ViewModels\GenreViewModel.cs" />
@@ -308,8 +307,6 @@
     <Content Include="Resources\Examples\EMP ERP Mix von 2016.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\Examples\NewPlaylist\27_02_2017.json" />
-    <None Include="Resources\Examples\NewPlaylist\30_01_2017.json" />
     <Resource Include="Resources\Entypo.ttf" />
   </ItemGroup>
   <ItemGroup>
