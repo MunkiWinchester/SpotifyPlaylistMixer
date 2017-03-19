@@ -10,10 +10,7 @@ namespace SpotifyPlaylistMixer.Business
     public class PlaylistHandler
     {
         private readonly Config _config;
-
-        private readonly List<KeyValuePair<string, List<string>>> _personSongs =
-            new List<KeyValuePair<string, List<string>>>();
-
+        private readonly List<PlaylistElement> _personPlaylistElements = new List<PlaylistElement>();
         private readonly SpotifyAuthentification _spotifyAuthentification;
 
         public PlaylistHandler(SpotifyAuthentification spotifyAuthentification)
@@ -55,7 +52,7 @@ namespace SpotifyPlaylistMixer.Business
                 }
             }
 
-            FileHandler.SavePlaylistAsJson(_config.TargetPlaylist.Name, _personSongs);
+            FileHandler.SavePlaylistAsJson(_config.TargetPlaylist.Name, _personPlaylistElements);
 
             //RemovingDuplicates(_profile.Id, _erpPlaylist);
         }
@@ -137,21 +134,16 @@ namespace SpotifyPlaylistMixer.Business
         private IEnumerable<string> AddTracksToUriList(IEnumerable<PlaylistTrack> tracks, string user)
         {
             var uriList = new List<string>();
-            var songList = new List<string>();
             if (tracks != null)
             {
                 foreach (var playlistTrack in tracks)
                 {
-                    // TODO: CHANGE THIS to use the new model with genre etc.
                     uriList.Add(playlistTrack.Track.Uri);
-                    var artists =
-                        playlistTrack.Track.Artists.Aggregate(string.Empty,
-                            (current, simpleArtist) => current + $"{simpleArtist.Name}, ").TrimEnd(' ', ',');
-                    // TODO: CHANGE THIS to use the new model with genre etc.
-                    songList.Add($"{artists} --- {playlistTrack.Track.Name}");
+
+                    var playlistElement = _spotifyAuthentification.GetPlaylistElementFromTrack(playlistTrack.Track);
+                    playlistElement.User = user;
+                    _personPlaylistElements.Add(playlistElement);
                 }
-                if (songList.Any())
-                    _personSongs.Add(new KeyValuePair<string, List<string>>($"{user}", songList));
                 return uriList;
             }
             return new List<string>();
