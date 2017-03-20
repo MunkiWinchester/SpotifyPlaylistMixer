@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reactive.Linq;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using ReactiveUI;
 using SpotifyPlaylistMixer.Business;
@@ -73,7 +75,8 @@ namespace SpotifyPlaylistMixer.ViewModels
             if (authenticate.Result)
             {
                 var playlistHandler = new PlaylistHandler(spotifyAuthentification);
-                playlistHandler.CreateMixDerWoche();
+                var task = new Task(playlistHandler.CreateMixDerWoche);
+                task.Start();
             }
         }
 

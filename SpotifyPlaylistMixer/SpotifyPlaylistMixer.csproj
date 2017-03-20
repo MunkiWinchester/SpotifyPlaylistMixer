@@ -307,6 +307,9 @@
     <Content Include="Resources\Examples\EMP ERP Mix von 2016.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Examples\EMP-ERP weekly Mix_20_03_2017.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Resources\Entypo.ttf" />
   </ItemGroup>
   <ItemGroup>
