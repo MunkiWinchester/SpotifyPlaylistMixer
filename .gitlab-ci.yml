@@ -8,4 +8,4 @@ before_script:
 build:
  stage: build
  script:
-  - msbuild SpotifyPlaylistMixer.sln /t:ReBuild /p:Configuration=Release;Platform="Any CPU"
+  - msbuild.exe SpotifyPlaylistMixer.sln /t:ReBuild /p:Configuration=Release;Platform="Any CPU"
