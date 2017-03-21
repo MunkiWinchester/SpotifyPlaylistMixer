@@ -1,10 +1,11 @@
+image: mono:4.4.0.182
 stages:
   - build
 
 before_script:
-  - 'nuget restore SpotifyPlaylistMixer.sln'
+  - nuget restore
 
 build:
  stage: build
  script:
-  - 'msbuild SpotifyPlaylistMixer.sln /t:ReBuild /p:Configuration=Release;Platform="Any CPU"'
+  - msbuild SpotifyPlaylistMixer.sln /t:ReBuild /p:Configuration=Release;Platform="Any CPU"
