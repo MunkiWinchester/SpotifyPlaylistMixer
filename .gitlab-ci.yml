@@ -1,0 +1,10 @@
+stages:
+  - build
+
+before_script:
+  - 'nuget restore SpotifyPlaylistMixer.sln'
+
+build:
+ stage: build
+ script:
+  - 'msbuild SpotifyPlaylistMixer.sln /t:ReBuild /p:Configuration=Release;Platform="Any CPU"'
