@@ -1,4 +1,4 @@
-image: mono:4.4.0.182
+image: didstopia/msbuild:latest
 stages:
   - build
 
