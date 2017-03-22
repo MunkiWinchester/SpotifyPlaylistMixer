@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reactive.Linq;
+using System.Windows;
 using Newtonsoft.Json;
 using ReactiveUI;
 using SpotifyPlaylistMixer.Business;
 using SpotifyPlaylistMixer.DataObjects;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Position;
+using ToastNotifications.Messages;
 using ReactiveCommand = ReactiveUI.ReactiveCommand;
 
 namespace SpotifyPlaylistMixer.ViewModels
@@ -14,10 +19,15 @@ namespace SpotifyPlaylistMixer.ViewModels
     public class SettingViewModel : ReactiveObject
     {
         private string _path;
+        private string _oldPath;
         public string Path
         {
             get { return _path; }
-            set { this.RaiseAndSetIfChanged(ref _path, value); }
+            set
+            {
+                _oldPath = _path;
+                this.RaiseAndSetIfChanged(ref _path, value);
+            }
         }
 
         private string _pathNewConfig;
@@ -146,7 +156,29 @@ namespace SpotifyPlaylistMixer.ViewModels
 
         private Config LoadConfigFromPath(string path)
         {
+            if (FileHandler.LoadConfig(path) == null)
+            {
+                Path = _oldPath;
+                notifier.ShowWarning("In diesem Ordner befindet sich keine Config.json");
+                return Config;
+            }
             return FileHandler.LoadConfig(path);
         }
+
+        /*Todo evtl in eigene Klasse*/
+        Notifier notifier = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.MainWindow,
+                corner: Corner.TopRight, 
+                offsetX: 20,
+                offsetY: -20);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(5),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+        });
     }
 }
