@@ -14,7 +14,14 @@ namespace SpotifyPlaylistMixer.Business
             var config = new Config();
             if (File.Exists(path))
             {
-                config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(path));
+                try
+                {
+                    config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(path));
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
             }
             return config;
         }
