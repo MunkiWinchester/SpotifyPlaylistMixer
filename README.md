@@ -10,7 +10,7 @@
 * Chart Tab implementieren
 * Chart Tab um Genre, Songs, Artists erweitern
 * Methoden für gleiche Commands erstellen
-* Nach überführen der alten Playlist in das neue Model alles darauf ummodeln
+* ~~Nach überführen der alten Playlist in das neue Model alles darauf ummodeln~~
 * Playlist Tab und Chart Tab um Punkt "All" erweitern (Übersicht über alle bisherigen Playlists)
 * Generelle UI-Verbesserung
 * Listen-Spalten (Genre und Artists) sortierbar machen
