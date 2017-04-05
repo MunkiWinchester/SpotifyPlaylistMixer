@@ -46,6 +46,7 @@ namespace SpotifyPlaylistMixer.ViewModels
 
         public ReactiveCommand<string, Config> LoadConfigCommand { get; protected set; }
         private readonly ObservableAsPropertyHelper<Config> _config;
+
         public Config Config => _config.Value;
 
         public ReactiveCommand<string, List<KeyValuePair<string, string>>> LoadExistingConfigs { get; protected set; }
@@ -88,11 +89,11 @@ namespace SpotifyPlaylistMixer.ViewModels
             var canConfirmConfigObservable = this.WhenAny(vm => vm.Config,
                 s =>
                     true
-                    //!string.IsNullOrEmpty(s.Value.TargetPlaylist?.Identifier)
-                    //&& !string.IsNullOrEmpty(s.Value.TargetPlaylist.Owner.Identifier)
-                    //&& s.Value.SourcePlaylists.Any()
-                    //&& !string.IsNullOrEmpty(s.Value.SourcePlaylists.FirstOrDefault()?.Name)
-                    //&& !string.IsNullOrEmpty(s.Value.SourcePlaylists.FirstOrDefault()?.Owner.Identifier)
+                //!string.IsNullOrEmpty(s.Value.TargetPlaylist?.Identifier)
+                //&& !string.IsNullOrEmpty(s.Value.TargetPlaylist.Owner.Identifier)
+                //&& s.Value.SourcePlaylists.Any()
+                //&& !string.IsNullOrEmpty(s.Value.SourcePlaylists.FirstOrDefault()?.Name)
+                //&& !string.IsNullOrEmpty(s.Value.SourcePlaylists.FirstOrDefault()?.Owner.Identifier)
                 );
             ConfirmCommand = ReactiveCommand.Create(ChangeConfig, canConfirmConfigObservable);
 
@@ -120,7 +121,7 @@ namespace SpotifyPlaylistMixer.ViewModels
 
         private void AddUser()
         {
-            Config.Users.Add(new User());
+            Config.Users.Add(FileHandler.SaveConfigAddUser(LoadExistingConfigsFromPath(Path)));
         }
 
         private string AddConfig(string dummy)
@@ -157,8 +158,8 @@ namespace SpotifyPlaylistMixer.ViewModels
 
         public void ChangeConfig()
         {
-            var json = JsonConvert.SerializeObject(Config, Formatting.Indented);
-            File.WriteAllText(SelectedConfigPath, json);
+            FileHandler.SaveConfigEditUser(LoadExistingConfigsFromPath(Path), Config.Users);
+            //TODO SaveCondigEdit für alle Optionen und Notifications aber müssen uns ein anders tool suchen verstehe das aktuelle nicht ganz
         }
 
         private Config LoadConfigFromPath(string path)
@@ -177,9 +178,9 @@ namespace SpotifyPlaylistMixer.ViewModels
         {
             cfg.PositionProvider = new WindowPositionProvider(
                 parentWindow: Application.Current.MainWindow,
-                corner: Corner.TopRight, 
-                offsetX: 20,
-                offsetY: -20);
+                corner: Corner.BottomLeft,
+                offsetX: 10,
+                offsetY: 10);
 
             cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
                 notificationLifetime: TimeSpan.FromSeconds(5),
