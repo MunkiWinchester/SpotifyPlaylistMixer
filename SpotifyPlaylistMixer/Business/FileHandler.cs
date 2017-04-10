@@ -33,7 +33,7 @@ namespace SpotifyPlaylistMixer.Business
             var today = DateTime.Now.DayOfWeek;
             var sow = DateTime.Now.AddDays(-(today - fdow)).Date;
             var filePath =
-                $@"N:\EDV\IT-ERP - Intern\ERP Mix der Woche\{CleanFileName(playlistName)}_{sow.ToShortDateString()
+                $@"{Directory.GetCurrentDirectory()}\Resources\Examples\{CleanFileName(playlistName)}_{sow.ToShortDateString()
                     .Replace('.', '_')}.json";
             Extensions.WriteColoredConsole($"Saving \"{playlistName}\"-playlist-JSON to \"{filePath}\"",
                 ConsoleColor.Magenta);
