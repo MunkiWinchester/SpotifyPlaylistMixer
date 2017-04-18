@@ -1,4 +1,8 @@
-﻿using System.IO;
+﻿using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Windows.Controls;
+using System.Windows.Data;
 using ReactiveUI;
 using SpotifyPlaylistMixer.ViewModels;
 
@@ -22,8 +26,8 @@ namespace SpotifyPlaylistMixer.Views.UserControls
 
         object IViewFor.ViewModel
         {
-            get { return ViewModel; }
-            set { ViewModel = (PlaylistViewModel)value; }
+            get => ViewModel;
+            set => ViewModel = (PlaylistViewModel)value;
         }
 
         public PlaylistViewModel ViewModel { get; set; }

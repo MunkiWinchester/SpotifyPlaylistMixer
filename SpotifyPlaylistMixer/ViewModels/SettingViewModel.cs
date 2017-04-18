@@ -22,7 +22,7 @@ namespace SpotifyPlaylistMixer.ViewModels
         private string _oldPath;
         public string Path
         {
-            get { return _path; }
+            get => _path;
             set
             {
                 _oldPath = _path;
@@ -33,15 +33,15 @@ namespace SpotifyPlaylistMixer.ViewModels
         private string _pathNewConfig;
         public string PathNewConfig
         {
-            get { return _pathNewConfig; }
-            set { this.RaiseAndSetIfChanged(ref _pathNewConfig, value); }
+            get => _pathNewConfig;
+            set => this.RaiseAndSetIfChanged(ref _pathNewConfig, value);
         }
 
         private string _selectedConfigPath;
         public string SelectedConfigPath
         {
-            get { return _selectedConfigPath; }
-            set { this.RaiseAndSetIfChanged(ref _selectedConfigPath, value); }
+            get => _selectedConfigPath;
+            set => this.RaiseAndSetIfChanged(ref _selectedConfigPath, value);
         }
 
         public ReactiveCommand<string, Config> LoadConfigCommand { get; protected set; }

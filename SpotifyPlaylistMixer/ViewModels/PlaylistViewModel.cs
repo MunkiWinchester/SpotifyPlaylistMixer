@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reactive.Linq;
@@ -17,16 +16,16 @@ namespace SpotifyPlaylistMixer.ViewModels
 
         public string Path
         {
-            get { return _path; }
-            set { this.RaiseAndSetIfChanged(ref _path, value); }
+            get => _path;
+            set => this.RaiseAndSetIfChanged(ref _path, value);
         }
 
         private string _selectedPlaylistPath;
 
         public string SelectedPlaylistPath
         {
-            get { return _selectedPlaylistPath; }
-            set { this.RaiseAndSetIfChanged(ref _selectedPlaylistPath, value); }
+            get => _selectedPlaylistPath;
+            set => this.RaiseAndSetIfChanged(ref _selectedPlaylistPath, value);
         }
 
         public ReactiveCommand<string, List<string>> LoadExistingPlaylists { get; protected set; }
@@ -38,7 +37,7 @@ namespace SpotifyPlaylistMixer.ViewModels
         private readonly ObservableAsPropertyHelper<List<PlaylistElement>> _existingPlaylist;
         public List<PlaylistElement> ExistingPlaylist => _existingPlaylist.Value;
 
-        public ReactiveCommand GenerateCurrentPlaylistCommand { get; private set; }
+        public ReactiveCommand GenerateCurrentPlaylistCommand { get; }
 
         public PlaylistViewModel()
         {

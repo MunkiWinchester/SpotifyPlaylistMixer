@@ -22,8 +22,8 @@ namespace SpotifyPlaylistMixer.Views.UserControls
 
         object IViewFor.ViewModel
         {
-            get { return ViewModel; }
-            set { ViewModel = (SettingViewModel)value; }
+            get => ViewModel;
+            set => ViewModel = (SettingViewModel)value;
         }
 
         public SettingViewModel ViewModel { get; set; }

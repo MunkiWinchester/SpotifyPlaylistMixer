@@ -171,6 +171,7 @@
     <Compile Include="Business\SpotifyAuthentification.cs" />
     <Compile Include="Converter\ListStringToStringConverter.cs" />
     <Compile Include="DataObjects\Config.cs" />
+    <Compile Include="DataObjects\CustomList.cs" />
     <Compile Include="DataObjects\Playlist.cs" />
     <Compile Include="DataObjects\PlaylistElement.cs" />
     <Compile Include="DataObjects\User.cs" />
@@ -331,6 +332,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\Examples\EMP-ERP weekly Mix_03_04_2017.json" />
+    <None Include="Resources\Examples\EMP-ERP weekly Mix_10_04_2017.json" />
+    <None Include="Resources\Examples\EMP-ERP weekly Mix_17_04_2017.json" />
     <None Include="Resources\Examples\EMP-ERP weekly Mix_27_03_2017.json" />
     <Resource Include="Resources\Entypo.ttf" />
   </ItemGroup>

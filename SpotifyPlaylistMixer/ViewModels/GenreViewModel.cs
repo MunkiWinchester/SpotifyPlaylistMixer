@@ -15,16 +15,16 @@ namespace SpotifyPlaylistMixer.ViewModels
 
         public string Path
         {
-            get { return _path; }
-            set { this.RaiseAndSetIfChanged(ref _path, value); }
+            get => _path;
+            set => this.RaiseAndSetIfChanged(ref _path, value);
         }
 
         private string _selectedPlaylistPath;
 
         public string SelectedPlaylistPath
         {
-            get { return _selectedPlaylistPath; }
-            set { this.RaiseAndSetIfChanged(ref _selectedPlaylistPath, value); }
+            get => _selectedPlaylistPath;
+            set => this.RaiseAndSetIfChanged(ref _selectedPlaylistPath, value);
         }
         
         public ReactiveCommand<string, List<PlaylistElement>> LoadExistingPlaylistCommand

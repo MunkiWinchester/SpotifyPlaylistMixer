@@ -120,8 +120,8 @@ namespace SpotifyPlaylistMixer.Business
             genresList.Sort();
             var artistList = track.Artists.Select(x => x.Name).ToList();
             artistList.Sort();
-            playlistElement.Artists = artistsList.Any() ? artistsList : artistList;
-            playlistElement.Genres = genresList.Any() ? genresList : new List<string>();
+            playlistElement.Artists = artistsList.Any() ? new CustomList<string>(artistsList) : new CustomList<string>();
+            playlistElement.Genres = genresList.Any() ? new CustomList<string>(genresList) : new CustomList<string>();
 
             return playlistElement;
         }

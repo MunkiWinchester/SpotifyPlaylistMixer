@@ -11,7 +11,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <converter:ListStringToStringConverter x:Key="ListStringToStringConverter" />
-                <DataTemplate DataType="{x:Type dataObjects:PlaylistElement}">
+            <DataTemplate DataType="{x:Type dataObjects:PlaylistElement}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
