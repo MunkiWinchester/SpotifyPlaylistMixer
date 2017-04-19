@@ -3,7 +3,7 @@
 ## Todo: ##
 
 * Playlist Folder wählbar machen (wie bei Settings)
-* Suche in Playlist Grid
+* ~~Suche in Playlist Grid~~
 * Playlist Grid gruppierbar machen
 * Add/Remove bei Usern/Playlists implementiere
 * Regelwerk des Settings-Confirm Buttons anpassen

@@ -19,7 +19,7 @@ namespace SpotifyPlaylistMixer.Business
             _spotifyAuthentification = spotifyAuthentification;
         }
 
-        public void CreateMixDerWoche()
+        public bool CreateMixDerWoche()
         {
             Extensions.WriteColoredConsole(
                 $"Starting with the \"{_config.SourcePlaylists.ToSeperatedString()}\" history!", ConsoleColor.White);
@@ -55,6 +55,7 @@ namespace SpotifyPlaylistMixer.Business
             FileHandler.SavePlaylistAsJson(_config.TargetPlaylist.Name, _personPlaylistElements);
 
             //RemovingDuplicates(_profile.Id, _erpPlaylist);
+            return true;
         }
 
         // ReSharper disable once UnusedMember.Local
