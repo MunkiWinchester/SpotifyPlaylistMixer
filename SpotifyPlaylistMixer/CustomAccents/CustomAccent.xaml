@@ -5,17 +5,17 @@
                     mc:Ignorable="options">
 
     <!--ACCENT COLORS-->
-    <Color x:Key="HighlightColor">#6AE368</Color>
+    <Color x:Key="HighlightColor">#1ED760</Color>
 
-    <Color x:Key="AccentBaseColor">#6AE368</Color>
+    <Color x:Key="AccentBaseColor">#1ED760</Color>
     <!--80%-->
-    <Color x:Key="AccentColor">#6AE368</Color>
+    <Color x:Key="AccentColor">#1ED760</Color>
     <!--60%-->
-    <Color x:Key="AccentColor2">#6AE368</Color>
+    <Color x:Key="AccentColor2">#1ED760</Color>
     <!--40%-->
-    <Color x:Key="AccentColor3">#6AE368</Color>
+    <Color x:Key="AccentColor3">#1ED760</Color>
     <!--20%-->
-    <Color x:Key="AccentColor4">#6AE368</Color>
+    <Color x:Key="AccentColor4">#1ED760</Color>
 
     <!-- re-set brushes too -->
     <SolidColorBrush x:Key="HighlightBrush" Color="{StaticResource HighlightColor}" options:Freeze="True" />

@@ -41,7 +41,7 @@ namespace SpotifyPlaylistMixer.ViewModels
             set => this.RaiseAndSetIfChanged(ref _totalItems, value);
         }
 
-        public ReactiveCommand<string, List<string>> LoadExistingPlaylists { get; protected set; }
+        public ReactiveCommand<string, List<string>> LoadExistingPlaylistsCommand { get; protected set; }
         private readonly ObservableAsPropertyHelper<List<string>> _existingPlaylists;
         public List<string> ExistingPlaylists => _existingPlaylists.Value;
 
@@ -59,12 +59,12 @@ namespace SpotifyPlaylistMixer.ViewModels
 
         public PlaylistViewModel()
         {
-            LoadExistingPlaylists = ReactiveCommand.Create<string, List<string>>(LoadExistingPlaylistsFromPath);
+            LoadExistingPlaylistsCommand = ReactiveCommand.Create<string, List<string>>(LoadExistingPlaylistsFromPath);
             this.WhenAnyValue(x => x.Path)
                 .Select(x => x?.Trim())
                 .Where(x => !string.IsNullOrWhiteSpace(x))
-                .InvokeCommand(LoadExistingPlaylists);
-            LoadExistingPlaylists.ToProperty(this, x => x.ExistingPlaylists, out _existingPlaylists, new List<string>());
+                .InvokeCommand(LoadExistingPlaylistsCommand);
+            LoadExistingPlaylistsCommand.ToProperty(this, x => x.ExistingPlaylists, out _existingPlaylists, new List<string>());
 
             LoadExistingPlaylistCommand =
                 ReactiveCommand.Create<string, List<PlaylistElement>>(LoadExistingPlaylistFromPath);
@@ -82,6 +82,17 @@ namespace SpotifyPlaylistMixer.ViewModels
                 .InvokeCommand(SearchInCurrentPlaylistCommand);
             SearchInCurrentPlaylistCommand.ToProperty(this, x => x.ExistingPlaylist, out _existingPlaylist, new List<PlaylistElement>());
 
+            GenerateCurrentPlaylistCommand = ReactiveCommand.Create<Config, Task<bool>>(GenerateCurrentPlaylist);
+
+            LoadExistingPlaylistsCommand.Subscribe(results =>
+            {
+                if (ExistingPlaylists.Any())
+                {
+                    var first = ExistingPlaylists.First();
+                    SelectedPlaylistPath = first;
+                }
+            });
+
             LoadExistingPlaylistCommand.Subscribe(results =>
             {
                 if (results != null && results.Any())
@@ -90,11 +101,10 @@ namespace SpotifyPlaylistMixer.ViewModels
                 }
             });
 
-            GenerateCurrentPlaylistCommand = ReactiveCommand.Create<Config, Task<bool>>(GenerateCurrentPlaylist);
             GenerateCurrentPlaylistCommand.Subscribe(result =>
             {
                 if(result.Result)
-                    LoadExistingPlaylists.Execute();
+                    LoadExistingPlaylistsCommand.Execute();
             });
         }
 
@@ -106,7 +116,7 @@ namespace SpotifyPlaylistMixer.ViewModels
             var returnPlaylist = new List<PlaylistElement>();
             returnPlaylist.AddRange(_originalPlaylist.FindAll(x => x.Track.ToLower().Contains(searchTerm)));
             returnPlaylist.AddRange(_originalPlaylist.FindAll(x => x.User.ToLower().Contains(searchTerm)));
-            returnPlaylist.AddRange(_originalPlaylist.FindAll(x => x.TrackId.Contains(searchTerm)));
+            returnPlaylist.AddRange(_originalPlaylist.FindAll(x => x.TrackId.Equals(searchTerm)));
             foreach (var playlistElement in _originalPlaylist)
             {
                 returnPlaylist.AddRange(from playlistElementArtist in playlistElement.Artists
@@ -136,6 +146,7 @@ namespace SpotifyPlaylistMixer.ViewModels
             if (!authenticate.Result) return false;
             var playlistHandler = new PlaylistHandler(spotifyAuthentification);
             var creationTask = new Task<bool>(playlistHandler.CreateMixDerWoche);
+            creationTask.Start();
             return await creationTask;
         }
 

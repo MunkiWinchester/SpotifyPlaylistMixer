@@ -58,7 +58,7 @@
             <Label Grid.Row="0" Grid.Column="0" Content="Search:" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
             <TextBox Grid.Row="0" Grid.Column="1" Margin="4" Text="{Binding SearchTerm}" VerticalContentAlignment="Stretch" />
         </Grid>
-        <Separator Grid.Row="2"  Grid.Column="0" Grid.ColumnSpan="2" />
+        <Separator Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" />
         <DataGrid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Top" ItemsSource="{Binding ExistingPlaylist}" AutoGenerateColumns="False" IsReadOnly="True" x:Name="DataGrid" SelectionUnit="Cell">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding User}" Width="0.4*" />
