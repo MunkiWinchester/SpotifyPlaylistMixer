@@ -37,8 +37,5 @@
         <TabItem Header="Charts">
             <userControls1:DetailsGridView />
         </TabItem>
-        <TabItem Header="Charts">
-            <userControls1:GenreView />
-        </TabItem>
     </TabControl>
 </controls:MetroWindow>

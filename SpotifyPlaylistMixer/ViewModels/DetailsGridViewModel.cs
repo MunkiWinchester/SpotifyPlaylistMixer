@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reactive.Linq;
-using System.Windows.Documents;
+using LiveCharts;
+using LiveCharts.Wpf;
 using Newtonsoft.Json;
 using ReactiveUI;
 using SpotifyPlaylistMixer.Converter;
@@ -48,17 +49,17 @@ namespace SpotifyPlaylistMixer.ViewModels
             set => this.RaiseAndSetIfChanged(ref _percentagePerEntry, value);
         }
 
-        public ReactiveCommand<string, List<ChartElement>> LoadSelectedPlaylistCommand { get; protected set; }
-        private readonly ObservableAsPropertyHelper<List<ChartElement>> _selectedPlaylist;
-        public List<ChartElement> SelectedPlaylist => _selectedPlaylist.Value;
+        public ReactiveCommand<string, ChartElements> LoadSelectedPlaylistCommand { get; protected set; }
+        private readonly ObservableAsPropertyHelper<ChartElements> _selectedPlaylist;
+        public ChartElements SelectedPlaylist => _selectedPlaylist.Value;
 
-        public ReactiveCommand<string, List<ChartElement>> LoadSelectedPlaylist2Command { get; protected set; }
-        private readonly ObservableAsPropertyHelper<List<ChartElement>> _selectedPlaylist2;
-        public List<ChartElement> SelectedPlaylist2 => _selectedPlaylist2.Value;
+        public ReactiveCommand<string, ChartElements> LoadSelectedPlaylist2Command { get; protected set; }
+        private readonly ObservableAsPropertyHelper<ChartElements> _selectedPlaylist2;
+        public ChartElements SelectedPlaylist2 => _selectedPlaylist2.Value;
 
-        public ReactiveCommand<string, List<ChartElement>> LoadSelectedPlaylist3Command { get; protected set; }
-        private readonly ObservableAsPropertyHelper<List<ChartElement>> _selectedPlaylist3;
-        public List<ChartElement> SelectedPlaylist3 => _selectedPlaylist3.Value;
+        public ReactiveCommand<string, ChartElements> LoadSelectedPlaylist3Command { get; protected set; }
+        private readonly ObservableAsPropertyHelper<ChartElements> _selectedPlaylist3;
+        public ChartElements SelectedPlaylist3 => _selectedPlaylist3.Value;
 
         public ReactiveCommand<string, List<string>> LoadExistingPlaylistsCommand { get; protected set; }
         private readonly ObservableAsPropertyHelper<List<string>> _existingPlaylists;
@@ -75,31 +76,31 @@ namespace SpotifyPlaylistMixer.ViewModels
                 new List<string>());
 
             LoadSelectedPlaylistCommand =
-                ReactiveCommand.Create<string, List<ChartElement>>(LoadSelectedPlaylist);
+                ReactiveCommand.Create<string, ChartElements>(LoadSelectedPlaylist);
             this.WhenAnyValue(x => x.SelectedPlaylistPath)
                 .Select(x => x?.Trim())
                 .Where(x => !string.IsNullOrWhiteSpace(x))
                 .InvokeCommand(LoadSelectedPlaylistCommand);
             LoadSelectedPlaylistCommand.ToProperty(this, x => x.SelectedPlaylist, out _selectedPlaylist,
-                new List<ChartElement>());
+                new ChartElements());
 
             LoadSelectedPlaylist2Command =
-                ReactiveCommand.Create<string, List<ChartElement>>(LoadSelectedPlaylist2);
+                ReactiveCommand.Create<string, ChartElements>(LoadSelectedPlaylist2);
             this.WhenAnyValue(x => x.SelectedPlaylistPath)
                 .Select(x => x?.Trim())
                 .Where(x => !string.IsNullOrWhiteSpace(x))
                 .InvokeCommand(LoadSelectedPlaylist2Command);
             LoadSelectedPlaylist2Command.ToProperty(this, x => x.SelectedPlaylist2, out _selectedPlaylist2,
-                new List<ChartElement>());
+                new ChartElements());
 
             LoadSelectedPlaylist3Command =
-                ReactiveCommand.Create<string, List<ChartElement>>(LoadSelectedPlaylist3);
+                ReactiveCommand.Create<string, ChartElements>(LoadSelectedPlaylist3);
             this.WhenAnyValue(x => x.SelectedPlaylistPath)
                 .Select(x => x?.Trim())
                 .Where(x => !string.IsNullOrWhiteSpace(x))
                 .InvokeCommand(LoadSelectedPlaylist3Command);
             LoadSelectedPlaylist3Command.ToProperty(this, x => x.SelectedPlaylist3, out _selectedPlaylist3,
-                new List<ChartElement>());
+                new ChartElements());
 
             LoadExistingPlaylistsCommand.Subscribe(results =>
             {
@@ -127,7 +128,7 @@ namespace SpotifyPlaylistMixer.ViewModels
             return new List<string>();
         }
 
-        private List<ChartElement> LoadSelectedPlaylist(string path)
+        private ChartElements LoadSelectedPlaylist(string path)
         {
             List<PlaylistElement> playlist;
             if (path.Equals(All))
@@ -155,10 +156,38 @@ namespace SpotifyPlaylistMixer.ViewModels
                     );
                 }
             }
-            return dic.Values.ToList();
+
+            string LabelPoint(ChartPoint chartPoint) => $"{chartPoint.SeriesView.Title}";
+
+            var total = 0f;
+            var series = new SeriesCollection();
+            foreach (var chartElement in dic.Values)
+            {
+                if (chartElement.PercentageValue >= 15 * percentageValue)
+                {
+                    series.Add(new PieSeries
+                    {
+                        Title = $"{chartElement.Name}: {chartElement.Occurrences} ({chartElement.PercentageValue:P})",
+                        Values = new ChartValues<double> { chartElement.Occurrences },
+                        DataLabels = true,
+                        LabelPoint = LabelPoint,
+                    });
+                    total += chartElement.PercentageValue;
+                }
+            }
+            series.Add(new PieSeries
+            {
+                Title = $"Others: x ({(float)series.Count / playlist.Count:P})",
+                Values = new ChartValues<double> { playlist.Count - series.Count },
+                DataLabels = true,
+                LabelPoint = LabelPoint
+            });
+
+            var chartElements = new ChartElements { SeriesCollection = series, Elements = dic.Values.ToList() };
+            return chartElements;
         }
 
-        private List<ChartElement> LoadSelectedPlaylist2(string path)
+        private ChartElements LoadSelectedPlaylist2(string path)
         {
             List<PlaylistElement> playlist;
             if (path.Equals(All))
@@ -186,10 +215,38 @@ namespace SpotifyPlaylistMixer.ViewModels
                     );
                 }
             }
-            return dic.Values.ToList();
+
+            string LabelPoint(ChartPoint chartPoint) => $"{chartPoint.SeriesView.Title}";
+
+            var total = 0;
+            var series = new SeriesCollection();
+            foreach (var chartElement in dic.Values)
+            {
+                if (chartElement.PercentageValue >= 3 * percentageValue)
+                {
+                    series.Add(new PieSeries
+                    {
+                        Title = $"{chartElement.Name}: {chartElement.Occurrences} ({chartElement.PercentageValue:P})",
+                        Values = new ChartValues<double> { chartElement.Occurrences },
+                        DataLabels = true,
+                        LabelPoint = LabelPoint,
+                    });
+                    total += chartElement.Occurrences;
+                }
+            }
+            series.Add(new PieSeries
+            {
+                Title = $"Others: {playlist.Count - total} ({(double)(playlist.Count - total) / dic.Count:P})",
+                Values = new ChartValues<double> { playlist.Count - total },
+                DataLabels = true,
+                LabelPoint = LabelPoint
+            });
+
+            var chartElements = new ChartElements { SeriesCollection = series, Elements = dic.Values.ToList() };
+            return chartElements;
         }
 
-        private List<ChartElement> LoadSelectedPlaylist3(string path)
+        private ChartElements LoadSelectedPlaylist3(string path)
         {
             List<PlaylistElement> playlist;
             if (path.Equals(All))
@@ -215,7 +272,35 @@ namespace SpotifyPlaylistMixer.ViewModels
                         }
                 );
             }
-            return dic.Values.ToList();
+
+            string LabelPoint(ChartPoint chartPoint) => $"{chartPoint.SeriesView.Title}";
+
+            var total = 0;
+            var series = new SeriesCollection();
+            foreach (var chartElement in dic.Values)
+            {
+                if (chartElement.PercentageValue >= 3 * percentageValue)
+                {
+                    series.Add(new PieSeries
+                    {
+                        Title = $"{chartElement.Name}: {chartElement.Occurrences} ({chartElement.PercentageValue:P})",
+                        Values = new ChartValues<double> { chartElement.Occurrences },
+                        DataLabels = true,
+                        LabelPoint = LabelPoint,
+                    });
+                    total += chartElement.Occurrences;
+                }
+            }
+            series.Add(new PieSeries
+            {
+                Title = $"Others: {playlist.Count - total} ({(double)(playlist.Count - total) / dic.Count:P})",
+                Values = new ChartValues<double> { playlist.Count - total },
+                DataLabels = true,
+                LabelPoint = LabelPoint
+            });
+
+            var chartElements = new ChartElements { SeriesCollection = series, Elements = dic.Values.ToList() };
+            return chartElements;
         }
 
         private List<PlaylistElement> LoadAllPlaylists()

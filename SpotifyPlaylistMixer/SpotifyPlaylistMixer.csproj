@@ -170,6 +170,7 @@
     <Compile Include="Business\PlaylistHandler.cs" />
     <Compile Include="Business\SpotifyAuthentification.cs" />
     <Compile Include="Converter\ListStringToStringConverter.cs" />
+    <Compile Include="DataObjects\ChartElements.cs" />
     <Compile Include="DataObjects\Config.cs" />
     <Compile Include="DataObjects\CustomList.cs" />
     <Compile Include="DataObjects\ChartElement.cs" />
@@ -177,14 +178,10 @@
     <Compile Include="DataObjects\PlaylistElement.cs" />
     <Compile Include="DataObjects\User.cs" />
     <Compile Include="ViewModels\DetailsGridViewModel.cs" />
-    <Compile Include="ViewModels\GenreViewModel.cs" />
     <Compile Include="ViewModels\PlaylistViewModel.cs" />
     <Compile Include="ViewModels\SettingViewModel.cs" />
     <Compile Include="Views\UserControls\DetailsGridView.xaml.cs">
       <DependentUpon>DetailsGridView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\GenreView.xaml.cs">
-      <DependentUpon>GenreView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\PlaylistView.xaml.cs">
       <DependentUpon>PlaylistView.xaml</DependentUpon>
@@ -211,10 +208,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\UserControls\DetailsGridView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserControls\GenreView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -340,6 +333,7 @@
     <Content Include="Resources\Examples\EMP-ERP weekly Mix_20_03_2017.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\Examples\EMP-ERP weekly Mix_01_05_2017.json" />
     <None Include="Resources\Examples\EMP-ERP weekly Mix_03_04_2017.json" />
     <None Include="Resources\Examples\EMP-ERP weekly Mix_10_04_2017.json" />
     <None Include="Resources\Examples\EMP-ERP weekly Mix_17_04_2017.json" />
