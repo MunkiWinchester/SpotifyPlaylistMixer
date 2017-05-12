@@ -11,16 +11,17 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <ComboBox Grid.Row="0" Grid.Column="0" Margin="3" ItemsSource="{Binding ExistingPlaylists}" SelectedValue="{Binding SelectedPlaylistPath}" />
-        <TabControl Grid.Row="1" Grid.Column="0" >
+        <Label Grid.Row="0" Grid.Column="0" Content="Current Playlist:"/>
+        <ComboBox Grid.Row="0" Grid.Column="1" Margin="3" ItemsSource="{Binding ExistingPlaylists}" SelectedValue="{Binding SelectedPlaylistPath}" SelectedValuePath="Key" DisplayMemberPath="Value" />
+        <TabControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" >
             <TabItem Header="Genres" >
                 <Grid>
                     <Grid.RowDefinitions>

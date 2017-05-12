@@ -178,10 +178,14 @@
     <Compile Include="DataObjects\PlaylistElement.cs" />
     <Compile Include="DataObjects\User.cs" />
     <Compile Include="ViewModels\DetailsGridViewModel.cs" />
+    <Compile Include="ViewModels\GeneratePlaylistViewModel.cs" />
     <Compile Include="ViewModels\PlaylistViewModel.cs" />
     <Compile Include="ViewModels\SettingViewModel.cs" />
     <Compile Include="Views\UserControls\DetailsGridView.xaml.cs">
       <DependentUpon>DetailsGridView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\GeneratePlaylistView.xaml.cs">
+      <DependentUpon>GeneratePlaylistView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\PlaylistView.xaml.cs">
       <DependentUpon>PlaylistView.xaml</DependentUpon>
@@ -208,6 +212,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\UserControls\DetailsGridView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\GeneratePlaylistView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -335,6 +343,7 @@
     </Content>
     <None Include="Resources\Examples\EMP-ERP weekly Mix_01_05_2017.json" />
     <None Include="Resources\Examples\EMP-ERP weekly Mix_03_04_2017.json" />
+    <None Include="Resources\Examples\EMP-ERP weekly Mix_08_05_2017.json" />
     <None Include="Resources\Examples\EMP-ERP weekly Mix_10_04_2017.json" />
     <None Include="Resources\Examples\EMP-ERP weekly Mix_17_04_2017.json" />
     <None Include="Resources\Examples\EMP-ERP weekly Mix_24_04_2017.json" />

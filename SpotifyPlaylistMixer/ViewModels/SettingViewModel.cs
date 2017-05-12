@@ -48,31 +48,31 @@ namespace SpotifyPlaylistMixer.ViewModels
         private readonly ObservableAsPropertyHelper<Config> _config;
         public Config Config => _config.Value;
 
-        public ReactiveCommand<string, List<string>> LoadExistingConfigs { get; protected set; }
-        private readonly ObservableAsPropertyHelper<List<string>> _existingConfigs;
-        public List<string> ExistingConfigs => _existingConfigs.Value;
+        public ReactiveCommand<string, List<KeyValuePair<string, string>>> LoadExistingConfigs { get; protected set; }
+        private readonly ObservableAsPropertyHelper<List<KeyValuePair<string, string>>> _existingConfigs;
+        public List<KeyValuePair<string, string>> ExistingConfigs => _existingConfigs.Value;
 
-        public ReactiveCommand ConfirmCommand { get; private set; }
-        public ReactiveCommand<string, string> AddConfigCommand { get; private set; }
-        public ReactiveCommand AddUserCommand { get; private set; }
-        public ReactiveCommand AddPlaylistToSourceCommand { get; private set; }
+        public ReactiveCommand ConfirmCommand { get; }
+        public ReactiveCommand<string, string> AddConfigCommand { get; }
+        public ReactiveCommand AddUserCommand { get; }
+        public ReactiveCommand AddPlaylistToSourceCommand { get; }
 
         public SettingViewModel()
         {
-            LoadExistingConfigs = ReactiveCommand.Create<string, List<string>>(LoadExistingConfigsFromPath);
+            LoadExistingConfigs = ReactiveCommand.Create<string, List<KeyValuePair<string, string>>>(LoadExistingConfigsFromPath);
             this.WhenAnyValue(x => x.Path)
                 .Throttle(TimeSpan.FromSeconds(1), RxApp.MainThreadScheduler)
                 .Select(x => x?.Trim())
                 .Where(x => !string.IsNullOrWhiteSpace(x))
                 .InvokeCommand(LoadExistingConfigs);
-            _existingConfigs = LoadExistingConfigs.ToProperty(this, x => x.ExistingConfigs, new List<string>());
+            _existingConfigs = LoadExistingConfigs.ToProperty(this, x => x.ExistingConfigs, new List<KeyValuePair<string, string>>());
 
             LoadExistingConfigs.Subscribe(results =>
             {
                 if (ExistingConfigs.Any())
                 {
                     var first = ExistingConfigs.First();
-                    SelectedConfigPath = first;
+                    SelectedConfigPath = first.Key;
                 }
             });
 
@@ -99,7 +99,6 @@ namespace SpotifyPlaylistMixer.ViewModels
             var canAddConfigObservable = this.WhenAny(vm => vm.PathNewConfig,
                 pnc => !string.IsNullOrEmpty(pnc.Value) && !File.Exists(pnc.Value));
             AddConfigCommand = ReactiveCommand.Create<string, string>(AddConfig, canAddConfigObservable);
-
             AddConfigCommand.Subscribe(result =>
             {
                 if (!string.IsNullOrEmpty(result))
@@ -128,13 +127,14 @@ namespace SpotifyPlaylistMixer.ViewModels
         {
             var path = Path.EndsWith("\\") ? Path : Path + "\\";
             var file = PathNewConfig.EndsWith(".json") ? path + PathNewConfig : path + PathNewConfig + ".json";
-            using (var stream = File.Create(file)) { }
+            using (File.Create(file))
+            { }
             var json = JsonConvert.SerializeObject(new Config(), Formatting.Indented);
             File.WriteAllText(file, json);
             return file;
         }
 
-        private List<string> LoadExistingConfigsFromPath(string path)
+        private List<KeyValuePair<string, string>> LoadExistingConfigsFromPath(string path)
         {
             if (Directory.Exists(path))
             {
@@ -144,14 +144,21 @@ namespace SpotifyPlaylistMixer.ViewModels
                         .OrderByDescending(x => x.CreationTime)
                         .Select(x => x.FullName)
                         .ToList();
-                return files;
+                var result = new List<KeyValuePair<string, string>>();
+                foreach (var file in files)
+                {
+                    result.Add(new KeyValuePair<string, string>(file,
+                        file.Substring(file.LastIndexOf("\\", StringComparison.Ordinal) + 1)));
+                }
+                return result;
             }
-            return new List<string>();
+            return new List<KeyValuePair<string, string>>();
         }
 
         public void ChangeConfig()
         {
-            var ja = "here";
+            var json = JsonConvert.SerializeObject(Config, Formatting.Indented);
+            File.WriteAllText(SelectedConfigPath, json);
         }
 
         private Config LoadConfigFromPath(string path)

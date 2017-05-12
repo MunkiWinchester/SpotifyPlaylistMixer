@@ -61,19 +61,19 @@ namespace SpotifyPlaylistMixer.ViewModels
         private readonly ObservableAsPropertyHelper<ChartElements> _selectedPlaylist3;
         public ChartElements SelectedPlaylist3 => _selectedPlaylist3.Value;
 
-        public ReactiveCommand<string, List<string>> LoadExistingPlaylistsCommand { get; protected set; }
-        private readonly ObservableAsPropertyHelper<List<string>> _existingPlaylists;
-        public List<string> ExistingPlaylists => _existingPlaylists.Value;
+        public ReactiveCommand<string, List<KeyValuePair<string, string>>> LoadExistingPlaylistsCommand { get; protected set; }
+        private readonly ObservableAsPropertyHelper<List<KeyValuePair<string, string>>> _existingPlaylists;
+        public List<KeyValuePair<string, string>> ExistingPlaylists => _existingPlaylists.Value;
 
         public DetailsGridViewModel()
         {
-            LoadExistingPlaylistsCommand = ReactiveCommand.Create<string, List<string>>(LoadExistingPlaylistsFromPath);
+            LoadExistingPlaylistsCommand = ReactiveCommand.Create<string, List<KeyValuePair<string, string>>>(LoadExistingPlaylistsFromPath);
             this.WhenAnyValue(x => x.Path)
                 .Select(x => x?.Trim())
                 .Where(x => !string.IsNullOrWhiteSpace(x))
                 .InvokeCommand(LoadExistingPlaylistsCommand);
             LoadExistingPlaylistsCommand.ToProperty(this, x => x.ExistingPlaylists, out _existingPlaylists,
-                new List<string>());
+                new List<KeyValuePair<string, string>>());
 
             LoadSelectedPlaylistCommand =
                 ReactiveCommand.Create<string, ChartElements>(LoadSelectedPlaylist);
@@ -107,12 +107,12 @@ namespace SpotifyPlaylistMixer.ViewModels
                 if (ExistingPlaylists.Any())
                 {
                     var first = ExistingPlaylists.First();
-                    SelectedPlaylistPath = first;
+                    SelectedPlaylistPath = first.Key;
                 }
             });
         }
 
-        private List<string> LoadExistingPlaylistsFromPath(string path)
+        private List<KeyValuePair<string, string>> LoadExistingPlaylistsFromPath(string path)
         {
             if (Directory.Exists(path))
             {
@@ -123,9 +123,15 @@ namespace SpotifyPlaylistMixer.ViewModels
                         .Select(x => x.FullName)
                         .ToList();
                 files.Add(All);
-                return files;
+                var result = new List<KeyValuePair<string, string>>();
+                foreach (var file in files)
+                {
+                    result.Add(new KeyValuePair<string, string>(file,
+                        file.Substring(file.LastIndexOf("\\", StringComparison.Ordinal) + 1)));
+                }
+                return result;
             }
-            return new List<string>();
+            return new List<KeyValuePair<string, string>>();
         }
 
         private ChartElements LoadSelectedPlaylist(string path)
@@ -310,7 +316,7 @@ namespace SpotifyPlaylistMixer.ViewModels
             {
                 if(!existingPlaylist.Equals(All))
                     playlist.AddRange(JsonConvert.DeserializeObject<List<PlaylistElement>>(
-                        File.ReadAllText(existingPlaylist)));
+                        File.ReadAllText(existingPlaylist.Key)));
             }
             return playlist;
         }

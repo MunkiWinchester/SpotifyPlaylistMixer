@@ -31,11 +31,14 @@
         <TabItem Header="Playlist">
             <userControls1:PlaylistView />
         </TabItem>
+        <TabItem Header="Details">
+            <userControls1:DetailsGridView />
+        </TabItem>
         <TabItem Header="Settings">
             <userControls1:SettingView />
         </TabItem>
-        <TabItem Header="Charts">
-            <userControls1:DetailsGridView />
+        <TabItem Header="Generation">
+            <userControls1:GeneratePlaylistView />
         </TabItem>
     </TabControl>
 </controls:MetroWindow>

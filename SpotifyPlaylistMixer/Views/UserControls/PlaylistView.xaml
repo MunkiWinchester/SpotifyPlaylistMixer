@@ -37,27 +37,13 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="100" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <ComboBox Grid.Row="0" Grid.Column="0" Margin="3" ItemsSource="{Binding ExistingPlaylists}" SelectedValue="{Binding SelectedPlaylistPath}" />
-            <!-- TODO: Config wahl für generieren -->
-            <!-- TODO: authentifizierung nicht immer "anmelden" -->
-            <Button Grid.Row="0" Grid.Column="1" Margin="3" Content="Generate Current" Command="{Binding GenerateCurrentPlaylistCommand}"/>
-        </Grid>
-        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Content="Search:" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
-            <TextBox Grid.Row="0" Grid.Column="1" Margin="4" Text="{Binding SearchTerm}" VerticalContentAlignment="Stretch" />
-        </Grid>
+        <Label Grid.Row="0" Grid.Column="0" Content="Current Playlist:"/>
+        <ComboBox Grid.Row="0" Grid.Column="1" Margin="3" ItemsSource="{Binding ExistingPlaylists}" SelectedValue="{Binding SelectedPlaylistPath}" SelectedValuePath="Key" DisplayMemberPath="Value" />
+        <Label Grid.Row="1" Grid.Column="0" Content="Search:" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="4" Text="{Binding SearchTerm}" VerticalContentAlignment="Stretch" />
         <Separator Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" />
         <DataGrid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Top" ItemsSource="{Binding ExistingPlaylist}" AutoGenerateColumns="False" IsReadOnly="True" x:Name="DataGrid" SelectionUnit="Cell">
             <DataGrid.Columns>
