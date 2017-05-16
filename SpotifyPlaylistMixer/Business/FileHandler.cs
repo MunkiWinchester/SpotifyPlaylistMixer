@@ -35,7 +35,7 @@ namespace SpotifyPlaylistMixer.Business
             var filePath =
                 $@"{Directory.GetCurrentDirectory()}\Resources\Examples\{CleanFileName(playlistName)}_{sow.ToShortDateString()
                     .Replace('.', '_')}.json";
-            Extensions.WriteColoredConsole($"Saving \"{playlistName}\"-playlist-JSON to \"{filePath}\"",
+             Extensions.WriteColoredConsole($"Saving \"{playlistName}\"-playlist-JSON to \"{filePath}\"",
                 ConsoleColor.Magenta);
             var json = JsonConvert.SerializeObject(playlist, Formatting.Indented);
             File.WriteAllText(filePath, json);

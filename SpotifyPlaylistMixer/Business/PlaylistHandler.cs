@@ -9,18 +9,19 @@ namespace SpotifyPlaylistMixer.Business
 {
     public class PlaylistHandler
     {
-        private readonly Config _config;
+        private Config _config;
         private readonly List<PlaylistElement> _personPlaylistElements = new List<PlaylistElement>();
         private readonly SpotifyAuthentification _spotifyAuthentification;
 
         public PlaylistHandler(SpotifyAuthentification spotifyAuthentification)
         {
-            _config = FileHandler.LoadConfig($@"{Directory.GetCurrentDirectory()}\Resources\Examples\Config\Config.json");
             _spotifyAuthentification = spotifyAuthentification;
         }
 
-        public bool CreateMixDerWoche()
+        public bool CreateMixDerWoche(Config config)
         {
+            _config = config;
+            _config = FileHandler.LoadConfig($@"{Directory.GetCurrentDirectory()}\Resources\Examples\Config\Config.json");
             Extensions.WriteColoredConsole(
                 $"Starting with the \"{_config.SourcePlaylists.ToSeperatedString()}\" history!", ConsoleColor.White);
             RemoveTracksFromPlaylist(_config.TargetPlaylist.Owner.Identifier, _config.TargetPlaylist.Identifier);
