@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
@@ -45,6 +46,75 @@ namespace SpotifyPlaylistMixer.Business
         {
             return Path.GetInvalidFileNameChars()
                 .Aggregate(fileName, (current, c) => current.Replace(c.ToString(), string.Empty));
+        }
+
+        public static User SaveConfigAddUser(List<string> path)
+        {
+            //Muss leider bestehen bleiben weil der Path unerwartet geändert werden könnte
+            //TODO: Meldung noch anpassen
+            var config = new Config();
+            if (File.Exists(path.First()))
+            {
+                try
+                {
+                    config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(path.First()));
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+
+            var user = new User("", "");
+
+            config.Users.Add(user);
+            File.WriteAllText(path.First(), JsonConvert.SerializeObject(config));
+            return user;
+        }
+
+        /*evtl. zu SaveConfigEditUser zusammen führen */
+        public static User SaveConfigDeleteUser(List<string> path, User user)
+        {
+            //Muss leider bestehen bleiben weil der Path unerwartet geändert werden könnte
+            //TODO: Meldung noch anpassen
+            var config = new Config();
+            if (File.Exists(path.First()))
+            {
+                try
+                {
+                    config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(path.First()));
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+
+            config.Users.Remove(user);
+            File.WriteAllText(path.First(), JsonConvert.SerializeObject(config));
+            return user;
+        }
+
+        public static void SaveConfigEditUser(List<string> path, ObservableCollection<User> users)
+        {
+            var config = new Config();
+            if (File.Exists(path.First()))
+            {
+                try
+                {
+                    config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(path.First()));
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+            for (int i = 0; i < users.Count(); i++)
+            {
+                config.Users[i] = !config.Users[i].Equals(users[i]) ? users[i] : config.Users[i];
+            }
+
+            File.WriteAllText(path.First(), JsonConvert.SerializeObject(config));
         }
     }
 }
