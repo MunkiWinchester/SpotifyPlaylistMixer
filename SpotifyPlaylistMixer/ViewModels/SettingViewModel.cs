@@ -160,6 +160,8 @@ namespace SpotifyPlaylistMixer.ViewModels
         {
             FileHandler.SaveConfigEditUser(LoadExistingConfigsFromPath(Path), Config.Users);
             //TODO SaveCondigEdit für alle Optionen und Notifications aber müssen uns ein anders tool suchen verstehe das aktuelle nicht ganz
+            var json = JsonConvert.SerializeObject(Config, Formatting.Indented);
+            File.WriteAllText(SelectedConfigPath, json);
         }
 
         private Config LoadConfigFromPath(string path)

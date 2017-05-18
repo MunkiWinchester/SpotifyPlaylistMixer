@@ -1,0 +1,24 @@
+{
+  "SourcePlaylists": [{
+        "Identifier": "71iNeDHuWPJtICoIeS8iF7",
+        "Name": "Top 100",
+      "Owner": {
+        "Identifier": "munki666",
+        "Name": "Eike"
+      }
+	  }],
+  "TargetPlaylist": {
+    "Identifier": "5MEFBSXZQjNyopMIfCdFt6",
+    "Name": "EMP-ERP Mixed Mixes",
+    "Owner": {
+      "Identifier": "munki666",
+      "Name": "Eike"
+    }
+  },
+  "Users": [
+    {
+      "Identifier": "munki666",
+      "Name": "Eike"
+    }
+  ]
+}

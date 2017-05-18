@@ -48,16 +48,16 @@ namespace SpotifyPlaylistMixer.Business
                 .Aggregate(fileName, (current, c) => current.Replace(c.ToString(), string.Empty));
         }
 
-        public static User SaveConfigAddUser(List<string> path)
+        public static User SaveConfigAddUser(List<KeyValuePair<string, string>> path)
         {
             //Muss leider bestehen bleiben weil der Path unerwartet geändert werden könnte
             //TODO: Meldung noch anpassen
             var config = new Config();
-            if (File.Exists(path.First()))
+            if (File.Exists(path.First().Key))
             {
                 try
                 {
-                    config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(path.First()));
+                    config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(path.First().Key));
                 }
                 catch (Exception)
                 {
@@ -68,7 +68,7 @@ namespace SpotifyPlaylistMixer.Business
             var user = new User("", "");
 
             config.Users.Add(user);
-            File.WriteAllText(path.First(), JsonConvert.SerializeObject(config));
+            File.WriteAllText(path.First().Key, JsonConvert.SerializeObject(config));
             return user;
         }
 
@@ -95,14 +95,14 @@ namespace SpotifyPlaylistMixer.Business
             return user;
         }
 
-        public static void SaveConfigEditUser(List<string> path, ObservableCollection<User> users)
+        public static void SaveConfigEditUser(List<KeyValuePair<string, string>> path, ObservableCollection<User> users)
         {
             var config = new Config();
-            if (File.Exists(path.First()))
+            if (File.Exists(path.First().Key))
             {
                 try
                 {
-                    config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(path.First()));
+                    config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(path.First().Key));
                 }
                 catch (Exception)
                 {
@@ -114,7 +114,7 @@ namespace SpotifyPlaylistMixer.Business
                 config.Users[i] = !config.Users[i].Equals(users[i]) ? users[i] : config.Users[i];
             }
 
-            File.WriteAllText(path.First(), JsonConvert.SerializeObject(config));
+            File.WriteAllText(path.First().Key, JsonConvert.SerializeObject(config));
         }
     }
 }
