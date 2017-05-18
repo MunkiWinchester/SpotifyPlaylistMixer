@@ -12,6 +12,14 @@ namespace SpotifyPlaylistMixer.ViewModels
 {
     public class GeneratePlaylistViewModel : ReactiveObject
     {
+        private bool _isNotBusy;
+
+        public bool IsNotBusy
+        {
+            get => _isNotBusy;
+            set => this.RaiseAndSetIfChanged(ref _isNotBusy, value);
+        }
+
         private string _path;
         public string Path
         {
@@ -38,6 +46,7 @@ namespace SpotifyPlaylistMixer.ViewModels
 
         public GeneratePlaylistViewModel()
         {
+            IsNotBusy = true;
             LoadExistingConfigs = ReactiveCommand.Create<string, List<KeyValuePair<string, string>>>(LoadExistingConfigsFromPath);
             this.WhenAnyValue(x => x.Path)
                 .Throttle(TimeSpan.FromSeconds(1), RxApp.MainThreadScheduler)
@@ -94,6 +103,7 @@ namespace SpotifyPlaylistMixer.ViewModels
 
         private async Task<bool> GenerateCurrentPlaylist(Config config)
         {
+            IsNotBusy = false;
             var spotifyAuthentification = new SpotifyAuthentification();
             var authenticate = spotifyAuthentification.RunAuthentication();
             authenticate.Wait();

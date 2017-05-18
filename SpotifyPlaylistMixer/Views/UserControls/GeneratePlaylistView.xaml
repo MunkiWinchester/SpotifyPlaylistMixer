@@ -20,6 +20,6 @@
         <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path}" Margin="3" />
         <Label Grid.Row="1" Grid.Column="0" Content="Current Config:"/>
         <ComboBox Grid.Row="1" Grid.Column="1" Margin="3" ItemsSource="{Binding ExistingConfigs}" SelectedValue="{Binding SelectedConfigPath}" SelectedValuePath="Key" DisplayMemberPath="Value" />
-        <Button Grid.Row="2" Grid.Column="1" Margin="3" Content="Generate Current" Command="{Binding GenerateCurrentPlaylistCommand}" HorizontalAlignment="Right" />
+        <Button Grid.Row="2" Grid.Column="1" Margin="3" Content="Generate Current" Command="{Binding GenerateCurrentPlaylistCommand}" HorizontalAlignment="Right" IsEnabled="{Binding IsNotBusy}"/>
     </Grid>
 </UserControl>

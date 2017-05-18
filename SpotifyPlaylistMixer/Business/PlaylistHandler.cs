@@ -32,6 +32,7 @@ namespace SpotifyPlaylistMixer.Business
                         new SimplePlaylist
                         {
                             Id = foundPlaylist.Identifier,
+                            Name = foundPlaylist.Name,
                             Owner = new PublicProfile {Id = foundPlaylist.Owner.Identifier}
                         });
                 }
@@ -186,7 +187,7 @@ namespace SpotifyPlaylistMixer.Business
             }
             tracks = _spotifyAuthentification.GetPlaylistTracks(userIdFrom, playlistIdFrom, tracks.Limit,
                 tracks.Offset + tracks.Limit);
-            uriList.AddRange(AddTracksToUriList(tracks.Items, user));
+             uriList.AddRange(AddTracksToUriList(tracks.Items, user));
             _spotifyAuthentification.AddPlaylistTracks(userIdTo, playlistIdTo, uriList);
         }
     }

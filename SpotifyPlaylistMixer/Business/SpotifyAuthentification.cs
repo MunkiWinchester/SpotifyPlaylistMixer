@@ -60,6 +60,11 @@ namespace SpotifyPlaylistMixer.Business
             return list;
         }
 
+        public FullPlaylist GetPlaylist(string userId, string playlistId)
+        {
+            return _spotify.GetPlaylist(userId, playlistId);
+        }
+
         public void RemovePlaylistTracks(string userId, string playlistId, List<DeleteTrackUri> deleteList)
         {
             WriteResponse(_spotify.RemovePlaylistTracks(userId, playlistId, deleteList));
