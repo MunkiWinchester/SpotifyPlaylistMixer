@@ -99,7 +99,7 @@ namespace SpotifyPlaylistMixer.ViewModels
             authenticate.Wait();
             if (!authenticate.Result) return false;
             var playlistHandler = new PlaylistHandler(spotifyAuthentification);
-            var creationTask = new Task<bool>(() => playlistHandler.CreateMixDerWoche(config));
+            var creationTask = new Task<bool>(() => playlistHandler.CreateMixDerWoche(Config));
             creationTask.Start();
             return await creationTask;
         }

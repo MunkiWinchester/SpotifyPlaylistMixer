@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using SpotifyAPI.Web.Models;
 using SpotifyPlaylistMixer.DataObjects;
@@ -21,35 +20,29 @@ namespace SpotifyPlaylistMixer.Business
         public bool CreateMixDerWoche(Config config)
         {
             _config = config;
-            _config = FileHandler.LoadConfig($@"{Directory.GetCurrentDirectory()}\Resources\Examples\Config\Config.json");
             Extensions.WriteColoredConsole(
                 $"Starting with the \"{_config.SourcePlaylists.ToSeperatedString()}\" history!", ConsoleColor.White);
             RemoveTracksFromPlaylist(_config.TargetPlaylist.Owner.Identifier, _config.TargetPlaylist.Identifier);
             foreach (var user in _config.Users)
             {
-                Extensions.WriteColoredConsole($"Loading playlists from \"{user.Name}\"", ConsoleColor.White);
-                var playlists = _spotifyAuthentification.GetPlaylists(user.Identifier).ToList();
-                Extensions.WriteColoredConsole(
-                    $"Loading playlist {_config.SourcePlaylists.ToSeperatedString()} from \"{user.Name}\"",
-                    ConsoleColor.White);
-                SimplePlaylist hit = null;
-                foreach (var configSourcePlaylist in _config.SourcePlaylists)
+                var foundPlaylist = _config.SourcePlaylists.Find(x => x.Owner.Identifier.Equals(user.Identifier));
+                if (foundPlaylist != null)
                 {
-                    foreach (var simplePlaylist in playlists)
-                    {
-                        if (!simplePlaylist.Name.Equals(configSourcePlaylist.Name)) continue;
-                        hit = simplePlaylist;
-                        break;
-                    }
+                    AddTracksFromPlaylistToPlaylis(user,
+                        new SimplePlaylist
+                        {
+                            Id = foundPlaylist.Identifier,
+                            Owner = new PublicProfile {Id = foundPlaylist.Owner.Identifier}
+                        });
                 }
-                // Mix der Woche gehört Spotify
-                if (hit != null)
+                else
                 {
-                    Extensions.WriteColoredConsole(
-                        $"Begin adding tracks from \"{user.Name}\"s \"{hit.Name}\" to \"{_config.TargetPlaylist.Name}\"",
-                        ConsoleColor.Cyan);
-                    AddTracksFromPlaylistToPlaylist(hit.Owner.Id, hit.Id,
-                        _config.TargetPlaylist.Owner.Identifier, _config.TargetPlaylist.Identifier, user.Name);
+                    var hit = GetSimplePlaylistFromUser(user);
+                    // Mix der Woche gehört Spotify
+                    if (hit != null)
+                    {
+                        AddTracksFromPlaylistToPlaylis(user, hit);
+                    }
                 }
             }
 
@@ -57,6 +50,35 @@ namespace SpotifyPlaylistMixer.Business
 
             //RemovingDuplicates(_profile.Id, _erpPlaylist);
             return true;
+        }
+
+        private void AddTracksFromPlaylistToPlaylis(User user, SimplePlaylist playlist)
+        {
+            Extensions.WriteColoredConsole(
+                $"Begin adding tracks from \"{user.Name}\"s \"{playlist.Name}\" to \"{_config.TargetPlaylist.Name}\"",
+                ConsoleColor.Cyan);
+            AddTracksFromPlaylistToPlaylist(playlist.Owner.Id, playlist.Id,
+                _config.TargetPlaylist.Owner.Identifier, _config.TargetPlaylist.Identifier, user.Name);
+        }
+
+        private SimplePlaylist GetSimplePlaylistFromUser(User user)
+        {
+            Extensions.WriteColoredConsole($"Loading playlists from \"{user.Name}\"", ConsoleColor.White);
+            var playlists = _spotifyAuthentification.GetPlaylists(user.Identifier).ToList();
+            Extensions.WriteColoredConsole(
+                $"Loading playlist {_config.SourcePlaylists.ToSeperatedString()} from \"{user.Name}\"",
+                ConsoleColor.White);
+            SimplePlaylist hit = null;
+            foreach (var configSourcePlaylist in _config.SourcePlaylists)
+            {
+                foreach (var simplePlaylist in playlists)
+                {
+                    if (!simplePlaylist.Name.Equals(configSourcePlaylist.Name)) continue;
+                    hit = simplePlaylist;
+                    break;
+                }
+            }
+            return hit;
         }
 
         // ReSharper disable once UnusedMember.Local
