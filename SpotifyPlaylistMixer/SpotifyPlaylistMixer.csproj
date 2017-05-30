@@ -288,6 +288,9 @@
     <Content Include="Resources\Examples\Config\mixedTop100.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Examples\EMP-ERP Mixed Mixes_15_05_2017.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\Examples\EMP-ERP weekly Mix_01_05_2017.json" />
     <Content Include="Resources\Examples\EMP-ERP weekly Mix_02_01_2017.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
