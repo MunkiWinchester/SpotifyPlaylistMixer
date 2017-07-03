@@ -47,6 +47,14 @@
                 "Identifier": "pc_suchti",
                 "Name": "Artur"
             }
+        },
+        {
+            "Identifier": "75h6L97h6QeedXlF65rOm9",
+            "Name": "Top100",
+            "Owner": {
+                "Identifier": "flockana",
+                "Name": "Sabine"
+            }
         }
     ],
   "TargetPlaylist": {
@@ -81,6 +89,10 @@
         {
             "Identifier": "pc_suchti",
             "Name": "Artur"
+        },
+        {
+            "Identifier": "flockana",
+            "Name": "Sabine"
         }
     ]
 }
