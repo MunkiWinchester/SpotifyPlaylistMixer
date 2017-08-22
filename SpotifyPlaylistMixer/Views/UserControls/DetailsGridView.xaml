@@ -1,14 +1,16 @@
 ﻿<UserControl x:Class="SpotifyPlaylistMixer.Views.UserControls.DetailsGridView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SpotifyPlaylistMixer.Views.UserControls"
-             xmlns:generic="clr-namespace:System.Collections.Generic;assembly=mscorlib"
-             xmlns:dataObjects="clr-namespace:SpotifyPlaylistMixer.DataObjects"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:viewModels="clr-namespace:SpotifyPlaylistMixer.ViewModels"
+             xmlns:dataObjects="clr-namespace:SpotifyPlaylistMixer.DataObjects"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.DataContext>
+        <viewModels:DetailsGridViewModel />
+    </UserControl.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100" />
@@ -20,7 +22,8 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Grid.Column="0" Content="Current Playlist:"/>
-        <ComboBox Grid.Row="0" Grid.Column="1" Margin="3" ItemsSource="{Binding ExistingPlaylists}" SelectedValue="{Binding SelectedPlaylistPath}" SelectedValuePath="Key" DisplayMemberPath="Value" />
+        <ComboBox Grid.Row="0" Grid.Column="1" Margin="3" ItemsSource="{Binding ExistingPlaylists}"
+                  SelectedValue="{Binding SelectedPlaylistPath}" SelectedValuePath="Key" DisplayMemberPath="Value" />
         <TabControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" >
             <TabItem Header="Genres" >
                 <Grid>
@@ -38,16 +41,20 @@
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
                                 <Separator Grid.Row="0" />
-                                <DataGrid Grid.Row="1" VerticalAlignment="Top" ItemsSource="{Binding SelectedPlaylist.Elements}" AutoGenerateColumns="False" IsReadOnly="True" SelectionUnit="Cell" x:Name="DataGrid">
+                                <DataGrid Grid.Row="1" VerticalAlignment="Top" ItemsSource="{Binding SelectedPlaylist.Elements}"
+                                          AutoGenerateColumns="False" IsReadOnly="True" SelectionUnit="Cell" x:Name="DataGrid">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="Genre" Binding="{Binding Name}" Width="0.4*" />
                                         <DataGridTextColumn Header="Occurrences" Binding="{Binding Occurrences}" Width="Auto" />
-                                        <DataGridTemplateColumn Header="Percentage" Width="*" Visibility="Visible" SortMemberPath="PercentageValue" IsReadOnly="True" >
+                                        <DataGridTemplateColumn Header="Percentage" Width="*" Visibility="Visible" 
+                                                                SortMemberPath="PercentageValue" IsReadOnly="True" >
                                             <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
+                                                <DataTemplate DataType="dataObjects:ChartElement">
                                                     <StackPanel>
-                                                        <TextBlock Text="{Binding PercentageValue, StringFormat=P}" HorizontalAlignment="Center" />
-                                                        <ProgressBar Value="{Binding Path=PercentageValue, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="1" Height="25" SmallChange="0.001" />
+                                                        <TextBlock Text="{Binding PercentageValue, StringFormat=P}"
+                                                                   HorizontalAlignment="Center" />
+                                                        <ProgressBar Value="{Binding Path=PercentageValue, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                                                     Minimum="0" Maximum="1" Height="25" SmallChange="0.001" />
                                                     </StackPanel>
                                                 </DataTemplate>
                                             </DataGridTemplateColumn.CellTemplate>
@@ -63,7 +70,9 @@
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
                                 <Separator Grid.Row="0" />
-                                <lvc:PieChart Series="{Binding SelectedPlaylist.SeriesCollection}" LegendLocation="Right" Grid.Column="0" Grid.Row="1"  Margin="5,5,5,5" DisableAnimations="True" Width="Auto" Height="Auto" />
+                                <lvc:PieChart Series="{Binding SelectedPlaylist.SeriesCollection}" LegendLocation="Right"
+                                              Grid.Column="0" Grid.Row="1"  Margin="5,5,5,5" DisableAnimations="True"
+                                              Width="Auto" Height="Auto" />
                             </Grid>
                         </TabItem>
                     </TabControl>
@@ -126,16 +135,20 @@
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
                                 <Separator Grid.Row="0" />
-                                <DataGrid Grid.Row="1" VerticalAlignment="Top" ItemsSource="{Binding SelectedPlaylist2.Elements}" AutoGenerateColumns="False" IsReadOnly="True" SelectionUnit="Cell" x:Name="DataGrid2" >
+                                <DataGrid Grid.Row="1" VerticalAlignment="Top" ItemsSource="{Binding SelectedPlaylist2.Elements}"
+                                          AutoGenerateColumns="False" IsReadOnly="True" SelectionUnit="Cell" x:Name="DataGrid2" >
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="Artists" Binding="{Binding Name}" Width="0.4*" />
                                         <DataGridTextColumn Header="Occurrences" Binding="{Binding Occurrences}" Width="Auto" />
-                                        <DataGridTemplateColumn Header="Percentage" Width="*" Visibility="Visible" SortMemberPath="PercentageValue" IsReadOnly="True" >
+                                        <DataGridTemplateColumn Header="Percentage" Width="*" Visibility="Visible"
+                                                                SortMemberPath="PercentageValue" IsReadOnly="True" >
                                             <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
+                                                <DataTemplate DataType="dataObjects:ChartElement">
                                                     <StackPanel>
-                                                        <TextBlock Text="{Binding PercentageValue, StringFormat=P}" HorizontalAlignment="Center" />
-                                                        <ProgressBar Value="{Binding Path=PercentageValue, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="1" Height="25" SmallChange="0.001" />
+                                                        <TextBlock Text="{Binding PercentageValue, StringFormat=P}"
+                                                                   HorizontalAlignment="Center" />
+                                                        <ProgressBar Value="{Binding Path=PercentageValue, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                                                     Minimum="0" Maximum="1" Height="25" SmallChange="0.001" />
                                                     </StackPanel>
                                                 </DataTemplate>
                                             </DataGridTemplateColumn.CellTemplate>
@@ -151,7 +164,9 @@
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
                                 <Separator Grid.Row="0" />
-                                <lvc:PieChart Series="{Binding SelectedPlaylist2.SeriesCollection}" LegendLocation="Right" Grid.Column="0" Grid.Row="1"  Margin="5,5,5,5" DisableAnimations="True" Width="Auto" Height="Auto" />
+                                <lvc:PieChart Series="{Binding SelectedPlaylist2.SeriesCollection}" LegendLocation="Right"
+                                              Grid.Column="0" Grid.Row="1"  Margin="5,5,5,5" DisableAnimations="True"
+                                              Width="Auto" Height="Auto" />
                             </Grid>
                         </TabItem>
                     </TabControl>
@@ -214,16 +229,20 @@
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
                                 <Separator Grid.Row="0" />
-                                <DataGrid Grid.Row="1" VerticalAlignment="Top" ItemsSource="{Binding SelectedPlaylist3.Elements}" AutoGenerateColumns="False" IsReadOnly="True" SelectionUnit="Cell" x:Name="DataGrid3" >
+                                <DataGrid Grid.Row="1" VerticalAlignment="Top" ItemsSource="{Binding SelectedPlaylist3.Elements}"
+                                          AutoGenerateColumns="False" IsReadOnly="True" SelectionUnit="Cell" x:Name="DataGrid3" >
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="Tracks" Binding="{Binding Name}" Width="0.4*" />
                                         <DataGridTextColumn Header="Occurrences" Binding="{Binding Occurrences}" Width="Auto" />
-                                        <DataGridTemplateColumn Header="Percentage" Width="*" Visibility="Visible" SortMemberPath="PercentageValue" IsReadOnly="True" >
+                                        <DataGridTemplateColumn Header="Percentage" Width="*" Visibility="Visible"
+                                                                SortMemberPath="PercentageValue" IsReadOnly="True" >
                                             <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
+                                                <DataTemplate DataType="dataObjects:ChartElement">
                                                     <StackPanel>
-                                                        <TextBlock Text="{Binding PercentageValue, StringFormat=P}" HorizontalAlignment="Center" />
-                                                        <ProgressBar Value="{Binding Path=PercentageValue, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="1" Height="25" SmallChange="0.001" />
+                                                        <TextBlock Text="{Binding PercentageValue, StringFormat=P}"
+                                                                   HorizontalAlignment="Center" />
+                                                        <ProgressBar Value="{Binding Path=PercentageValue, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                                                     Minimum="0" Maximum="1" Height="25" SmallChange="0.001" />
                                                     </StackPanel>
                                                 </DataTemplate>
                                             </DataGridTemplateColumn.CellTemplate>
@@ -239,7 +258,9 @@
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
                                 <Separator Grid.Row="0" />
-                                <lvc:PieChart Series="{Binding SelectedPlaylist3.SeriesCollection}" LegendLocation="Right" Grid.Column="0" Grid.Row="1"  Margin="5,5,5,5" DisableAnimations="True" Width="Auto" Height="Auto" />
+                                <lvc:PieChart Series="{Binding SelectedPlaylist3.SeriesCollection}" LegendLocation="Right"
+                                              Grid.Column="0" Grid.Row="1"  Margin="5,5,5,5" DisableAnimations="True"
+                                              Width="Auto" Height="Auto" />
                             </Grid>
                         </TabItem>
                     </TabControl>

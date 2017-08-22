@@ -4,8 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:settingViewComponents="clr-namespace:SpotifyPlaylistMixer.Views.UserControls.SettingViewComponents"
+             xmlns:dataObjects="clr-namespace:SpotifyPlaylistMixer.DataObjects"
              mc:Ignorable="d" 
-             d:DesignHeight="120" d:DesignWidth="350">
+             d:DesignHeight="140" d:DesignWidth="350">
+    <UserControl.DataContext>
+        <dataObjects:Playlist />
+    </UserControl.DataContext>
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

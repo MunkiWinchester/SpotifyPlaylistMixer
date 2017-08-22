@@ -3,11 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SpotifyPlaylistMixer"
-        xmlns:wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
-        xmlns:userControls="clr-namespace:SpotifyPlaylistMixer.Views.UserControls"
         xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
-        xmlns:settingViewComponents="clr-namespace:SpotifyPlaylistMixer.Views.UserControls.SettingViewComponents"
         xmlns:userControls1="clr-namespace:SpotifyPlaylistMixer.Views.UserControls"
         mc:Ignorable="d" Icon="/SpotifyPlaylistMixer;component/Resources/spotifyIcon.ico"
         Title="Spotify Mixer" Height="700" Width="600" ShowIconOnTitleBar="False">

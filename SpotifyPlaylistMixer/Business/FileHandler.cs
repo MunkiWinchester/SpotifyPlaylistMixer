@@ -21,6 +21,7 @@ namespace SpotifyPlaylistMixer.Business
                 }
                 catch (Exception ex)
                 {
+                    Logger.Error("LoadConfig failed", ex);
                     return null;
                 }
             }
@@ -59,9 +60,9 @@ namespace SpotifyPlaylistMixer.Business
                 {
                     config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(path.First().Key));
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    Logger.Error("SaveConfigAddUser failed", ex);
                 }
             }
 
@@ -84,9 +85,9 @@ namespace SpotifyPlaylistMixer.Business
                 {
                     config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(path.First()));
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    Logger.Error("SaveConfigDeleteUser failed", ex);
                 }
             }
 
@@ -104,12 +105,12 @@ namespace SpotifyPlaylistMixer.Business
                 {
                     config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(path.First().Key));
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    Logger.Error("SaveConfigEditUser failed", ex);
                 }
             }
-            for (int i = 0; i < users.Count(); i++)
+            for (var i = 0; i < users.Count; i++)
             {
                 config.Users[i] = !config.Users[i].Equals(users[i]) ? users[i] : config.Users[i];
             }

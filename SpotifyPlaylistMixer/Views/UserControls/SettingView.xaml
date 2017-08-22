@@ -5,9 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:dataObjects="clr-namespace:SpotifyPlaylistMixer.DataObjects"
              xmlns:settingViewComponents="clr-namespace:SpotifyPlaylistMixer.Views.UserControls.SettingViewComponents"
-             xmlns:userControls="clr-namespace:SpotifyPlaylistMixer.Views.UserControls"
+             xmlns:viewModels="clr-namespace:SpotifyPlaylistMixer.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="300">
+    <UserControl.DataContext>
+        <viewModels:SettingViewModel />
+    </UserControl.DataContext>
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type dataObjects:User}">
             <Border Background="Transparent" BorderBrush="Black" BorderThickness="1" Margin="3">
@@ -32,11 +35,6 @@
                 <!-- TODO: hinzufügen/entfernen -->
             </Border>
         </DataTemplate>
-        <ResourceDictionary x:Key="Dictionary">
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/SpotifyPlaylistMixer;component/Resources/Icons.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -63,7 +61,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <ComboBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="3" ItemsSource="{Binding ExistingConfigs}" SelectedValue="{Binding SelectedConfigPath}" SelectedValuePath="Key" DisplayMemberPath="Value" />
+            <ComboBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="3" ItemsSource="{Binding ExistingConfigs}"
+                      SelectedValue="{Binding SelectedConfigPath}" SelectedValuePath="Key" DisplayMemberPath="Value" />
             <TextBox Grid.Row="1" Grid.Column="0" Margin="3" Text="{Binding PathNewConfig}" />
             <Button Content="Add" Grid.Row="1" Grid.Column="1" Margin="5" Command="{Binding AddConfigCommand}" />
         </Grid>
@@ -90,11 +89,13 @@
                 <Separator Grid.Row="2" Grid.Column="0"  Grid.ColumnSpan="2"/>
                 <Label Grid.Row="3" Grid.Column="0" Content="Users:"/>
                 <ItemsControl Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Config.Users}" />
-                <Button Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Content="Add" Command="{Binding AddUserCommand}" />
+                <Button Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Content="Add"
+                        Command="{Binding AddUserCommand}" />
                 <Separator Grid.Row="5" Grid.Column="0"  Grid.ColumnSpan="2"/>
                 <Label Grid.Row="6" Grid.Column="0" Content="Source Playlists:"/>
                 <ItemsControl Grid.Row="6" Grid.Column="1" ItemsSource="{Binding Config.SourcePlaylists}" />
-                <Button Grid.Row="7" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Content="Add" Command="{Binding AddPlaylistToSourceCommand}" />
+                <Button Grid.Row="7" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Content="Add"
+                        Command="{Binding AddPlaylistToSourceCommand}" />
                 </Grid>
         </ScrollViewer>
         <Separator Grid.Row="4" Grid.Column="0"  Grid.ColumnSpan="2"/>

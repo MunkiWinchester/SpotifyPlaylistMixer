@@ -1,17 +1,18 @@
-﻿
-namespace SpotifyPlaylistMixer.DataObjects
+﻿namespace SpotifyPlaylistMixer.DataObjects
 {
     public class User
     {
         public string Identifier { get; set; }
         public string Name { get; set; }
 
-        public User(string Identifier, string Name)
+        public User(string identifier, string name)
         {
-            this.Identifier = Identifier;
-            this.Name = Name;
+            Identifier = identifier;
+            Name = name;
+        }
+
+        public User()
+        {
         }
     }
-
-
 }

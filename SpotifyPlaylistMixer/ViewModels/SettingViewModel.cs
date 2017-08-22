@@ -169,24 +169,24 @@ namespace SpotifyPlaylistMixer.ViewModels
             if (FileHandler.LoadConfig(path) == null)
             {
                 Path = _oldPath;
-                notifier.ShowWarning("In diesem Ordner befindet sich keine Config.json");
+                _notifier.ShowWarning("In diesem Ordner befindet sich keine Config.json");
                 return Config;
             }
             return FileHandler.LoadConfig(path);
         }
 
         /*Todo evtl in eigene Klasse*/
-        Notifier notifier = new Notifier(cfg =>
+        private readonly Notifier _notifier = new Notifier(cfg =>
         {
             cfg.PositionProvider = new WindowPositionProvider(
-                parentWindow: Application.Current.MainWindow,
-                corner: Corner.BottomLeft,
-                offsetX: 10,
-                offsetY: 10);
+                Application.Current.MainWindow,
+                Corner.BottomLeft,
+                10,
+                10);
 
             cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
-                notificationLifetime: TimeSpan.FromSeconds(5),
-                maximumNotificationCount: MaximumNotificationCount.FromCount(5));
+                TimeSpan.FromSeconds(5),
+                MaximumNotificationCount.FromCount(5));
 
             cfg.Dispatcher = Application.Current.Dispatcher;
         });

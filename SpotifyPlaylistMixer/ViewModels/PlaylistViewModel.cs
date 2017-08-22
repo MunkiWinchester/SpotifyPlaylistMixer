@@ -6,7 +6,6 @@ using System.Reactive.Linq;
 using Newtonsoft.Json;
 using ReactiveUI;
 using SpotifyPlaylistMixer.DataObjects;
-using System.ComponentModel;
 
 namespace SpotifyPlaylistMixer.ViewModels
 {

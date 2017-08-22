@@ -16,6 +16,7 @@ namespace SpotifyPlaylistMixer.ViewModels
     public class DetailsGridViewModel : ReactiveObject
     {
         private const string All = "- ALL -";
+        private readonly KeyValuePair<string, string> _allKvP = new KeyValuePair<string, string>(All, All);
 
         private string _path;
 
@@ -165,7 +166,6 @@ namespace SpotifyPlaylistMixer.ViewModels
 
             string LabelPoint(ChartPoint chartPoint) => $"{chartPoint.SeriesView.Title}";
 
-            var total = 0f;
             var series = new SeriesCollection();
             foreach (var chartElement in dic.Values)
             {
@@ -178,7 +178,6 @@ namespace SpotifyPlaylistMixer.ViewModels
                         DataLabels = true,
                         LabelPoint = LabelPoint,
                     });
-                    total += chartElement.PercentageValue;
                 }
             }
             series.Add(new PieSeries
@@ -314,7 +313,7 @@ namespace SpotifyPlaylistMixer.ViewModels
             var playlist = new List<PlaylistElement>();
             foreach (var existingPlaylist in ExistingPlaylists)
             {
-                if(!existingPlaylist.Equals(All))
+                if(!existingPlaylist.Key.Equals(_allKvP.Key))
                     playlist.AddRange(JsonConvert.DeserializeObject<List<PlaylistElement>>(
                         File.ReadAllText(existingPlaylist.Key)));
             }
