@@ -86,6 +86,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
       <Private>True</Private>
@@ -294,6 +295,7 @@
     <None Include="Resources\Examples\EMP-ERP Mixed Mixes_10_07_2017.json" />
     <None Include="Resources\Examples\EMP-ERP Mixed Mixes_12_06_2017.json" />
     <None Include="Resources\Examples\EMP-ERP Mixed Mixes_19_06_2017.json" />
+    <None Include="Resources\Examples\EMP-ERP Mixed Mixes_21_08_2017.json" />
     <None Include="Resources\Examples\EMP-ERP Mixed Mixes_26_06_2017.json" />
     <None Include="Resources\Examples\EMP-ERP weekly Mix_01_05_2017.json" />
     <Content Include="Resources\Examples\EMP-ERP weekly Mix_02_01_2017.json">

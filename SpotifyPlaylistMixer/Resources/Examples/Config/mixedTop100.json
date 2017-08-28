@@ -55,6 +55,14 @@
                 "Identifier": "flockana",
                 "Name": "Sabine"
             }
+        },
+        {
+            "Identifier": "2oFbC15xmiPUJP35oO612r",
+            "Name": "EMP100",
+            "Owner": {
+                "Identifier": "alestre",
+                "Name": "Alexander"
+            }
         }
     ],
   "TargetPlaylist": {
@@ -93,6 +101,10 @@
         {
             "Identifier": "flockana",
             "Name": "Sabine"
+        },
+        {
+            "Identifier": "alestre",
+            "Name": "Alexander"
         }
     ]
 }
