@@ -10,63 +10,50 @@ using SpotifyPlaylistMixer.Business;
 using SpotifyPlaylistMixer.DataObjects;
 using ToastNotifications;
 using ToastNotifications.Lifetime;
-using ToastNotifications.Position;
 using ToastNotifications.Messages;
-using ReactiveCommand = ReactiveUI.ReactiveCommand;
+using ToastNotifications.Position;
 
 namespace SpotifyPlaylistMixer.ViewModels
 {
     public class SettingViewModel : ReactiveObject
     {
-        private string _path;
-        private string _oldPath;
-        public string Path
+        private readonly ObservableAsPropertyHelper<Config> _config;
+        private readonly ObservableAsPropertyHelper<List<KeyValuePair<string, string>>> _existingConfigs;
+
+        /*Todo evtl in eigene Klasse*/
+        private readonly Notifier _notifier = new Notifier(cfg =>
         {
-            get => _path;
-            set
-            {
-                _oldPath = _path;
-                this.RaiseAndSetIfChanged(ref _path, value);
-            }
-        }
+            cfg.PositionProvider = new WindowPositionProvider(
+                Application.Current.MainWindow,
+                Corner.BottomLeft,
+                10,
+                10);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                TimeSpan.FromSeconds(5),
+                MaximumNotificationCount.FromCount(5));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+        });
+
+        private string _oldPath;
+        private string _path;
 
         private string _pathNewConfig;
-        public string PathNewConfig
-        {
-            get => _pathNewConfig;
-            set => this.RaiseAndSetIfChanged(ref _pathNewConfig, value);
-        }
 
         private string _selectedConfigPath;
-        public string SelectedConfigPath
-        {
-            get => _selectedConfigPath;
-            set => this.RaiseAndSetIfChanged(ref _selectedConfigPath, value);
-        }
-
-        public ReactiveCommand<string, Config> LoadConfigCommand { get; protected set; }
-        private readonly ObservableAsPropertyHelper<Config> _config;
-
-        public Config Config => _config.Value;
-
-        public ReactiveCommand<string, List<KeyValuePair<string, string>>> LoadExistingConfigs { get; protected set; }
-        private readonly ObservableAsPropertyHelper<List<KeyValuePair<string, string>>> _existingConfigs;
-        public List<KeyValuePair<string, string>> ExistingConfigs => _existingConfigs.Value;
-
-        public ReactiveCommand ConfirmCommand { get; }
-        public ReactiveCommand<string, string> AddConfigCommand { get; }
-        public ReactiveCommand AddUserCommand { get; }
-        public ReactiveCommand AddPlaylistToSourceCommand { get; }
 
         public SettingViewModel()
         {
-            LoadExistingConfigs = ReactiveCommand.Create<string, List<KeyValuePair<string, string>>>(LoadExistingConfigsFromPath);
+            LoadExistingConfigs =
+                ReactiveCommand.Create<string, List<KeyValuePair<string, string>>>(LoadExistingConfigsFromPath);
             this.WhenAnyValue(x => x.Path)
                 .Throttle(TimeSpan.FromSeconds(1), RxApp.MainThreadScheduler)
                 .Select(x => x?.Trim())
                 .Where(x => !string.IsNullOrWhiteSpace(x))
                 .InvokeCommand(LoadExistingConfigs);
-            _existingConfigs = LoadExistingConfigs.ToProperty(this, x => x.ExistingConfigs, new List<KeyValuePair<string, string>>());
+            _existingConfigs = LoadExistingConfigs.ToProperty(this, x => x.ExistingConfigs,
+                new List<KeyValuePair<string, string>>());
 
             LoadExistingConfigs.Subscribe(results =>
             {
@@ -94,7 +81,7 @@ namespace SpotifyPlaylistMixer.ViewModels
                 //&& s.Value.SourcePlaylists.Any()
                 //&& !string.IsNullOrEmpty(s.Value.SourcePlaylists.FirstOrDefault()?.Name)
                 //&& !string.IsNullOrEmpty(s.Value.SourcePlaylists.FirstOrDefault()?.Owner.Identifier)
-                );
+            );
             ConfirmCommand = ReactiveCommand.Create(ChangeConfig, canConfirmConfigObservable);
 
             var canAddConfigObservable = this.WhenAny(vm => vm.PathNewConfig,
@@ -114,6 +101,40 @@ namespace SpotifyPlaylistMixer.ViewModels
             AddPlaylistToSourceCommand = ReactiveCommand.Create(AddPlaylistToSource);
         }
 
+        public string Path
+        {
+            get => _path;
+            set
+            {
+                _oldPath = _path;
+                this.RaiseAndSetIfChanged(ref _path, value);
+            }
+        }
+
+        public string PathNewConfig
+        {
+            get => _pathNewConfig;
+            set => this.RaiseAndSetIfChanged(ref _pathNewConfig, value);
+        }
+
+        public string SelectedConfigPath
+        {
+            get => _selectedConfigPath;
+            set => this.RaiseAndSetIfChanged(ref _selectedConfigPath, value);
+        }
+
+        public ReactiveCommand<string, Config> LoadConfigCommand { get; protected set; }
+
+        public Config Config => _config.Value;
+
+        public ReactiveCommand<string, List<KeyValuePair<string, string>>> LoadExistingConfigs { get; protected set; }
+        public List<KeyValuePair<string, string>> ExistingConfigs => _existingConfigs.Value;
+
+        public ReactiveCommand ConfirmCommand { get; }
+        public ReactiveCommand<string, string> AddConfigCommand { get; }
+        public ReactiveCommand AddUserCommand { get; }
+        public ReactiveCommand AddPlaylistToSourceCommand { get; }
+
         private void AddPlaylistToSource()
         {
             Config.SourcePlaylists.Add(new Playlist());
@@ -129,7 +150,8 @@ namespace SpotifyPlaylistMixer.ViewModels
             var path = Path.EndsWith("\\") ? Path : Path + "\\";
             var file = PathNewConfig.EndsWith(".json") ? path + PathNewConfig : path + PathNewConfig + ".json";
             using (File.Create(file))
-            { }
+            {
+            }
             var json = JsonConvert.SerializeObject(new Config(), Formatting.Indented);
             File.WriteAllText(file, json);
             return file;
@@ -147,10 +169,8 @@ namespace SpotifyPlaylistMixer.ViewModels
                         .ToList();
                 var result = new List<KeyValuePair<string, string>>();
                 foreach (var file in files)
-                {
                     result.Add(new KeyValuePair<string, string>(file,
                         file.Substring(file.LastIndexOf("\\", StringComparison.Ordinal) + 1)));
-                }
                 return result;
             }
             return new List<KeyValuePair<string, string>>();
@@ -174,21 +194,5 @@ namespace SpotifyPlaylistMixer.ViewModels
             }
             return FileHandler.LoadConfig(path);
         }
-
-        /*Todo evtl in eigene Klasse*/
-        private readonly Notifier _notifier = new Notifier(cfg =>
-        {
-            cfg.PositionProvider = new WindowPositionProvider(
-                Application.Current.MainWindow,
-                Corner.BottomLeft,
-                10,
-                10);
-
-            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
-                TimeSpan.FromSeconds(5),
-                MaximumNotificationCount.FromCount(5));
-
-            cfg.Dispatcher = Application.Current.Dispatcher;
-        });
     }
 }

@@ -1,19 +1,21 @@
 {
-    "SourcePlaylists": [{
-        "Identifier": "",
-        "Name": "Dein Mix der Woche",
-        "Owner": {
-            "Identifier": "spotifydiscover",
-            "Name": "spotifydiscover"
+    "SourcePlaylists": [
+        {
+            "Identifier": "",
+            "Name": "Dein Mix der Woche",
+            "Owner": {
+                "Identifier": "spotifydiscover",
+                "Name": "spotifydiscover"
+            }
+        }, {
+            "Identifier": "",
+            "Name": "Discover Weekly",
+            "Owner": {
+                "Identifier": "spotify",
+                "Name": "spotify"
+            }
         }
-    },{
-        "Identifier": "",
-        "Name": "Discover Weekly",
-        "Owner": {
-            "Identifier": "spotify",
-            "Name": "spotify"
-        }
-    }],
+    ],
     "TargetPlaylist": {
         "Identifier": "0GNGC39QMDX6lwwOwEac5N",
         "Name": "EMP-ERP weekly Mix",

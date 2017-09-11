@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using SpotifyPlaylistMixer.DataObjects;
 
 namespace SpotifyPlaylistMixer.Business
@@ -10,9 +11,7 @@ namespace SpotifyPlaylistMixer.Business
         {
             var seperatedString = string.Empty;
             foreach (var playlist in playlists)
-            {
                 seperatedString = $"{seperatedString} or \"{playlist.Name} (Owner: {playlist.Owner.Name})\"";
-            }
             seperatedString = seperatedString.TrimStart(' ', 'o', 'r');
             return seperatedString;
         }
@@ -22,6 +21,15 @@ namespace SpotifyPlaylistMixer.Business
             Console.ForegroundColor = color;
             Logger.Trace(text);
             Console.WriteLine(text);
+        }
+
+        public static string ToConnectedString<T>(this List<T> value)
+        {
+            var list = value as List<string>;
+            var connectedString = "";
+            if (list != null && list.Any())
+                connectedString = list.Aggregate((s, next) => $"{s}; {next}");
+            return connectedString;
         }
     }
 }

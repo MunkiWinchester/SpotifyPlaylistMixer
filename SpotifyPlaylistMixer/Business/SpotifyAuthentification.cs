@@ -14,7 +14,7 @@ namespace SpotifyPlaylistMixer.Business
     public class SpotifyAuthentification
     {
         private SpotifyWebAPI _spotify;
-        
+
         public async Task<bool> RunAuthentication()
         {
             var webApiFactory = new WebAPIFactory(
@@ -70,7 +70,8 @@ namespace SpotifyPlaylistMixer.Business
             WriteResponse(_spotify.RemovePlaylistTracks(userId, playlistId, deleteList));
         }
 
-        public Paging<PlaylistTrack> GetPlaylistTracks(string userId, string playlistId, int limit = 100, int offset = 0)
+        public Paging<PlaylistTrack> GetPlaylistTracks(string userId, string playlistId, int limit = 100,
+            int offset = 0)
         {
             return _spotify.GetPlaylistTracks(userId, playlistId, offset: offset, limit: limit);
         }
@@ -94,13 +95,11 @@ namespace SpotifyPlaylistMixer.Business
         {
             var artists = _spotify.GetSeveralArtists(ids);
             if (artists.HasError())
-            {
                 if (artists.Error.Status == 429)
                 {
-                    Thread.Sleep((int)TimeSpan.FromSeconds(5).TotalMilliseconds);
+                    Thread.Sleep((int) TimeSpan.FromSeconds(5).TotalMilliseconds);
                     GetSeveralArtists(ids);
                 }
-            }
             // Don't stress the API
             Thread.Sleep(750);
             return artists;
@@ -125,8 +124,8 @@ namespace SpotifyPlaylistMixer.Business
             genresList.Sort();
             var artistList = track.Artists.Select(x => x.Name).ToList();
             artistList.Sort();
-            playlistElement.Artists = artistsList.Any() ? new CustomList<string>(artistsList) : new CustomList<string>();
-            playlistElement.Genres = genresList.Any() ? new CustomList<string>(genresList) : new CustomList<string>();
+            playlistElement.Artists = artistsList.Any() ? new List<string>(artistsList) : new List<string>();
+            playlistElement.Genres = genresList.Any() ? new List<string>(genresList) : new List<string>();
 
             return playlistElement;
         }

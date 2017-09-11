@@ -2,9 +2,6 @@
 {
     public class User
     {
-        public string Identifier { get; set; }
-        public string Name { get; set; }
-
         public User(string identifier, string name)
         {
             Identifier = identifier;
@@ -14,5 +11,8 @@
         public User()
         {
         }
+
+        public string Identifier { get; set; }
+        public string Name { get; set; }
     }
 }

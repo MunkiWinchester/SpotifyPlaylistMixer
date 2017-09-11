@@ -5,12 +5,11 @@ namespace SpotifyPlaylistMixer.Business
 {
     public static class Logger
     {
-
         public static string System { get; set; }
         public static DateTime StartDateTime { get; set; }
 
         /// <summary>
-        /// Writes the diagnostic message at the Trace level.
+        ///     Writes the diagnostic message at the Trace level.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="exception"></param>
@@ -20,7 +19,7 @@ namespace SpotifyPlaylistMixer.Business
         }
 
         /// <summary>
-        /// Writes the diagnostic message at the Debug level.
+        ///     Writes the diagnostic message at the Debug level.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="exception"></param>
@@ -30,7 +29,7 @@ namespace SpotifyPlaylistMixer.Business
         }
 
         /// <summary>
-        /// Writes the diagnostic message at the Info level.
+        ///     Writes the diagnostic message at the Info level.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="exception"></param>
@@ -40,7 +39,7 @@ namespace SpotifyPlaylistMixer.Business
         }
 
         /// <summary>
-        /// Writes the diagnostic message at the Warn level.
+        ///     Writes the diagnostic message at the Warn level.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="exception"></param>
@@ -50,7 +49,7 @@ namespace SpotifyPlaylistMixer.Business
         }
 
         /// <summary>
-        /// Writes the diagnostic message at the Error level.
+        ///     Writes the diagnostic message at the Error level.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="exception"></param>
@@ -60,17 +59,17 @@ namespace SpotifyPlaylistMixer.Business
         }
 
         /// <summary>
-        /// Writes the diagnostic message at the Fatal level.
+        ///     Writes the diagnostic message at the Fatal level.
         /// </summary>
         /// <param name="message"></param>
         /// <param name="exception"></param>
         public static void Fatal(string message, Exception exception = null)
-        {            
+        {
             Log(LogLevel.Fatal, message, exception);
         }
 
         /// <summary>
-        /// Writes the specified diagnostic message.
+        ///     Writes the specified diagnostic message.
         /// </summary>
         /// <param name="level"></param>
         /// <param name="message"></param>

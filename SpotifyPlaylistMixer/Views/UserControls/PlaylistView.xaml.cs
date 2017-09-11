@@ -1,31 +1,28 @@
 ﻿using System.IO;
-using ReactiveUI;
+using System.Windows;
 using SpotifyPlaylistMixer.ViewModels;
 
 namespace SpotifyPlaylistMixer.Views.UserControls
 {
     /// <summary>
-    /// Interaction logic for PlaylistView.xaml
+    ///     Interaction logic for PlaylistView.xaml
     /// </summary>
-    public partial class PlaylistView : IViewFor<PlaylistViewModel>
+    public partial class PlaylistView
     {
+        private readonly PlaylistViewModel ViewModel;
+
         public PlaylistView()
         {
             ViewModel = new PlaylistViewModel();
             InitializeComponent();
 
             DataContext = ViewModel;
-
-            var dir = Directory.GetCurrentDirectory();
-            ViewModel.Path = $@"{dir}\Resources\Examples\";
         }
 
-        object IViewFor.ViewModel
+        private void PlaylistView_OnLoaded(object sender, RoutedEventArgs e)
         {
-            get => ViewModel;
-            set => ViewModel = (PlaylistViewModel)value;
+            var dir = Directory.GetCurrentDirectory();
+            ViewModel.LoadExistingPlaylistsFromPath($@"{dir}\Resources\Examples\");
         }
-
-        public PlaylistViewModel ViewModel { get; set; }
     }
 }

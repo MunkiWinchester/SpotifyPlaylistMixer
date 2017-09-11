@@ -11,9 +11,11 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
                 <!-- Accent and AppTheme setting -->
                 <ResourceDictionary Source="CustomAccents/CustomAccent.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseDark.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseDark.xaml" />
                 <!-- ToastNotification setting -->
-                <ResourceDictionary Source="pack://application:,,,/ToastNotifications.Messages;component/Themes/Default.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/ToastNotifications.Messages;component/Themes/Default.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

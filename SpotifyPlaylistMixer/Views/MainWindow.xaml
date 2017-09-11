@@ -1,12 +1,12 @@
 ﻿<controls:MetroWindow x:Class="SpotifyPlaylistMixer.Views.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
-        xmlns:userControls1="clr-namespace:SpotifyPlaylistMixer.Views.UserControls"
-        mc:Ignorable="d" Icon="/SpotifyPlaylistMixer;component/Resources/spotifyIcon.ico"
-        Title="Spotify Mixer" Height="700" Width="600" ShowIconOnTitleBar="False">
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      xmlns:userControls1="clr-namespace:SpotifyPlaylistMixer.Views.UserControls"
+                      mc:Ignorable="d" Icon="/SpotifyPlaylistMixer;component/Resources/spotifyIcon.ico"
+                      Title="Spotify Mixer" Height="700" Width="600" ShowIconOnTitleBar="False">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -16,7 +16,8 @@
     </Window.Resources>
     <controls:MetroWindow.LeftWindowCommands>
         <controls:WindowCommands>
-            <Rectangle Height="20" Width="20" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type controls:WindowCommands}}}">
+            <Rectangle Height="20" Width="20"
+                       Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type controls:WindowCommands}}}">
                 <Rectangle.OpacityMask>
                     <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_social_spotify}" />
                 </Rectangle.OpacityMask>

@@ -5,7 +5,7 @@ using SpotifyPlaylistMixer.ViewModels;
 namespace SpotifyPlaylistMixer.Views.UserControls
 {
     /// <summary>
-    /// Interaction logic for GeneratePlaylistView.xaml
+    ///     Interaction logic for GeneratePlaylistView.xaml
     /// </summary>
     public partial class GeneratePlaylistView : IViewFor<GeneratePlaylistViewModel>
     {
@@ -23,7 +23,7 @@ namespace SpotifyPlaylistMixer.Views.UserControls
         object IViewFor.ViewModel
         {
             get => ViewModel;
-            set => ViewModel = (GeneratePlaylistViewModel)value;
+            set => ViewModel = (GeneratePlaylistViewModel) value;
         }
 
         public GeneratePlaylistViewModel ViewModel { get; set; }

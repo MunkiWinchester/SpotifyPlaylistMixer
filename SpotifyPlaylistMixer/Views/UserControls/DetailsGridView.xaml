@@ -6,7 +6,7 @@
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              xmlns:viewModels="clr-namespace:SpotifyPlaylistMixer.ViewModels"
              xmlns:dataObjects="clr-namespace:SpotifyPlaylistMixer.DataObjects"
-             mc:Ignorable="d" 
+             mc:Ignorable="d" Loaded="DetailsGridView_OnLoaded"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.DataContext>
         <viewModels:DetailsGridViewModel />
@@ -17,19 +17,19 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Content="Current Playlist:"/>
+        <Label Grid.Row="0" Grid.Column="0" Content="Current Playlist:" />
         <ComboBox Grid.Row="0" Grid.Column="1" Margin="3" ItemsSource="{Binding ExistingPlaylists}"
                   SelectedValue="{Binding SelectedPlaylistPath}" SelectedValuePath="Key" DisplayMemberPath="Value" />
-        <TabControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" >
-            <TabItem Header="Genres" >
+        <TabControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <TabItem Header="Genres">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Separator Grid.Row="0" />
@@ -38,23 +38,27 @@
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
                                 <Separator Grid.Row="0" />
-                                <DataGrid Grid.Row="1" VerticalAlignment="Top" ItemsSource="{Binding SelectedPlaylist.Elements}"
-                                          AutoGenerateColumns="False" IsReadOnly="True" SelectionUnit="Cell" x:Name="DataGrid">
+                                <DataGrid Grid.Row="1" VerticalAlignment="Top"
+                                          ItemsSource="{Binding SelectedPlaylist.Elements}"
+                                          AutoGenerateColumns="False" IsReadOnly="True" SelectionUnit="Cell"
+                                          x:Name="DataGrid">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="Genre" Binding="{Binding Name}" Width="0.4*" />
-                                        <DataGridTextColumn Header="Occurrences" Binding="{Binding Occurrences}" Width="Auto" />
-                                        <DataGridTemplateColumn Header="Percentage" Width="*" Visibility="Visible" 
-                                                                SortMemberPath="PercentageValue" IsReadOnly="True" >
+                                        <DataGridTextColumn Header="Occurrences" Binding="{Binding Occurrences}"
+                                                            Width="Auto" />
+                                        <DataGridTemplateColumn Header="Percentage" Width="*" Visibility="Visible"
+                                                                SortMemberPath="PercentageValue" IsReadOnly="True">
                                             <DataGridTemplateColumn.CellTemplate>
                                                 <DataTemplate DataType="dataObjects:ChartElement">
                                                     <StackPanel>
                                                         <TextBlock Text="{Binding PercentageValue, StringFormat=P}"
                                                                    HorizontalAlignment="Center" />
-                                                        <ProgressBar Value="{Binding Path=PercentageValue, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
-                                                                     Minimum="0" Maximum="1" Height="25" SmallChange="0.001" />
+                                                        <ProgressBar
+                                                            Value="{Binding Path=PercentageValue, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                                            Minimum="0" Maximum="1" Height="25" SmallChange="0.001" />
                                                     </StackPanel>
                                                 </DataTemplate>
                                             </DataGridTemplateColumn.CellTemplate>
@@ -67,18 +71,19 @@
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
                                 <Separator Grid.Row="0" />
-                                <lvc:PieChart Series="{Binding SelectedPlaylist.SeriesCollection}" LegendLocation="Right"
-                                              Grid.Column="0" Grid.Row="1"  Margin="5,5,5,5" DisableAnimations="True"
+                                <lvc:PieChart Series="{Binding SelectedPlaylist.SeriesCollection}"
+                                              LegendLocation="Right"
+                                              Grid.Column="0" Grid.Row="1" Margin="5,5,5,5" DisableAnimations="True"
                                               Width="Auto" Height="Auto" />
                             </Grid>
                         </TabItem>
                     </TabControl>
-                    <Grid Grid.Row="2" Margin="0" >
+                    <Grid Grid.Row="2" Margin="0">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
@@ -87,28 +92,29 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <Separator Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="4" />
-                        <Grid Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right" Width="Auto" Margin="0,0,10,0" >
+                        <Separator Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" />
+                        <Grid Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right" Width="Auto" Margin="0,0,10,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Content="No. of Genres:" Margin="0" FontSize="10" />
-                            <Label Grid.Column="1" Margin="0" FontSize="10" >
+                            <Label Grid.Column="1" Margin="0" FontSize="10">
                                 <Label.Content>
                                     <Binding Mode="OneWay" ElementName="DataGrid" Path="Items.Count" />
                                 </Label.Content>
                             </Label>
                         </Grid>
-                        <Grid Grid.Row="1" Grid.Column="2" Width="Auto" HorizontalAlignment="Right" Margin="0,0,10,0" >
+                        <Grid Grid.Row="1" Grid.Column="2" Width="Auto" HorizontalAlignment="Right" Margin="0,0,10,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Content="Per entry:" Margin="0" FontSize="10" />
-                            <Label Grid.Column="1" Content="{Binding PercentagePerEntry}" ContentStringFormat="P" Margin="0" FontSize="10" />
+                            <Label Grid.Column="1" Content="{Binding PercentagePerEntry}" ContentStringFormat="P"
+                                   Margin="0" FontSize="10" />
                         </Grid>
-                        <Grid Grid.Row="1" Grid.Column="1" Width="Auto" HorizontalAlignment="Right" Margin="0,0,10,0" >
+                        <Grid Grid.Row="1" Grid.Column="1" Width="Auto" HorizontalAlignment="Right" Margin="0,0,10,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
@@ -123,7 +129,7 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Separator Grid.Row="0" />
@@ -132,23 +138,27 @@
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
                                 <Separator Grid.Row="0" />
-                                <DataGrid Grid.Row="1" VerticalAlignment="Top" ItemsSource="{Binding SelectedPlaylist2.Elements}"
-                                          AutoGenerateColumns="False" IsReadOnly="True" SelectionUnit="Cell" x:Name="DataGrid2" >
+                                <DataGrid Grid.Row="1" VerticalAlignment="Top"
+                                          ItemsSource="{Binding SelectedPlaylist2.Elements}"
+                                          AutoGenerateColumns="False" IsReadOnly="True" SelectionUnit="Cell"
+                                          x:Name="DataGrid2">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="Artists" Binding="{Binding Name}" Width="0.4*" />
-                                        <DataGridTextColumn Header="Occurrences" Binding="{Binding Occurrences}" Width="Auto" />
+                                        <DataGridTextColumn Header="Occurrences" Binding="{Binding Occurrences}"
+                                                            Width="Auto" />
                                         <DataGridTemplateColumn Header="Percentage" Width="*" Visibility="Visible"
-                                                                SortMemberPath="PercentageValue" IsReadOnly="True" >
+                                                                SortMemberPath="PercentageValue" IsReadOnly="True">
                                             <DataGridTemplateColumn.CellTemplate>
                                                 <DataTemplate DataType="dataObjects:ChartElement">
                                                     <StackPanel>
                                                         <TextBlock Text="{Binding PercentageValue, StringFormat=P}"
                                                                    HorizontalAlignment="Center" />
-                                                        <ProgressBar Value="{Binding Path=PercentageValue, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
-                                                                     Minimum="0" Maximum="1" Height="25" SmallChange="0.001" />
+                                                        <ProgressBar
+                                                            Value="{Binding Path=PercentageValue, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                                            Minimum="0" Maximum="1" Height="25" SmallChange="0.001" />
                                                     </StackPanel>
                                                 </DataTemplate>
                                             </DataGridTemplateColumn.CellTemplate>
@@ -161,18 +171,19 @@
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
                                 <Separator Grid.Row="0" />
-                                <lvc:PieChart Series="{Binding SelectedPlaylist2.SeriesCollection}" LegendLocation="Right"
-                                              Grid.Column="0" Grid.Row="1"  Margin="5,5,5,5" DisableAnimations="True"
+                                <lvc:PieChart Series="{Binding SelectedPlaylist2.SeriesCollection}"
+                                              LegendLocation="Right"
+                                              Grid.Column="0" Grid.Row="1" Margin="5,5,5,5" DisableAnimations="True"
                                               Width="Auto" Height="Auto" />
                             </Grid>
                         </TabItem>
                     </TabControl>
-                    <Grid Grid.Row="2" Margin="0" >
+                    <Grid Grid.Row="2" Margin="0">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
@@ -181,28 +192,29 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <Separator Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="4" />
-                        <Grid Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right" Width="Auto" Margin="0,0,10,0" >
+                        <Separator Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" />
+                        <Grid Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right" Width="Auto" Margin="0,0,10,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Content="No. of Artists:" Margin="0" FontSize="10" />
-                            <Label Grid.Column="1" Margin="0" FontSize="10" >
+                            <Label Grid.Column="1" Margin="0" FontSize="10">
                                 <Label.Content>
                                     <Binding Mode="OneWay" ElementName="DataGrid2" Path="Items.Count" />
                                 </Label.Content>
                             </Label>
                         </Grid>
-                        <Grid Grid.Row="1" Grid.Column="2" Width="Auto" HorizontalAlignment="Right" Margin="0,0,10,0" >
+                        <Grid Grid.Row="1" Grid.Column="2" Width="Auto" HorizontalAlignment="Right" Margin="0,0,10,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Content="Per entry:" Margin="0" FontSize="10" />
-                            <Label Grid.Column="1" Content="{Binding PercentagePerEntry}" ContentStringFormat="P" Margin="0" FontSize="10" />
+                            <Label Grid.Column="1" Content="{Binding PercentagePerEntry}" ContentStringFormat="P"
+                                   Margin="0" FontSize="10" />
                         </Grid>
-                        <Grid Grid.Row="1" Grid.Column="1" Width="Auto" HorizontalAlignment="Right" Margin="0,0,10,0" >
+                        <Grid Grid.Row="1" Grid.Column="1" Width="Auto" HorizontalAlignment="Right" Margin="0,0,10,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
@@ -217,7 +229,7 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Separator Grid.Row="0" />
@@ -226,23 +238,27 @@
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
                                 <Separator Grid.Row="0" />
-                                <DataGrid Grid.Row="1" VerticalAlignment="Top" ItemsSource="{Binding SelectedPlaylist3.Elements}"
-                                          AutoGenerateColumns="False" IsReadOnly="True" SelectionUnit="Cell" x:Name="DataGrid3" >
+                                <DataGrid Grid.Row="1" VerticalAlignment="Top"
+                                          ItemsSource="{Binding SelectedPlaylist3.Elements}"
+                                          AutoGenerateColumns="False" IsReadOnly="True" SelectionUnit="Cell"
+                                          x:Name="DataGrid3">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="Tracks" Binding="{Binding Name}" Width="0.4*" />
-                                        <DataGridTextColumn Header="Occurrences" Binding="{Binding Occurrences}" Width="Auto" />
+                                        <DataGridTextColumn Header="Occurrences" Binding="{Binding Occurrences}"
+                                                            Width="Auto" />
                                         <DataGridTemplateColumn Header="Percentage" Width="*" Visibility="Visible"
-                                                                SortMemberPath="PercentageValue" IsReadOnly="True" >
+                                                                SortMemberPath="PercentageValue" IsReadOnly="True">
                                             <DataGridTemplateColumn.CellTemplate>
                                                 <DataTemplate DataType="dataObjects:ChartElement">
                                                     <StackPanel>
                                                         <TextBlock Text="{Binding PercentageValue, StringFormat=P}"
                                                                    HorizontalAlignment="Center" />
-                                                        <ProgressBar Value="{Binding Path=PercentageValue, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
-                                                                     Minimum="0" Maximum="1" Height="25" SmallChange="0.001" />
+                                                        <ProgressBar
+                                                            Value="{Binding Path=PercentageValue, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                                                            Minimum="0" Maximum="1" Height="25" SmallChange="0.001" />
                                                     </StackPanel>
                                                 </DataTemplate>
                                             </DataGridTemplateColumn.CellTemplate>
@@ -255,18 +271,19 @@
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
                                 <Separator Grid.Row="0" />
-                                <lvc:PieChart Series="{Binding SelectedPlaylist3.SeriesCollection}" LegendLocation="Right"
-                                              Grid.Column="0" Grid.Row="1"  Margin="5,5,5,5" DisableAnimations="True"
+                                <lvc:PieChart Series="{Binding SelectedPlaylist3.SeriesCollection}"
+                                              LegendLocation="Right"
+                                              Grid.Column="0" Grid.Row="1" Margin="5,5,5,5" DisableAnimations="True"
                                               Width="Auto" Height="Auto" />
                             </Grid>
                         </TabItem>
                     </TabControl>
-                    <Grid Grid.Row="2" Margin="0" >
+                    <Grid Grid.Row="2" Margin="0">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
@@ -275,28 +292,29 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <Separator Grid.Row="0"  Grid.Column="0" Grid.ColumnSpan="4" />
-                        <Grid Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right" Width="Auto" Margin="0,0,10,0" >
+                        <Separator Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" />
+                        <Grid Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right" Width="Auto" Margin="0,0,10,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Content="No. of Tracks:" Margin="0" FontSize="10" />
-                            <Label Grid.Column="1" Margin="0" FontSize="10" >
+                            <Label Grid.Column="1" Margin="0" FontSize="10">
                                 <Label.Content>
                                     <Binding Mode="OneWay" ElementName="DataGrid3" Path="Items.Count" />
                                 </Label.Content>
                             </Label>
                         </Grid>
-                        <Grid Grid.Row="1" Grid.Column="2" Width="Auto" HorizontalAlignment="Right" Margin="0,0,10,0" >
+                        <Grid Grid.Row="1" Grid.Column="2" Width="Auto" HorizontalAlignment="Right" Margin="0,0,10,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Content="Per entry:" Margin="0" FontSize="10" />
-                            <Label Grid.Column="1" Content="{Binding PercentagePerEntry}" ContentStringFormat="P" Margin="0" FontSize="10" />
+                            <Label Grid.Column="1" Content="{Binding PercentagePerEntry}" ContentStringFormat="P"
+                                   Margin="0" FontSize="10" />
                         </Grid>
-                        <Grid Grid.Row="1" Grid.Column="1" Width="Auto" HorizontalAlignment="Right" Margin="0,0,10,0" >
+                        <Grid Grid.Row="1" Grid.Column="1" Width="Auto" HorizontalAlignment="Right" Margin="0,0,10,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />

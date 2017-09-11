@@ -12,48 +12,26 @@ namespace SpotifyPlaylistMixer.ViewModels
 {
     public class GeneratePlaylistViewModel : ReactiveObject
     {
+        private readonly ObservableAsPropertyHelper<Config> _config;
+        private readonly ObservableAsPropertyHelper<List<KeyValuePair<string, string>>> _existingConfigs;
         private bool _isNotBusy;
 
-        public bool IsNotBusy
-        {
-            get => _isNotBusy;
-            set => this.RaiseAndSetIfChanged(ref _isNotBusy, value);
-        }
-
         private string _path;
-        public string Path
-        {
-            get => _path;
-            set => this.RaiseAndSetIfChanged(ref _path, value);
-        }
 
         private string _selectedConfigPath;
-        public string SelectedConfigPath
-        {
-            get => _selectedConfigPath;
-            set => this.RaiseAndSetIfChanged(ref _selectedConfigPath, value);
-        }
-
-        public ReactiveCommand<string, Config> LoadConfigCommand { get; protected set; }
-        private readonly ObservableAsPropertyHelper<Config> _config;
-        public Config Config => _config.Value;
-
-        public ReactiveCommand<string, List<KeyValuePair<string, string>>> LoadExistingConfigs { get; protected set; }
-        private readonly ObservableAsPropertyHelper<List<KeyValuePair<string, string>>> _existingConfigs;
-        public List<KeyValuePair<string, string>> ExistingConfigs => _existingConfigs.Value;
-
-        public ReactiveCommand<Config, Task<bool>> GenerateCurrentPlaylistCommand { get; }
 
         public GeneratePlaylistViewModel()
         {
             IsNotBusy = true;
-            LoadExistingConfigs = ReactiveCommand.Create<string, List<KeyValuePair<string, string>>>(LoadExistingConfigsFromPath);
+            LoadExistingConfigs =
+                ReactiveCommand.Create<string, List<KeyValuePair<string, string>>>(LoadExistingConfigsFromPath);
             this.WhenAnyValue(x => x.Path)
                 .Throttle(TimeSpan.FromSeconds(1), RxApp.MainThreadScheduler)
                 .Select(x => x?.Trim())
                 .Where(x => !string.IsNullOrWhiteSpace(x))
                 .InvokeCommand(LoadExistingConfigs);
-            _existingConfigs = LoadExistingConfigs.ToProperty(this, x => x.ExistingConfigs, new List<KeyValuePair<string, string>>());
+            _existingConfigs = LoadExistingConfigs.ToProperty(this, x => x.ExistingConfigs,
+                new List<KeyValuePair<string, string>>());
 
             LoadExistingConfigs.Subscribe(results =>
             {
@@ -75,6 +53,32 @@ namespace SpotifyPlaylistMixer.ViewModels
             GenerateCurrentPlaylistCommand = ReactiveCommand.Create<Config, Task<bool>>(GenerateCurrentPlaylist);
         }
 
+        public bool IsNotBusy
+        {
+            get => _isNotBusy;
+            set => this.RaiseAndSetIfChanged(ref _isNotBusy, value);
+        }
+
+        public string Path
+        {
+            get => _path;
+            set => this.RaiseAndSetIfChanged(ref _path, value);
+        }
+
+        public string SelectedConfigPath
+        {
+            get => _selectedConfigPath;
+            set => this.RaiseAndSetIfChanged(ref _selectedConfigPath, value);
+        }
+
+        public ReactiveCommand<string, Config> LoadConfigCommand { get; protected set; }
+        public Config Config => _config.Value;
+
+        public ReactiveCommand<string, List<KeyValuePair<string, string>>> LoadExistingConfigs { get; protected set; }
+        public List<KeyValuePair<string, string>> ExistingConfigs => _existingConfigs.Value;
+
+        public ReactiveCommand<Config, Task<bool>> GenerateCurrentPlaylistCommand { get; }
+
         private List<KeyValuePair<string, string>> LoadExistingConfigsFromPath(string path)
         {
             if (Directory.Exists(path))
@@ -87,10 +91,8 @@ namespace SpotifyPlaylistMixer.ViewModels
                         .ToList();
                 var result = new List<KeyValuePair<string, string>>();
                 foreach (var file in files)
-                {
                     result.Add(new KeyValuePair<string, string>(file,
                         file.Substring(file.LastIndexOf("\\", StringComparison.Ordinal) + 1)));
-                }
                 return result;
             }
             return new List<KeyValuePair<string, string>>();

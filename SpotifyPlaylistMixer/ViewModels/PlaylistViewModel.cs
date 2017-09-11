@@ -1,111 +1,99 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Reactive.Linq;
 using Newtonsoft.Json;
-using ReactiveUI;
+using SpotifyPlaylistMixer.Business;
 using SpotifyPlaylistMixer.DataObjects;
+using WpfUtility;
 
 namespace SpotifyPlaylistMixer.ViewModels
 {
-    public class PlaylistViewModel : ReactiveObject
+    public class PlaylistViewModel : ObservableObject
     {
-        private string _path;
-        public string Path
-        {
-            get => _path;
-            set => this.RaiseAndSetIfChanged(ref _path, value);
-        }
-
+        private ObservableCollection<KeyValuePair<string, string>> _existingPlaylists;
+        private ObservableCollection<PlaylistElement> _originalPlaylist;
+        private string _searchTerm;
+        private ObservableCollection<PlaylistElement> _selectedPlaylist;
         private string _selectedPlaylistPath;
+        private int _totalItems;
+
         public string SelectedPlaylistPath
         {
             get => _selectedPlaylistPath;
-            set => this.RaiseAndSetIfChanged(ref _selectedPlaylistPath, value);
+            set
+            {
+                _selectedPlaylistPath = value;
+                LoadExistingPlaylistFromPath(value);
+                OnPropertyChanged();
+            }
         }
 
-        private string _searchTerm;
         public string SearchTerm
         {
             get => _searchTerm;
-            set => this.RaiseAndSetIfChanged(ref _searchTerm, value);
+            set
+            {
+                _searchTerm = value;
+                SearchInCurrentPlaylist();
+                OnPropertyChanged();
+            }
         }
-        
-        private int _totalItems;
+
         public int TotalItems
         {
             get => _totalItems;
-            set => this.RaiseAndSetIfChanged(ref _totalItems, value);
-        }
-
-        public ReactiveCommand<string, List<KeyValuePair<string, string>>> LoadExistingPlaylistsCommand { get; protected set; }
-        private readonly ObservableAsPropertyHelper<List<KeyValuePair<string, string>>> _existingPlaylists;
-        public List<KeyValuePair<string, string>> ExistingPlaylists => _existingPlaylists.Value;
-
-        public ReactiveCommand<string, List<PlaylistElement>> LoadExistingPlaylistCommand { get;
-            protected set;
-        }
-        public ReactiveCommand<string, List<PlaylistElement>> SearchInCurrentPlaylistCommand { get;
-            protected set;
-        }
-        private readonly ObservableAsPropertyHelper<List<PlaylistElement>> _existingPlaylist;
-        public List<PlaylistElement> ExistingPlaylist => _existingPlaylist.Value;
-        private List<PlaylistElement> _originalPlaylist;
-
-        public PlaylistViewModel()
-        {
-            LoadExistingPlaylistsCommand = ReactiveCommand.Create<string, List<KeyValuePair<string, string>>>(LoadExistingPlaylistsFromPath);
-            this.WhenAnyValue(x => x.Path)
-                .Select(x => x?.Trim())
-                .Where(x => !string.IsNullOrWhiteSpace(x))
-                .InvokeCommand(LoadExistingPlaylistsCommand);
-            LoadExistingPlaylistsCommand.ToProperty(this, x => x.ExistingPlaylists, out _existingPlaylists, new List<KeyValuePair<string, string>>());
-
-            LoadExistingPlaylistCommand =
-                ReactiveCommand.Create<string, List<PlaylistElement>>(LoadExistingPlaylistFromPath);
-            this.WhenAnyValue(x => x.SelectedPlaylistPath)
-                .Select(x => x?.Trim())
-                .Where(x => !string.IsNullOrWhiteSpace(x))
-                .InvokeCommand(LoadExistingPlaylistCommand);
-            LoadExistingPlaylistCommand.ToProperty(this, x => x.ExistingPlaylist, out _existingPlaylist,
-                new List<PlaylistElement>());
-
-            SearchInCurrentPlaylistCommand = ReactiveCommand.Create<string, List<PlaylistElement>>(SearchInCurrentPlaylist);
-            this.WhenAnyValue(x => x.SearchTerm)
-                .Throttle(TimeSpan.FromSeconds(1), RxApp.MainThreadScheduler)
-                .Select(x => x?.Trim().ToLower())
-                .InvokeCommand(SearchInCurrentPlaylistCommand);
-            SearchInCurrentPlaylistCommand.ToProperty(this, x => x.ExistingPlaylist, out _existingPlaylist, new List<PlaylistElement>());
-
-            LoadExistingPlaylistsCommand.Subscribe(results =>
+            set
             {
-                if (ExistingPlaylists.Any())
-                {
-                    var first = ExistingPlaylists.First();
-                    SelectedPlaylistPath = first.Key;
-                }
-            });
-
-            LoadExistingPlaylistCommand.Subscribe(results =>
-            {
-                if (results != null && results.Any())
-                {
-                    SearchTerm = string.Empty;
-                }
-            });
+                _totalItems = value;
+                OnPropertyChanged();
+            }
         }
 
-        private List<PlaylistElement> SearchInCurrentPlaylist(string searchTerm)
+        public ObservableCollection<KeyValuePair<string, string>> ExistingPlaylists
         {
+            get => _existingPlaylists;
+            set => SetField(ref _existingPlaylists, value);
+        }
+
+        public ObservableCollection<PlaylistElement> SelectedPlaylist
+        {
+            get => _selectedPlaylist;
+            set => SetField(ref _selectedPlaylist, value);
+        }
+
+        public void LoadExistingPlaylistFromPath(string path)
+        {
+            var playlist = JsonConvert.DeserializeObject<List<PlaylistElement>>(
+                File.ReadAllText(path));
+            TotalItems = playlist.Count;
+            SelectedPlaylist = _originalPlaylist = new ObservableCollection<PlaylistElement>(playlist);
+            SearchInCurrentPlaylist();
+        }
+
+        public void LoadExistingPlaylistsFromPath(string path)
+        {
+            ExistingPlaylists =
+                new ObservableCollection<KeyValuePair<string, string>>(FileHandler.LoadExistingPlaylistsFromPath(path));
+            var first = ExistingPlaylists.First();
+            SelectedPlaylistPath = first.Key;
+        }
+
+        public void SearchInCurrentPlaylist()
+        {
+            var searchTerm = SearchTerm;
             if (string.IsNullOrWhiteSpace(searchTerm))
-                return _originalPlaylist;
+            {
+                SelectedPlaylist = _originalPlaylist;
+                return;
+            }
 
+            var converted = _originalPlaylist.ToList();
             var returnPlaylist = new List<PlaylistElement>();
-            returnPlaylist.AddRange(_originalPlaylist.FindAll(x => x.Track.ToLower().Contains(searchTerm)));
-            returnPlaylist.AddRange(_originalPlaylist.FindAll(x => x.User.ToLower().Contains(searchTerm)));
-            returnPlaylist.AddRange(_originalPlaylist.FindAll(x => x.TrackId.Equals(searchTerm)));
-            foreach (var playlistElement in _originalPlaylist)
+            returnPlaylist.AddRange(converted.FindAll(x => x.Track.ToLower().Contains(searchTerm)));
+            returnPlaylist.AddRange(converted.FindAll(x => x.User.ToLower().Contains(searchTerm)));
+            returnPlaylist.AddRange(converted.FindAll(x => x.TrackId.Equals(searchTerm)));
+            foreach (var playlistElement in converted)
             {
                 returnPlaylist.AddRange(from playlistElementArtist in playlistElement.Artists
                     where playlistElementArtist.ToLower().Contains(searchTerm)
@@ -114,37 +102,7 @@ namespace SpotifyPlaylistMixer.ViewModels
                     where playlistElementGenre.ToLower().Contains(searchTerm)
                     select playlistElement);
             }
-
-            return returnPlaylist.Distinct().ToList();
-        }
-
-        private List<PlaylistElement> LoadExistingPlaylistFromPath(string path)
-        {
-            _originalPlaylist = JsonConvert.DeserializeObject<List<PlaylistElement>>(
-                File.ReadAllText(path));
-            TotalItems = _originalPlaylist.Count;
-            return _originalPlaylist;
-        }
-
-        private List<KeyValuePair<string, string>> LoadExistingPlaylistsFromPath(string path)
-        {
-            if (Directory.Exists(path))
-            {
-                var info = new DirectoryInfo(path);
-                var files =
-                    info.GetFiles("*.json", SearchOption.TopDirectoryOnly)
-                        .OrderByDescending(x => x.LastWriteTime)
-                        .Select(x => x.FullName)
-                        .ToList();
-                var result = new List<KeyValuePair<string, string>>();
-                foreach (var file in files)
-                {
-                    result.Add(new KeyValuePair<string, string>(file,
-                        file.Substring(file.LastIndexOf("\\", StringComparison.Ordinal) + 1)));
-                }
-                return result;
-            }
-            return new List<KeyValuePair<string, string>>();
+            SelectedPlaylist = new ObservableCollection<PlaylistElement>(returnPlaylist.Distinct().ToList());
         }
     }
 }

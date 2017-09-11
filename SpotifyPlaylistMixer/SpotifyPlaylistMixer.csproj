@@ -39,28 +39,24 @@
     <ApplicationIcon>Resources\spotifyIcon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LiveCharts, Version=0.9.5.0, Culture=neutral, PublicKeyToken=c5935629d38af058, processorArchitecture=MSIL">
-      <HintPath>..\packages\LiveCharts.0.9.5\lib\net45\LiveCharts.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
     </Reference>
-    <Reference Include="LiveCharts.Wpf, Version=0.9.5.0, Culture=neutral, PublicKeyToken=3b585c2a5f1a92c1, processorArchitecture=MSIL">
-      <HintPath>..\packages\LiveCharts.Wpf.0.9.5\lib\net45\LiveCharts.Wpf.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="MahApps.Metro, Version=1.4.3.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
-      <HintPath>..\packages\MahApps.Metro.1.4.3\lib\net45\MahApps.Metro.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="MahApps.Metro, Version=1.5.0.23, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.5.0\lib\net45\MahApps.Metro.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.4.4\lib\net45\NLog.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\NLog.4.4.12\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
@@ -68,21 +64,17 @@
     <Reference Include="Prism.Wpf, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Wpf.6.3.0\lib\net45\Prism.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="ReactiveUI, Version=7.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\reactiveui-core.7.2.0\lib\Net45\ReactiveUI.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="ReactiveUI, Version=7.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\reactiveui-core.7.4.0\lib\Net45\ReactiveUI.dll</HintPath>
     </Reference>
-    <Reference Include="ReactiveUI.Events, Version=7.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\reactiveui-events.7.2.0\lib\Net45\ReactiveUI.Events.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="ReactiveUI.Events, Version=7.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\reactiveui-events.7.3.0\lib\Net45\ReactiveUI.Events.dll</HintPath>
     </Reference>
-    <Reference Include="Splat, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Splat.1.4.0\lib\Net45\Splat.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Splat, Version=1.6.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Splat.1.6.2\lib\Net45\Splat.dll</HintPath>
     </Reference>
     <Reference Include="SpotifyAPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SpotifyAPI-NET.2.13.1\lib\SpotifyAPI.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\SpotifyAPI-NET.2.16.0\lib\SpotifyAPI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -109,7 +101,7 @@
     </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.Wpf.6.3.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\packages\MahApps.Metro.1.5.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml" />
@@ -121,38 +113,38 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="ToastNotifications, Version=2.1.0.0, Culture=neutral, PublicKeyToken=e89d9d7314a7c797, processorArchitecture=MSIL">
-      <HintPath>..\packages\ToastNotifications.2.1.0\lib\net452\ToastNotifications.dll</HintPath>
+    <Reference Include="ToastNotifications, Version=2.2.2.0, Culture=neutral, PublicKeyToken=e89d9d7314a7c797, processorArchitecture=MSIL">
+      <HintPath>..\packages\ToastNotifications.2.2.2\lib\net40\ToastNotifications.dll</HintPath>
     </Reference>
-    <Reference Include="ToastNotifications.Messages, Version=2.1.0.0, Culture=neutral, PublicKeyToken=e89d9d7314a7c797, processorArchitecture=MSIL">
-      <HintPath>..\packages\ToastNotifications.Messages.2.1.0\lib\net452\ToastNotifications.Messages.dll</HintPath>
+    <Reference Include="ToastNotifications.Messages, Version=2.2.2.0, Culture=neutral, PublicKeyToken=e89d9d7314a7c797, processorArchitecture=MSIL">
+      <HintPath>..\packages\ToastNotifications.Messages.2.2.2\lib\net40\ToastNotifications.Messages.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="WpfUtility, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MunkiWinchester.WpfUtility.0.3.0\lib\net452\WpfUtility.dll</HintPath>
     </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="XAMLMarkupExtensions, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XAMLMarkupExtensions.1.2.2\lib\net40\XAMLMarkupExtensions.dll</HintPath>
     </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
     </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
     </Reference>
-    <Reference Include="Xceed.Wpf.DataGrid, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
     </Reference>
-    <Reference Include="Xceed.Wpf.Toolkit, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -165,10 +157,8 @@
     <Compile Include="Business\Logger.cs" />
     <Compile Include="Business\PlaylistHandler.cs" />
     <Compile Include="Business\SpotifyAuthentification.cs" />
-    <Compile Include="Converter\ListStringToStringConverter.cs" />
     <Compile Include="DataObjects\ChartElements.cs" />
     <Compile Include="DataObjects\Config.cs" />
-    <Compile Include="DataObjects\CustomList.cs" />
     <Compile Include="DataObjects\ChartElement.cs" />
     <Compile Include="DataObjects\Playlist.cs" />
     <Compile Include="DataObjects\PlaylistElement.cs" />
@@ -312,6 +302,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\Examples\EMP-ERP weekly Mix_03_07_2017.json" />
+    <None Include="Resources\Examples\EMP-ERP weekly Mix_04_09_2017.json" />
     <None Include="Resources\Examples\EMP-ERP weekly Mix_05_06_2017.json" />
     <None Include="Resources\Examples\EMP-ERP weekly Mix_08_05_2017.json" />
     <Content Include="Resources\Examples\EMP-ERP weekly Mix_09_01_2017.json">
@@ -334,6 +325,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\Examples\EMP-ERP weekly Mix_10_07_2017.json" />
+    <None Include="Resources\Examples\EMP-ERP weekly Mix_11_09_2017.json" />
     <None Include="Resources\Examples\EMP-ERP weekly Mix_12_06_2017.json" />
     <None Include="Resources\Examples\EMP-ERP weekly Mix_14_08_2017.json" />
     <None Include="Resources\Examples\EMP-ERP weekly Mix_17_04_2017.json" />
@@ -374,6 +366,7 @@
     <Content Include="Resources\Examples\EMP-ERP weekly Mix_29_05_2017.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\Examples\EMP-ERP weekly Mix_28_08_2017.json" />
     <Resource Include="Resources\Entypo.ttf" />
   </ItemGroup>
   <ItemGroup>

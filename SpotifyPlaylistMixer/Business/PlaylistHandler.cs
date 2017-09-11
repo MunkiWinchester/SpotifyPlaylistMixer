@@ -8,9 +8,9 @@ namespace SpotifyPlaylistMixer.Business
 {
     public class PlaylistHandler
     {
-        private Config _config;
         private readonly List<PlaylistElement> _personPlaylistElements = new List<PlaylistElement>();
         private readonly SpotifyAuthentification _spotifyAuthentification;
+        private Config _config;
 
         public PlaylistHandler(SpotifyAuthentification spotifyAuthentification)
         {
@@ -41,9 +41,7 @@ namespace SpotifyPlaylistMixer.Business
                     var hit = GetSimplePlaylistFromUser(user);
                     // Mix der Woche gehört Spotify
                     if (hit != null)
-                    {
                         AddTracksFromPlaylistToPlaylis(user, hit);
-                    }
                 }
             }
 
@@ -71,13 +69,11 @@ namespace SpotifyPlaylistMixer.Business
                 ConsoleColor.White);
             SimplePlaylist hit = null;
             foreach (var configSourcePlaylist in _config.SourcePlaylists)
+            foreach (var simplePlaylist in playlists)
             {
-                foreach (var simplePlaylist in playlists)
-                {
-                    if (!simplePlaylist.Name.Equals(configSourcePlaylist.Name)) continue;
-                    hit = simplePlaylist;
-                    break;
-                }
+                if (!simplePlaylist.Name.Equals(configSourcePlaylist.Name)) continue;
+                hit = simplePlaylist;
+                break;
             }
             return hit;
         }
@@ -116,11 +112,13 @@ namespace SpotifyPlaylistMixer.Business
                 {
                     var artists =
                         track.Track.Artists.Aggregate(string.Empty,
-                            (current, simpleArtist) => current + $"{simpleArtist.Name}, ").TrimEnd(' ', ',');
+                                (current, simpleArtist) => current + $"{simpleArtist.Name}, ")
+                            .TrimEnd(' ', ',');
                     Extensions.WriteColoredConsole(
                         $"Removing all \"{artists} --- {track.Track.Name}\" (was {duplicate.Counter} times in the playlist)",
                         ConsoleColor.Red);
-                    _spotifyAuthentification.RemovePlaylistTrack(userId, playlistId, new DeleteTrackUri(track.Track.Uri));
+                    _spotifyAuthentification.RemovePlaylistTrack(userId, playlistId,
+                        new DeleteTrackUri(track.Track.Uri));
                     Extensions.WriteColoredConsole($"Readding one \"{artists} --- {track.Track.Name}\"",
                         ConsoleColor.Yellow);
                     _spotifyAuthentification.AddPlaylistTrack(userId, playlistId, track.Track.Uri);
@@ -187,7 +185,7 @@ namespace SpotifyPlaylistMixer.Business
             }
             tracks = _spotifyAuthentification.GetPlaylistTracks(userIdFrom, playlistIdFrom, tracks.Limit,
                 tracks.Offset + tracks.Limit);
-             uriList.AddRange(AddTracksToUriList(tracks.Items, user));
+            uriList.AddRange(AddTracksToUriList(tracks.Items, user));
             _spotifyAuthentification.AddPlaylistTracks(userIdTo, playlistIdTo, uriList);
         }
     }
