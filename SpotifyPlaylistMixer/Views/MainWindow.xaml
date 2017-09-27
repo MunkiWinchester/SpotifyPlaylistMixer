@@ -5,8 +5,10 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
                       xmlns:userControls1="clr-namespace:SpotifyPlaylistMixer.Views.UserControls"
-                      mc:Ignorable="d" Icon="/SpotifyPlaylistMixer;component/Resources/spotifyIcon.ico"
-                      Title="Spotify Mixer" Height="700" Width="600" ShowIconOnTitleBar="False">
+                      mc:Ignorable="d" ShowIconOnTitleBar="False"
+                      BorderBrush="{DynamicResource AccentColorBrush}"
+                      BorderThickness="1"
+                      Title="Spotify Mixer" Height="700" Width="600">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -16,7 +18,7 @@
     </Window.Resources>
     <controls:MetroWindow.LeftWindowCommands>
         <controls:WindowCommands>
-            <Rectangle Height="20" Width="20"
+            <Rectangle Height="20" Width="20" Margin="4"
                        Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type controls:WindowCommands}}}">
                 <Rectangle.OpacityMask>
                     <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_social_spotify}" />

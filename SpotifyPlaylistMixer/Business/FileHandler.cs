@@ -50,15 +50,15 @@ namespace SpotifyPlaylistMixer.Business
                 .Aggregate(fileName, (current, c) => current.Replace(c.ToString(), string.Empty));
         }
 
-        public static User SaveConfigAddUser(List<KeyValuePair<string, string>> path)
+        public static User SaveConfigAddUser(string path)
         {
             //Muss leider bestehen bleiben weil der Path unerwartet geändert werden könnte
             //TODO: Meldung noch anpassen
             var config = new Config();
-            if (File.Exists(path.First().Key))
+            if (File.Exists(path))
                 try
                 {
-                    config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(path.First().Key));
+                    config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(path));
                 }
                 catch (Exception ex)
                 {
@@ -67,7 +67,7 @@ namespace SpotifyPlaylistMixer.Business
 
             var user = new User();
             config.Users.Add(user);
-            File.WriteAllText(path.First().Key, JsonConvert.SerializeObject(config));
+            File.WriteAllText(path, JsonConvert.SerializeObject(config));
             return user;
         }
 
@@ -92,13 +92,13 @@ namespace SpotifyPlaylistMixer.Business
             return user;
         }
 
-        public static void SaveConfigEditUser(List<KeyValuePair<string, string>> path, ObservableCollection<User> users)
+        public static void SaveConfigEditUser(string path, ObservableCollection<User> users)
         {
             var config = new Config();
-            if (File.Exists(path.First().Key))
+            if (File.Exists(path))
                 try
                 {
-                    config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(path.First().Key));
+                    config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(path));
                 }
                 catch (Exception ex)
                 {
@@ -107,7 +107,7 @@ namespace SpotifyPlaylistMixer.Business
             for (var i = 0; i < users.Count; i++)
                 config.Users[i] = !config.Users[i].Equals(users[i]) ? users[i] : config.Users[i];
 
-            File.WriteAllText(path.First().Key, JsonConvert.SerializeObject(config));
+            File.WriteAllText(path, JsonConvert.SerializeObject(config));
         }
 
         public static List<KeyValuePair<string, string>> LoadExistingPlaylistsFromPath(string path)

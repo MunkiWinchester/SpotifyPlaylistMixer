@@ -1,40 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Reactive.Linq;
-using System.Windows;
+using System.Windows.Input;
 using Newtonsoft.Json;
-using ReactiveUI;
 using SpotifyPlaylistMixer.Business;
 using SpotifyPlaylistMixer.DataObjects;
-using ToastNotifications;
-using ToastNotifications.Lifetime;
-using ToastNotifications.Messages;
-using ToastNotifications.Position;
+using WpfUtility;
 
 namespace SpotifyPlaylistMixer.ViewModels
 {
-    public class SettingViewModel : ReactiveObject
+    public class SettingViewModel : ObservableObject
     {
-        private readonly ObservableAsPropertyHelper<Config> _config;
-        private readonly ObservableAsPropertyHelper<List<KeyValuePair<string, string>>> _existingConfigs;
+        private Config _config;
+        private ObservableCollection<KeyValuePair<string, string>> _existingConfigs;
 
         /*Todo evtl in eigene Klasse*/
-        private readonly Notifier _notifier = new Notifier(cfg =>
-        {
-            cfg.PositionProvider = new WindowPositionProvider(
-                Application.Current.MainWindow,
-                Corner.BottomLeft,
-                10,
-                10);
+        //private readonly Notifier _notifier = new Notifier(cfg =>
+        //{
+        //    cfg.PositionProvider = new WindowPositionProvider(
+        //        Application.Current.MainWindow,
+        //        Corner.BottomLeft,
+        //        10,
+        //        10);
 
-            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
-                TimeSpan.FromSeconds(5),
-                MaximumNotificationCount.FromCount(5));
+        //    cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+        //        TimeSpan.FromSeconds(5),
+        //        MaximumNotificationCount.FromCount(5));
 
-            cfg.Dispatcher = Application.Current.Dispatcher;
-        });
+        //    cfg.Dispatcher = Application.Current.Dispatcher;
+        //});
 
         private string _oldPath;
         private string _path;
@@ -45,60 +41,10 @@ namespace SpotifyPlaylistMixer.ViewModels
 
         public SettingViewModel()
         {
-            LoadExistingConfigs =
-                ReactiveCommand.Create<string, List<KeyValuePair<string, string>>>(LoadExistingConfigsFromPath);
-            this.WhenAnyValue(x => x.Path)
-                .Throttle(TimeSpan.FromSeconds(1), RxApp.MainThreadScheduler)
-                .Select(x => x?.Trim())
-                .Where(x => !string.IsNullOrWhiteSpace(x))
-                .InvokeCommand(LoadExistingConfigs);
-            _existingConfigs = LoadExistingConfigs.ToProperty(this, x => x.ExistingConfigs,
-                new List<KeyValuePair<string, string>>());
-
-            LoadExistingConfigs.Subscribe(results =>
-            {
-                if (ExistingConfigs.Any())
-                {
-                    var first = ExistingConfigs.First();
-                    SelectedConfigPath = first.Key;
-                }
-            });
-
-            LoadConfigCommand = ReactiveCommand.Create<string, Config>(LoadConfigFromPath);
-            this.WhenAnyValue(x => x.SelectedConfigPath)
-                .Select(x => x?.Trim())
-                .DistinctUntilChanged(x => x)
-                .Where(x => !string.IsNullOrWhiteSpace(x))
-                .InvokeCommand(LoadConfigCommand);
-            _config = LoadConfigCommand.ToProperty(this, x => x.Config, new Config());
-
-            // TODO: Regelwerk anpassen
-            var canConfirmConfigObservable = this.WhenAny(vm => vm.Config,
-                s =>
-                    true
-                //!string.IsNullOrEmpty(s.Value.TargetPlaylist?.Identifier)
-                //&& !string.IsNullOrEmpty(s.Value.TargetPlaylist.Owner.Identifier)
-                //&& s.Value.SourcePlaylists.Any()
-                //&& !string.IsNullOrEmpty(s.Value.SourcePlaylists.FirstOrDefault()?.Name)
-                //&& !string.IsNullOrEmpty(s.Value.SourcePlaylists.FirstOrDefault()?.Owner.Identifier)
-            );
-            ConfirmCommand = ReactiveCommand.Create(ChangeConfig, canConfirmConfigObservable);
-
-            var canAddConfigObservable = this.WhenAny(vm => vm.PathNewConfig,
-                pnc => !string.IsNullOrEmpty(pnc.Value) && !File.Exists(pnc.Value));
-            AddConfigCommand = ReactiveCommand.Create<string, string>(AddConfig, canAddConfigObservable);
-            AddConfigCommand.Subscribe(result =>
-            {
-                if (!string.IsNullOrEmpty(result))
-                {
-                    LoadExistingConfigs.Execute();
-                    SelectedConfigPath = result;
-                }
-            });
-
-            AddUserCommand = ReactiveCommand.Create(AddUser);
-
-            AddPlaylistToSourceCommand = ReactiveCommand.Create(AddPlaylistToSource);
+            var dir = Directory.GetCurrentDirectory();
+            Path = $@"{dir}\Resources\Examples\Config\";
+            LoadExistingConfigsFromPath();
+            LoadConfigFromPath();
         }
 
         public string Path
@@ -107,33 +53,55 @@ namespace SpotifyPlaylistMixer.ViewModels
             set
             {
                 _oldPath = _path;
-                this.RaiseAndSetIfChanged(ref _path, value);
+                _path = value;
+                OnPropertyChanged();
             }
         }
 
         public string PathNewConfig
         {
             get => _pathNewConfig;
-            set => this.RaiseAndSetIfChanged(ref _pathNewConfig, value);
+            set
+            {
+                _pathNewConfig = value;
+                OnPropertyChanged();
+            }
         }
 
         public string SelectedConfigPath
         {
             get => _selectedConfigPath;
-            set => this.RaiseAndSetIfChanged(ref _selectedConfigPath, value);
+            set
+            {
+                _selectedConfigPath = value;
+                OnPropertyChanged();
+            }
         }
 
-        public ReactiveCommand<string, Config> LoadConfigCommand { get; protected set; }
+        public ICommand LoadConfigCommand => new DelegateCommand(LoadConfigFromPath);
 
-        public Config Config => _config.Value;
+        public Config Config
+        {
+            get => _config;
+            set
+            {
+                _config = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public ReactiveCommand<string, List<KeyValuePair<string, string>>> LoadExistingConfigs { get; protected set; }
-        public List<KeyValuePair<string, string>> ExistingConfigs => _existingConfigs.Value;
+        public ICommand LoadExistingConfigs => new DelegateCommand(LoadExistingConfigsFromPath);
 
-        public ReactiveCommand ConfirmCommand { get; }
-        public ReactiveCommand<string, string> AddConfigCommand { get; }
-        public ReactiveCommand AddUserCommand { get; }
-        public ReactiveCommand AddPlaylistToSourceCommand { get; }
+        public ObservableCollection<KeyValuePair<string, string>> ExistingConfigs
+        {
+            get => _existingConfigs;
+            set => SetField(ref _existingConfigs, value);
+        }
+
+        public ICommand ConfirmCommand => new DelegateCommand(ChangeConfig);
+        public ICommand AddConfigCommand => new DelegateCommand(AddConfig);
+        public ICommand AddUserCommand => new DelegateCommand(AddUser);
+        public ICommand AddPlaylistToSourceCommand => new DelegateCommand(AddPlaylistToSource);
 
         private void AddPlaylistToSource()
         {
@@ -142,10 +110,10 @@ namespace SpotifyPlaylistMixer.ViewModels
 
         private void AddUser()
         {
-            Config.Users.Add(FileHandler.SaveConfigAddUser(LoadExistingConfigsFromPath(Path)));
+            Config.Users.Add(FileHandler.SaveConfigAddUser(SelectedConfigPath));
         }
 
-        private string AddConfig(string dummy)
+        private void AddConfig()
         {
             var path = Path.EndsWith("\\") ? Path : Path + "\\";
             var file = PathNewConfig.EndsWith(".json") ? path + PathNewConfig : path + PathNewConfig + ".json";
@@ -154,11 +122,12 @@ namespace SpotifyPlaylistMixer.ViewModels
             }
             var json = JsonConvert.SerializeObject(new Config(), Formatting.Indented);
             File.WriteAllText(file, json);
-            return file;
+            Config = new Config();
         }
 
-        private List<KeyValuePair<string, string>> LoadExistingConfigsFromPath(string path)
+        public void LoadExistingConfigsFromPath()
         {
+            var path = Path;
             if (Directory.Exists(path))
             {
                 var info = new DirectoryInfo(path);
@@ -171,28 +140,29 @@ namespace SpotifyPlaylistMixer.ViewModels
                 foreach (var file in files)
                     result.Add(new KeyValuePair<string, string>(file,
                         file.Substring(file.LastIndexOf("\\", StringComparison.Ordinal) + 1)));
-                return result;
+                ExistingConfigs = new ObservableCollection<KeyValuePair<string, string>>(result);
             }
-            return new List<KeyValuePair<string, string>>();
+            else
+            {
+                ExistingConfigs =
+                    new ObservableCollection<KeyValuePair<string, string>>(new List<KeyValuePair<string, string>>());
+            }
         }
 
         public void ChangeConfig()
         {
-            FileHandler.SaveConfigEditUser(LoadExistingConfigsFromPath(Path), Config.Users);
+            FileHandler.SaveConfigEditUser(SelectedConfigPath, Config.Users);
             //TODO SaveCondigEdit für alle Optionen und Notifications aber müssen uns ein anders tool suchen verstehe das aktuelle nicht ganz
             var json = JsonConvert.SerializeObject(Config, Formatting.Indented);
             File.WriteAllText(SelectedConfigPath, json);
         }
 
-        private Config LoadConfigFromPath(string path)
+        private void LoadConfigFromPath()
         {
-            if (FileHandler.LoadConfig(path) == null)
-            {
+            var config = FileHandler.LoadConfig(SelectedConfigPath);
+            if (config == null)
                 Path = _oldPath;
-                _notifier.ShowWarning("In diesem Ordner befindet sich keine Config.json");
-                return Config;
-            }
-            return FileHandler.LoadConfig(path);
+            Config = config;
         }
     }
 }
