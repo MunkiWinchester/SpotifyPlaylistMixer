@@ -137,7 +137,7 @@
     <Compile Include="Views\UserControls\SettingViewComponents\UserView.xaml.cs">
       <DependentUpon>UserView.xaml</DependentUpon>
     </Compile>
-    <Page Include="CustomAccents\CustomAccent.xaml">
+    <Page Include="Resources\CustomAccents\CustomAccent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -7,7 +7,8 @@
                       xmlns:userControls1="clr-namespace:SpotifyPlaylistMixer.Views.UserControls"
                       mc:Ignorable="d" ShowIconOnTitleBar="False"
                       BorderBrush="{DynamicResource AccentColorBrush}"
-                      BorderThickness="1"
+                      BorderThickness="1" x:Name="MetroWindow"
+                      NonActiveWindowTitleBrush="{Binding ElementName=MetroWindow, Path=WindowTitleBrush}"
                       Title="Spotify Mixer" Height="700" Width="600">
     <Window.Resources>
         <ResourceDictionary>

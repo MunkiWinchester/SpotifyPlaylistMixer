@@ -44,7 +44,6 @@ namespace SpotifyPlaylistMixer.ViewModels
             var dir = Directory.GetCurrentDirectory();
             Path = $@"{dir}\Resources\Examples\Config\";
             LoadExistingConfigsFromPath();
-            LoadConfigFromPath();
         }
 
         public string Path
@@ -74,6 +73,7 @@ namespace SpotifyPlaylistMixer.ViewModels
             set
             {
                 _selectedConfigPath = value;
+                LoadConfigFromPath();
                 OnPropertyChanged();
             }
         }
@@ -141,6 +141,8 @@ namespace SpotifyPlaylistMixer.ViewModels
                     result.Add(new KeyValuePair<string, string>(file,
                         file.Substring(file.LastIndexOf("\\", StringComparison.Ordinal) + 1)));
                 ExistingConfigs = new ObservableCollection<KeyValuePair<string, string>>(result);
+                SelectedConfigPath = ExistingConfigs.FirstOrDefault().Key;
+                LoadConfigFromPath();
             }
             else
             {

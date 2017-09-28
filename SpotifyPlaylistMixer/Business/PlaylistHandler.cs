@@ -17,7 +17,7 @@ namespace SpotifyPlaylistMixer.Business
             _spotifyAuthentification = spotifyAuthentification;
         }
 
-        public bool CreateMixDerWoche(Config config)
+        public void CreateMixDerWoche(Config config)
         {
             _config = config;
             Extensions.WriteColoredConsole(
@@ -48,7 +48,6 @@ namespace SpotifyPlaylistMixer.Business
             FileHandler.SavePlaylistAsJson(_config.TargetPlaylist.Name, _personPlaylistElements);
 
             //RemovingDuplicates(_profile.Id, _erpPlaylist);
-            return true;
         }
 
         private void AddTracksFromPlaylistToPlaylis(User user, SimplePlaylist playlist)

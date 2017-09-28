@@ -23,9 +23,10 @@ namespace SpotifyPlaylistMixer.ViewModels
 
         public GeneratePlaylistViewModel()
         {
-            // TODO:
             var dir = Directory.GetCurrentDirectory();
             Path = $@"{dir}\Resources\Examples\Config\";
+            LoadExistingConfigsFromPath();
+            IsNotBusy = true;
         }
 
         public bool IsNotBusy
@@ -54,6 +55,7 @@ namespace SpotifyPlaylistMixer.ViewModels
             set
             {
                 _selectedConfigPath = value;
+                LoadConfigFromPath();
                 OnPropertyChanged();
             }
         }
@@ -79,13 +81,17 @@ namespace SpotifyPlaylistMixer.ViewModels
         }
 
         public ICommand GenerateCurrentPlaylistCommand =>
-            new DelegateCommand(async () => await GenerateCurrentPlaylist());
+            new DelegateCommand(async () => await GenerateCurrentPlaylist()
+                .ContinueWith(t =>
+                {
+                    if (t.IsCompleted) IsNotBusy = true;
+                }, TaskContinuationOptions.AttachedToParent));
 
         private void LoadExistingConfigsFromPath()
         {
-            if (Directory.Exists(SelectedConfigPath))
+            if (Directory.Exists(Path))
             {
-                var info = new DirectoryInfo(SelectedConfigPath);
+                var info = new DirectoryInfo(Path);
                 var files =
                     info.GetFiles("*.json", SearchOption.TopDirectoryOnly)
                         .OrderByDescending(x => x.CreationTime)
@@ -96,9 +102,12 @@ namespace SpotifyPlaylistMixer.ViewModels
                     result.Add(new KeyValuePair<string, string>(file,
                         file.Substring(file.LastIndexOf("\\", StringComparison.Ordinal) + 1)));
                 ExistingConfigs = new ObservableCollection<KeyValuePair<string, string>>(result);
+                SelectedConfigPath = ExistingConfigs.FirstOrDefault().Key;
+                LoadConfigFromPath();
             }
-            ExistingConfigs =
-                new ObservableCollection<KeyValuePair<string, string>>(new List<KeyValuePair<string, string>>());
+            else
+                ExistingConfigs =
+                    new ObservableCollection<KeyValuePair<string, string>>(new List<KeyValuePair<string, string>>());
         }
 
         private void LoadConfigFromPath()
@@ -106,17 +115,17 @@ namespace SpotifyPlaylistMixer.ViewModels
             Config = FileHandler.LoadConfig(SelectedConfigPath);
         }
 
-        private async Task<bool> GenerateCurrentPlaylist()
+        private async Task GenerateCurrentPlaylist()
         {
             IsNotBusy = false;
             var spotifyAuthentification = new SpotifyAuthentification();
             var authenticate = spotifyAuthentification.RunAuthentication();
             authenticate.Wait();
-            if (!authenticate.Result) return false;
+            if (!authenticate.Result) return;
             var playlistHandler = new PlaylistHandler(spotifyAuthentification);
-            var creationTask = new Task<bool>(() => playlistHandler.CreateMixDerWoche(Config));
+            var creationTask = new Task(() => playlistHandler.CreateMixDerWoche(Config));
             creationTask.Start();
-            return await creationTask;
+            await creationTask;
         }
     }
 }

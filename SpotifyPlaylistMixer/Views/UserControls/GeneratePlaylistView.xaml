@@ -20,16 +20,19 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100" />
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.Column="0" Content="Config Folder:" />
         <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path}" Margin="3" />
+        <Button Content="Load" Grid.Row="0" Grid.Column="2" Margin="5" Command="{Binding LoadExistingConfigs}" />
         <Label Grid.Row="1" Grid.Column="0" Content="Current Config:" />
-        <ComboBox Grid.Row="1" Grid.Column="1" Margin="3" ItemsSource="{Binding ExistingConfigs}"
+        <ComboBox Grid.Row="1" Grid.Column="1" Margin="3" ItemsSource="{Binding ExistingConfigs}" Grid.ColumnSpan="2"
                   SelectedValue="{Binding SelectedConfigPath}" SelectedValuePath="Key" DisplayMemberPath="Value" />
         <Button Grid.Row="2" Grid.Column="1" Margin="3" Content="Generate Current"
+                Grid.ColumnSpan="2"
                 Command="{Binding GenerateCurrentPlaylistCommand}"
                 HorizontalAlignment="Right" IsEnabled="{Binding IsNotBusy}" />
-        <logViewer:NlogViewer Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" ActivateLoggers="True"
+        <logViewer:NlogViewer Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" ActivateLoggers="True"
                               UseApplicationDispatcher="True" />
     </Grid>
 </UserControl>
