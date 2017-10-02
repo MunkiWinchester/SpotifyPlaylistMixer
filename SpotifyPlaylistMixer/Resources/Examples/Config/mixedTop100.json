@@ -41,14 +41,6 @@
             }
         },
         {
-            "Identifier": "6yJHM4Pgp4x21DetuSmKSC",
-            "Name": "Suchti-Top100",
-            "Owner": {
-                "Identifier": "pc_suchti",
-                "Name": "Artur"
-            }
-        },
-        {
             "Identifier": "75h6L97h6QeedXlF65rOm9",
             "Name": "Top100",
             "Owner": {
@@ -93,10 +85,6 @@
         {
             "Identifier": "1127921002",
             "Name": "Kevin"
-        },
-        {
-            "Identifier": "pc_suchti",
-            "Name": "Artur"
         },
         {
             "Identifier": "flockana",

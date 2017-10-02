@@ -5,7 +5,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using SpotifyPlaylistMixer.Business;
 using SpotifyPlaylistMixer.DataObjects;
-using WpfUtility;
+using WpfUtility.Services;
 
 namespace SpotifyPlaylistMixer.ViewModels
 {
