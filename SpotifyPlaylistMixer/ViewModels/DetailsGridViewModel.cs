@@ -130,14 +130,26 @@ namespace SpotifyPlaylistMixer.ViewModels
             foreach (var playlistElement in playlist)
             foreach (var genre in playlistElement.Genres)
                 dic.AddOrUpdate(genre,
-                    new ChartElement {Name = genre, PercentageValue = percentageValue, Occurrences = 1},
+                    new ChartElement
+                    {
+                        Name = genre,
+                        PercentageValue = percentageValue,
+                        Occurrences = 1,
+                        OccurrenceIn = new List<PlaylistElement> {playlistElement}
+                    },
                     (key, oldValue) =>
-                        new ChartElement
+                    {
+                        var x = new List<PlaylistElement>();
+                        x.AddRange(oldValue.OccurrenceIn);
+                            x.Add(playlistElement);
+                        return new ChartElement
                         {
                             Name = oldValue.Name,
                             PercentageValue = oldValue.PercentageValue + percentageValue,
-                            Occurrences = oldValue.Occurrences + 1
-                        }
+                            Occurrences = oldValue.Occurrences + 1,
+                            OccurrenceIn = x
+                        };
+                    }
                 );
 
             string LabelPoint(ChartPoint chartPoint)
@@ -180,14 +192,22 @@ namespace SpotifyPlaylistMixer.ViewModels
             foreach (var playlistElement in playlist)
             foreach (var artist in playlistElement.Artists)
                 dic.AddOrUpdate(artist,
-                    new ChartElement {Name = artist, PercentageValue = percentageValue, Occurrences = 1},
+                    new ChartElement {Name = artist, PercentageValue = percentageValue, Occurrences = 1,
+                        OccurrenceIn = new List<PlaylistElement> { playlistElement }
+                    },
                     (key, oldValue) =>
-                        new ChartElement
+                    {
+                        var x = new List<PlaylistElement>();
+                        x.AddRange(oldValue.OccurrenceIn);
+                        x.Add(playlistElement);
+                        return new ChartElement
                         {
                             Name = oldValue.Name,
                             PercentageValue = oldValue.PercentageValue + percentageValue,
-                            Occurrences = oldValue.Occurrences + 1
-                        }
+                            Occurrences = oldValue.Occurrences + 1,
+                            OccurrenceIn = x
+                        };
+                    }
                 );
 
             string LabelPoint(ChartPoint chartPoint)
@@ -235,14 +255,23 @@ namespace SpotifyPlaylistMixer.ViewModels
             {
                 var name = $"{playlistElement.Track}\r\n({playlistElement.Artists.ToConnectedString()})";
                 dic.AddOrUpdate(name,
-                    new ChartElement {Name = name, PercentageValue = percentageValue, Occurrences = 1},
+                    new ChartElement {Name = name, PercentageValue = percentageValue, Occurrences = 1,
+                        OccurrenceIn = new List<PlaylistElement> { playlistElement }
+                    },
                     (key, oldValue) =>
-                        new ChartElement
+                    {
+                        var x = new List<PlaylistElement>();
+                        x.AddRange(oldValue.OccurrenceIn);
+                        x.Add(playlistElement);
+                        return
+                    new ChartElement
                         {
                             Name = oldValue.Name,
                             PercentageValue = oldValue.PercentageValue + percentageValue,
-                            Occurrences = oldValue.Occurrences + 1
-                        }
+                            Occurrences = oldValue.Occurrences + 1,
+                                OccurrenceIn = x
+                            };
+                    }
                 );
             }
 
