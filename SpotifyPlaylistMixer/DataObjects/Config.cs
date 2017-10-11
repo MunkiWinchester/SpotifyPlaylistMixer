@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 
 namespace SpotifyPlaylistMixer.DataObjects
 {
@@ -7,12 +6,12 @@ namespace SpotifyPlaylistMixer.DataObjects
     {
         public Config()
         {
-            SourcePlaylists = new List<Playlist>();
+            SourcePlaylists = new ObservableCollection<Playlist>();
             TargetPlaylist = new Playlist();
             Users = new ObservableCollection<User>();
         }
 
-        public List<Playlist> SourcePlaylists { get; set; }
+        public ObservableCollection<Playlist> SourcePlaylists { get; set; }
         public Playlist TargetPlaylist { get; set; }
         public ObservableCollection<User> Users { get; set; }
     }

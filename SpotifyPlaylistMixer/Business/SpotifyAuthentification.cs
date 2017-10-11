@@ -52,12 +52,12 @@ namespace SpotifyPlaylistMixer.Business
         {
             var playlists = _spotify.GetUserPlaylists(userId);
             var list = playlists?.Items?.ToList();
-            if(list != null)
-            while (playlists.HasNextPage())
-            {
-                playlists = _spotify.GetUserPlaylists(userId, playlists.Limit, playlists.Offset + playlists.Limit);
-                list.AddRange(playlists.Items);
-            }
+            if (list != null)
+                while (playlists.HasNextPage())
+                {
+                    playlists = _spotify.GetUserPlaylists(userId, playlists.Limit, playlists.Offset + playlists.Limit);
+                    list.AddRange(playlists.Items);
+                }
             else
                 list = new List<SimplePlaylist>();
             return list;

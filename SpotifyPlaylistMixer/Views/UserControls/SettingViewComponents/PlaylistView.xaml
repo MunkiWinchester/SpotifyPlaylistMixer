@@ -8,9 +8,6 @@
              d:DesignHeight="140"
              d:DesignWidth="350"
              mc:Ignorable="d">
-    <UserControl.DataContext>
-        <dataObjects:Playlist />
-    </UserControl.DataContext>
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -38,13 +35,16 @@
                    Grid.ColumnSpan="3"
                    Content="Playlist:"
                    FontWeight="Bold" />
-            <Button Grid.Row="0"
+            <Button x:Name="DeleteButton"
+                    Grid.Row="0"
                     Grid.Column="3"
                     Width="25"
                     Height="25"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
-                    BorderThickness="0">
+                    BorderThickness="0"
+                    Click="DeleteButton_OnClick"
+                    Visibility="{Binding DeleteButtonVisibility, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}">
                 <Button.Content>
                     <Rectangle Width="20"
                                Height="20"
@@ -65,15 +65,15 @@
             <TextBox Grid.Row="1"
                      Grid.Column="1"
                      Margin="2"
-                     Text="{Binding Identifier}" />
+                     Text="{Binding (dataObjects:Playlist.Identifier)}" />
             <TextBox Grid.Row="1"
                      Grid.Column="3"
                      Margin="2"
-                     Text="{Binding Name}" />
+                     Text="{Binding (dataObjects:Playlist.Name)}" />
             <settingViewComponents:UserView Grid.Row="2"
                                             Grid.Column="0"
                                             Grid.ColumnSpan="4"
-                                            DataContext="{Binding Owner, BindsDirectlyToSource=True}" />
+                                            DataContext="{Binding (dataObjects:Playlist.Owner)}" />
         </Grid>
     </Border>
 </UserControl>

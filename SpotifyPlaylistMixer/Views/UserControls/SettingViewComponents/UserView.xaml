@@ -7,9 +7,6 @@
              d:DesignHeight="60"
              d:DesignWidth="350"
              mc:Ignorable="d">
-    <UserControl.DataContext>
-        <dataObjects:User />
-    </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -35,10 +32,10 @@
         <TextBox Grid.Row="1"
                  Grid.Column="1"
                  Margin="2"
-                 Text="{Binding Identifier}" />
+                 Text="{Binding (dataObjects:User.Identifier)}" />
         <TextBox Grid.Row="1"
                  Grid.Column="3"
                  Margin="2"
-                 Text="{Binding Name}" />
+                 Text="{Binding (dataObjects:User.Name)}" />
     </Grid>
 </UserControl>

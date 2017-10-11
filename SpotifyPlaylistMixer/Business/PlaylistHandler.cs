@@ -21,11 +21,13 @@ namespace SpotifyPlaylistMixer.Business
         {
             _config = config;
             Extensions.WriteColoredConsole(
-                $"Starting with the \"{_config.SourcePlaylists.ToSeperatedString()}\" history!", ConsoleColor.White);
+                $"Starting with the \"{_config.SourcePlaylists.ToList().ToSeperatedString()}\" history!",
+                ConsoleColor.White);
             RemoveTracksFromPlaylist(_config.TargetPlaylist.Owner.Identifier, _config.TargetPlaylist.Identifier);
             foreach (var user in _config.Users)
             {
-                var foundPlaylist = _config.SourcePlaylists.Find(x => x.Owner.Identifier.Equals(user.Identifier));
+                var foundPlaylist =
+                    _config.SourcePlaylists.FirstOrDefault(x => x.Owner.Identifier.Equals(user.Identifier));
                 if (foundPlaylist != null)
                 {
                     AddTracksFromPlaylistToPlaylis(user,
@@ -64,7 +66,7 @@ namespace SpotifyPlaylistMixer.Business
             Extensions.WriteColoredConsole($"Loading playlists from \"{user.Name}\"", ConsoleColor.White);
             var playlists = _spotifyAuthentification.GetPlaylists(user.Identifier).ToList();
             Extensions.WriteColoredConsole(
-                $"Loading playlist {_config.SourcePlaylists.ToSeperatedString()} from \"{user.Name}\"",
+                $"Loading playlist {_config.SourcePlaylists.ToList().ToSeperatedString()} from \"{user.Name}\"",
                 ConsoleColor.White);
             SimplePlaylist hit = null;
             foreach (var configSourcePlaylist in _config.SourcePlaylists)

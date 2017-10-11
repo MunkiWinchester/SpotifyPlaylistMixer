@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -50,66 +49,6 @@ namespace SpotifyPlaylistMixer.Business
                 .Aggregate(fileName, (current, c) => current.Replace(c.ToString(), string.Empty));
         }
 
-        public static User SaveConfigAddUser(string path)
-        {
-            //Muss leider bestehen bleiben weil der Path unerwartet geändert werden könnte
-            //TODO: Meldung noch anpassen
-            var config = new Config();
-            if (File.Exists(path))
-                try
-                {
-                    config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(path));
-                }
-                catch (Exception ex)
-                {
-                    Logger.Error("SaveConfigAddUser failed", ex);
-                }
-
-            var user = new User();
-            config.Users.Add(user);
-            File.WriteAllText(path, JsonConvert.SerializeObject(config));
-            return user;
-        }
-
-        /*evtl. zu SaveConfigEditUser zusammen führen */
-        public static User SaveConfigDeleteUser(List<string> path, User user)
-        {
-            //Muss leider bestehen bleiben weil der Path unerwartet geändert werden könnte
-            //TODO: Meldung noch anpassen
-            var config = new Config();
-            if (File.Exists(path.First()))
-                try
-                {
-                    config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(path.First()));
-                }
-                catch (Exception ex)
-                {
-                    Logger.Error("SaveConfigDeleteUser failed", ex);
-                }
-
-            config.Users.Remove(user);
-            File.WriteAllText(path.First(), JsonConvert.SerializeObject(config));
-            return user;
-        }
-
-        public static void SaveConfigEditUser(string path, ObservableCollection<User> users)
-        {
-            var config = new Config();
-            if (File.Exists(path))
-                try
-                {
-                    config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(path));
-                }
-                catch (Exception ex)
-                {
-                    Logger.Error("SaveConfigEditUser failed", ex);
-                }
-            for (var i = 0; i < users.Count; i++)
-                config.Users[i] = !config.Users[i].Equals(users[i]) ? users[i] : config.Users[i];
-
-            File.WriteAllText(path, JsonConvert.SerializeObject(config));
-        }
-
         public static List<KeyValuePair<string, string>> LoadExistingPlaylistsFromPath(string path)
         {
             if (Directory.Exists(path))
@@ -120,11 +59,9 @@ namespace SpotifyPlaylistMixer.Business
                         .OrderByDescending(x => x.LastWriteTime)
                         .Select(x => x.FullName)
                         .ToList();
-                var result = new List<KeyValuePair<string, string>>();
-                foreach (var file in files)
-                    result.Add(new KeyValuePair<string, string>(file,
-                        file.Substring(file.LastIndexOf("\\", StringComparison.Ordinal) + 1)));
-                return result;
+                return files.Select(file => new KeyValuePair<string, string>(file,
+                        file.Substring(file.LastIndexOf("\\", StringComparison.Ordinal) + 1)))
+                    .ToList();
             }
             return new List<KeyValuePair<string, string>>();
         }

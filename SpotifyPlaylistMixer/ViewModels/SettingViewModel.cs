@@ -101,7 +101,19 @@ namespace SpotifyPlaylistMixer.ViewModels
         public ICommand ConfirmCommand => new DelegateCommand(ChangeConfig);
         public ICommand AddConfigCommand => new DelegateCommand(AddConfig);
         public ICommand AddUserCommand => new DelegateCommand(AddUser);
+        public ICommand DeleteUserCommand => new RelayCommand<User>(DeleteUser);
+
         public ICommand AddPlaylistToSourceCommand => new DelegateCommand(AddPlaylistToSource);
+
+        private void DeleteUser(User user)
+        {
+            var result = Config.Users.Remove(user);
+        }
+
+        public void DeletePlaylist(Playlist playlist)
+        {
+            var result = Config.SourcePlaylists.Remove(playlist);
+        }
 
         private void AddPlaylistToSource()
         {
@@ -110,7 +122,7 @@ namespace SpotifyPlaylistMixer.ViewModels
 
         private void AddUser()
         {
-            Config.Users.Add(FileHandler.SaveConfigAddUser(SelectedConfigPath));
+            Config.Users.Add(new User());
         }
 
         private void AddConfig()
@@ -153,7 +165,6 @@ namespace SpotifyPlaylistMixer.ViewModels
 
         public void ChangeConfig()
         {
-            FileHandler.SaveConfigEditUser(SelectedConfigPath, Config.Users);
             //TODO SaveCondigEdit für alle Optionen und Notifications aber müssen uns ein anders tool suchen verstehe das aktuelle nicht ganz
             var json = JsonConvert.SerializeObject(Config, Formatting.Indented);
             File.WriteAllText(SelectedConfigPath, json);

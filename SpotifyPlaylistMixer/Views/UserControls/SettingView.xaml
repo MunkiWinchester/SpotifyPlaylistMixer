@@ -5,6 +5,7 @@
              xmlns:dataObjects="clr-namespace:SpotifyPlaylistMixer.DataObjects"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:settingViewComponents="clr-namespace:SpotifyPlaylistMixer.Views.UserControls.SettingViewComponents"
+             xmlns:userControls="clr-namespace:SpotifyPlaylistMixer.Views.UserControls"
              xmlns:viewModels="clr-namespace:SpotifyPlaylistMixer.ViewModels"
              d:DesignHeight="600"
              d:DesignWidth="300"
@@ -24,7 +25,9 @@
                             Height="25"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Top"
-                            BorderThickness="0">
+                            BorderThickness="0"
+                            Command="{Binding DataContext.DeleteUserCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type userControls:SettingView}}}"
+                            CommandParameter="{Binding}">
                         <Button.Content>
                             <Rectangle Width="20"
                                        Height="20"
@@ -44,7 +47,7 @@
                     Background="Transparent"
                     BorderBrush="Black"
                     BorderThickness="1">
-                <settingViewComponents:PlaylistView x:Name="pl" />
+                <settingViewComponents:PlaylistView x:Name="pl" DeleteClicked="Pl_OnDeleteClicked" />
                 <!--  TODO: hinzufügen/entfernen  -->
             </Border>
         </DataTemplate>
@@ -136,7 +139,8 @@
                 <settingViewComponents:PlaylistView Grid.Row="1"
                                                     Grid.Column="1"
                                                     Margin="3"
-                                                    DataContext="{Binding Config.TargetPlaylist}" />
+                                                    DataContext="{Binding Config.TargetPlaylist}"
+                                                    DeleteButtonVisibility="Collapsed" />
                 <Separator Grid.Row="2"
                            Grid.Column="0"
                            Grid.ColumnSpan="2" />

@@ -106,8 +106,10 @@ namespace SpotifyPlaylistMixer.ViewModels
                 LoadConfigFromPath();
             }
             else
+            {
                 ExistingConfigs =
                     new ObservableCollection<KeyValuePair<string, string>>(new List<KeyValuePair<string, string>>());
+            }
         }
 
         private void LoadConfigFromPath()

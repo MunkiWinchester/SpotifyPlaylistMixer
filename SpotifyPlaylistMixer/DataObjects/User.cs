@@ -2,17 +2,7 @@
 {
     public class User
     {
-        public User(string identifier, string name)
-        {
-            Identifier = identifier;
-            Name = name;
-        }
-
-        public User()
-        {
-        }
-
-        public string Identifier { get; set; }
-        public string Name { get; set; }
+        public string Identifier { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
     }
 }

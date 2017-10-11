@@ -15,7 +15,7 @@
         <business:SubtractIntConverter x:Key="SubtractIntConverter" />
         <DataTemplate x:Key="ChartElementDetail" DataType="dataObjects:ChartElement">
             <Border Padding="10" BorderThickness="0">
-                <DataGrid Width="{Binding ElementName=MasterGrid, Path=ActualWidth, Converter={StaticResource SubtractIntConverter}, ConverterParameter=45}"
+                <DataGrid Width="{Binding ElementName=MasterGrid, Path=ActualWidth, Converter={StaticResource SubtractIntConverter}, ConverterParameter=50}"
                           MaxHeight="200"
                           HorizontalAlignment="Left"
                           VerticalAlignment="Top"
