@@ -68,11 +68,6 @@ namespace SpotifyPlaylistMixer.Business
             return _spotify.GetPlaylist(userId, playlistId);
         }
 
-        public void RemovePlaylistTracks(string userId, string playlistId, List<DeleteTrackUri> deleteList)
-        {
-            WriteResponse(_spotify.RemovePlaylistTracks(userId, playlistId, deleteList));
-        }
-
         public Paging<PlaylistTrack> GetPlaylistTracks(string userId, string playlistId, int limit = 100,
             int offset = 0)
         {
@@ -84,6 +79,16 @@ namespace SpotifyPlaylistMixer.Business
             WriteResponse(_spotify.RemovePlaylistTrack(userId, playlistId, deleteTrackUri));
         }
 
+        public void RemovePlaylistTracks(string userId, string playlistId, List<DeleteTrackUri> deleteList)
+        {
+            for (var i = 0; i < deleteList.Count; i = i + 100)
+            {
+                Extensions.WriteColoredConsole($"Deleting {i} - {i + 100} of {deleteList.Count}", ConsoleColor.White);
+                var items = deleteList.Skip(i).Take(100).ToList();
+                WriteResponse(_spotify.RemovePlaylistTracks(userId, playlistId, items));
+            }
+        }
+
         public void AddPlaylistTrack(string userId, string playlistId, string songUri)
         {
             WriteResponse(_spotify.AddPlaylistTrack(userId, playlistId, songUri));
@@ -91,7 +96,12 @@ namespace SpotifyPlaylistMixer.Business
 
         public void AddPlaylistTracks(string userId, string playlistId, List<string> uriList)
         {
-            WriteResponse(_spotify.AddPlaylistTracks(userId, playlistId, uriList));
+            for (var i = 0; i < uriList.Count; i = i + 100)
+            {
+                Extensions.WriteColoredConsole($"Adding {i} - {i + 100} of {uriList.Count}", ConsoleColor.White);
+                var items = uriList.Skip(i).Take(100).ToList();
+                WriteResponse(_spotify.AddPlaylistTracks(userId, playlistId, items));
+            }
         }
 
         private SeveralArtists GetSeveralArtists(List<string> ids)

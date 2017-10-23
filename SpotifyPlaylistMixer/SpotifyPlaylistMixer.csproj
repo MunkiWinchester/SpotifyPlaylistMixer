@@ -285,7 +285,15 @@
     <Content Include="Resources\Examples\EMP-ERP weekly Mix_09_10_2017.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Resources\Examples\EMP-ERP weekly Mix_10_04_2017.json" />
+    <Content Include="Resources\Examples\EMP-ERP Mixed Mixes_25_09_2017.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Examples\EMP-ERP weekly Mix_02_10_2017.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Examples\EMP-ERP weekly Mix_10_04_2017.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Examples\EMP-ERP weekly Mix_10_04_2017.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -371,6 +379,24 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Examples\EMP-ERP weekly Mix_28_08_2017.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Examples\EMP-ERP weekly Mix_16_10_2017.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Examples\EMP-ERP weekly Mix_18_09_2017.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Examples\EMP-ERP weekly Mix_25_09_2017.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Examples\EMP-ERP Mixed Mixes_16_10_2017.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Examples\EMP-ERP weekly Mix_23_10_2017.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Examples\EMP-ERP Mixed Mixes_23_10_2017.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="Resources\Entypo.ttf" />
