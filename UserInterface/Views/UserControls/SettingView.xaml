@@ -1,0 +1,188 @@
+﻿<UserControl x:Class="UserInterface.Views.UserControls.SettingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dataObjects="clr-namespace:DataObjects.DataObjects;assembly=DataObjects"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:UserInterface.ViewModels"
+             xmlns:settingViewComponents="clr-namespace:UserInterface.Views.UserControls.SettingViewComponents"
+             xmlns:userControls="clr-namespace:UserInterface.Views.UserControls"
+             d:DesignHeight="600"
+             d:DesignWidth="300"
+             mc:Ignorable="d">
+    <UserControl.DataContext>
+        <viewModels:SettingViewModel />
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type dataObjects:User}">
+            <Border Margin="3"
+                    Background="Transparent"
+                    BorderBrush="Black"
+                    BorderThickness="1">
+                <Grid>
+                    <settingViewComponents:UserView x:Name="us" />
+                    <Button Width="25"
+                            Height="25"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            BorderThickness="0"
+                            Command="{Binding DataContext.DeleteUserCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type userControls:SettingView}}}"
+                            CommandParameter="{Binding}">
+                        <Button.Content>
+                            <Rectangle Width="20"
+                                       Height="20"
+                                       Margin="-5"
+                                       Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                                <Rectangle.OpacityMask>
+                                    <VisualBrush Stretch="Uniform" Visual="{DynamicResource appbar_close}" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
+                        </Button.Content>
+                    </Button>
+                </Grid>
+            </Border>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type dataObjects:Playlist}">
+            <Border Margin="3"
+                    Background="Transparent"
+                    BorderBrush="Black"
+                    BorderThickness="1">
+                <settingViewComponents:PlaylistView x:Name="pl" DeleteClicked="Pl_OnDeleteClicked" />
+                <!--  TODO: hinzufügen/entfernen  -->
+            </Border>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0"
+               Grid.Column="0"
+               Content="Config Folder:" />
+        <TextBox Grid.Row="0"
+                 Grid.Column="1"
+                 Margin="3"
+                 Text="{Binding Path}" />
+        <Button Grid.Row="0"
+                Grid.Column="2"
+                Margin="5"
+                Command="{Binding LoadExistingConfigs}"
+                Content="Load" />
+        <Label Grid.Row="1"
+               Grid.Column="0"
+               Content="Current Config:" />
+        <Grid Grid.Row="1"
+              Grid.Column="1"
+              Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Row="0"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="2"
+                      Margin="3"
+                      DisplayMemberPath="Value"
+                      ItemsSource="{Binding ExistingConfigs}"
+                      SelectedValue="{Binding SelectedConfigPath}"
+                      SelectedValuePath="Key" />
+            <TextBox Grid.Row="1"
+                     Grid.Column="0"
+                     Margin="3"
+                     Text="{Binding PathNewConfig}" />
+            <Button Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="5"
+                    Command="{Binding AddConfigCommand}"
+                    Content="Add" />
+        </Grid>
+        <Separator Grid.Row="2"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="3" />
+        <ScrollViewer Grid.Row="3"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="3"
+                      VerticalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="1"
+                       Grid.Column="0"
+                       Content="Target Playlist:" />
+                <settingViewComponents:PlaylistView Grid.Row="1"
+                                                    Grid.Column="1"
+                                                    Margin="3"
+                                                    DataContext="{Binding Config.TargetPlaylist}"
+                                                    DeleteButtonVisibility="Collapsed" />
+                <Separator Grid.Row="2"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="2" />
+                <Label Grid.Row="3"
+                       Grid.Column="0"
+                       Content="Users:" />
+                <ItemsControl Grid.Row="3"
+                              Grid.Column="1"
+                              ItemsSource="{Binding Config.Users}" />
+                <Button Grid.Row="4"
+                        Grid.Column="1"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Command="{Binding AddUserCommand}"
+                        Content="Add" />
+                <Separator Grid.Row="5"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="2" />
+                <Label Grid.Row="6"
+                       Grid.Column="0"
+                       Content="Source Playlists:" />
+                <ItemsControl Grid.Row="6"
+                              Grid.Column="1"
+                              ItemsSource="{Binding Config.SourcePlaylists}" />
+                <Button Grid.Row="7"
+                        Grid.Column="1"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Command="{Binding AddPlaylistToSourceCommand}"
+                        Content="Add" />
+            </Grid>
+        </ScrollViewer>
+        <Separator Grid.Row="4"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="3" />
+        <Button Grid.Row="5"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                MinWidth="80"
+                Margin="3"
+                HorizontalAlignment="Right"
+                Command="{Binding ConfirmCommand}"
+                Content="Confirm" />
+    </Grid>
+</UserControl>

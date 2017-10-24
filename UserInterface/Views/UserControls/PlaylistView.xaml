@@ -1,0 +1,166 @@
+﻿<UserControl x:Class="UserInterface.Views.UserControls.PlaylistView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dataObjects="clr-namespace:DataObjects.DataObjects;assembly=DataObjects"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:UserInterface.ViewModels"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             Loaded="PlaylistView_OnLoaded"
+             mc:Ignorable="d">
+    <UserControl.DataContext>
+        <viewModels:PlaylistViewModel />
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <DataTemplate DataType="{x:Type dataObjects:PlaylistElement}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0"
+                           Grid.Column="0"
+                           Content="{Binding User}" />
+                    <Label Grid.Row="0"
+                           Grid.Column="1"
+                           Content="{Binding Artists}" />
+                    <Label Grid.Row="0"
+                           Grid.Column="2"
+                           Content="{Binding Track}" />
+                    <Label Grid.Row="0"
+                           Grid.Column="3"
+                           Content="{Binding Genres}" />
+                    <Label Grid.Row="0"
+                           Grid.Column="4"
+                           Content="{Binding TrackId}" />
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <!--  TODO: Ausrichtung anpassen und funktion einfügen  -->
+        <Label Grid.Row="0"
+               Grid.Column="0"
+               Content="Current Playlist:" />
+        <ComboBox Grid.Row="0"
+                  Grid.Column="1"
+                  Margin="4"
+                  DisplayMemberPath="Value"
+                  ItemsSource="{Binding ExistingPlaylists}"
+                  SelectedValue="{Binding SelectedPlaylistPath}"
+                  SelectedValuePath="Key" />
+        <Label Grid.Row="1"
+               Grid.Column="0"
+               VerticalAlignment="Center"
+               VerticalContentAlignment="Center"
+               Content="Search:" />
+        <TextBox Grid.Row="1"
+                 Grid.Column="1"
+                 Margin="4"
+                 VerticalContentAlignment="Stretch"
+                 Text="{Binding SearchTerm}" />
+        <Separator Grid.Row="2"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2" />
+        <DataGrid x:Name="DataGrid"
+                  Grid.Row="3"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="2"
+                  VerticalAlignment="Top"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  ItemsSource="{Binding SelectedPlaylist}"
+                  SelectionUnit="Cell">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="0.4*"
+                                    Binding="{Binding User}"
+                                    Header="Name" />
+                <DataGridTextColumn Width="*"
+                                    Binding="{Binding ArtistsString}"
+                                    Header="Artists" />
+                <DataGridTextColumn Width="*"
+                                    Binding="{Binding Track}"
+                                    Header="Track" />
+                <DataGridTextColumn Width="*"
+                                    Binding="{Binding GenresString}"
+                                    Header="Genres" />
+                <DataGridTextColumn Width="*"
+                                    Binding="{Binding TrackId}"
+                                    Header="TrackId"
+                                    Visibility="Hidden" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="4"
+              Grid.Column="0"
+              Grid.ColumnSpan="2"
+              Margin="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Separator Grid.Row="0"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="3" />
+            <Grid Grid.Row="1"
+                  Grid.Column="1"
+                  Width="100"
+                  HorizontalAlignment="Right">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0"
+                       Margin="0"
+                       Content="Total:"
+                       FontSize="10" />
+                <Label Grid.Column="1"
+                       Margin="0"
+                       Content="{Binding TotalItems}"
+                       FontSize="10" />
+            </Grid>
+            <Grid Grid.Row="1"
+                  Grid.Column="2"
+                  Width="100"
+                  HorizontalAlignment="Right">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0"
+                       Margin="0"
+                       Content="Filtered:"
+                       FontSize="10" />
+                <Label Grid.Column="1"
+                       Margin="0"
+                       FontSize="10">
+                    <Label.Content>
+                        <Binding ElementName="DataGrid"
+                                 Mode="OneWay"
+                                 Path="Items.Count" />
+                    </Label.Content>
+                </Label>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>
