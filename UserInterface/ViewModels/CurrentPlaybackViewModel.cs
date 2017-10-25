@@ -111,6 +111,12 @@ namespace UserInterface.ViewModels
 
         public RelayCommand<string> NavigateUriCommand => new RelayCommand<string>(NavigateUri);
 
+        public DelegateCommand NextCommand => new DelegateCommand(NextSong);
+
+        public DelegateCommand PlayPauseCommand => new DelegateCommand(PlayPauseSong);
+
+        public DelegateCommand PreviousCommand => new DelegateCommand(PreviousSong);
+
         public void InitializeViewModel()
         {
             _spotify.Connect();
@@ -160,7 +166,17 @@ namespace UserInterface.ViewModels
             {
                 IsConnected = true;
                 SetTrack(_spotify.UpdateInfos());
+                UpdateInfos();
             }
+        }
+
+        public void UpdateInfos()
+        {
+            var status = _spotify.GetStatus();
+            if (status == null)
+                return;
+            
+            IsPlaying = status.Playing;
         }
 
         private async void SetTrack(Track track)
@@ -169,7 +185,7 @@ namespace UserInterface.ViewModels
             Length = TimeSpan.FromSeconds(track.Length);
             try
             {
-                var image = ToImageSource(await Track.GetAlbumArtAsByteArrayAsync(AlbumArtSize.Size320));
+                var image = ToImageSource(await Track.GetAlbumArtAsByteArrayAsync(AlbumArtSize.Size640));
                 await _dispatcher.BeginInvoke(new Action(() => Image = image));
             }
             catch (Exception e)
@@ -190,6 +206,21 @@ namespace UserInterface.ViewModels
                 image.Freeze();
                 return image;
             }
+        }
+
+        private void NextSong()
+        {
+            _spotify.NextSong();
+        }
+
+        private void PlayPauseSong()
+        {
+            _spotify.PlayPauseSong(!IsPlaying);
+        }
+
+        private void PreviousSong()
+        {
+            _spotify.PreviousSong();
         }
     }
 }

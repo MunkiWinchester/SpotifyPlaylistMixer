@@ -39,6 +39,11 @@ namespace Business.Business
             }
         }
 
+        public StatusResponse GetStatus()
+        {
+            return _spotify.GetStatus();
+        }
+
         public Track UpdateInfos()
         {
             var status = _spotify.GetStatus();
@@ -58,6 +63,24 @@ namespace Business.Business
         private void _spotify_OnPlayStateChange(object sender, PlayStateEventArgs e)
         {
             OnPlayStateChange?.Invoke(this, e);
+        }
+
+        public void NextSong()
+        {
+            _spotify.Skip();
+        }
+
+        public async void PlayPauseSong(bool play)
+        {
+            if (play)
+                await _spotify.Play();
+            else
+                await _spotify.Pause();
+        }
+
+        public void PreviousSong()
+        {
+            _spotify.Previous();
         }
     }
 }
