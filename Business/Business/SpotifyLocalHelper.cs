@@ -9,9 +9,6 @@ namespace Business.Business
         private readonly SpotifyLocalAPI _spotify;
 
         public bool IsConnected;
-        public event EventHandler<TrackChangeEventArgs> OnTrackChange;
-        public event EventHandler<TrackTimeChangeEventArgs> OnTrackTimeChange;
-        public event EventHandler<PlayStateEventArgs> OnPlayStateChange;
 
         public SpotifyLocalHelper()
         {
@@ -20,6 +17,10 @@ namespace Business.Business
             _spotify.OnTrackChange += _spotify_OnTrackChange;
             _spotify.OnTrackTimeChange += _spotify_OnTrackTimeChange;
         }
+
+        public event EventHandler<TrackChangeEventArgs> OnTrackChange;
+        public event EventHandler<TrackTimeChangeEventArgs> OnTrackTimeChange;
+        public event EventHandler<PlayStateEventArgs> OnPlayStateChange;
 
         public void Connect()
         {

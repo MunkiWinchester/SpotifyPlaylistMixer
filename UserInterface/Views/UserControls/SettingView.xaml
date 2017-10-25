@@ -4,9 +4,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:dataObjects="clr-namespace:DataObjects.DataObjects;assembly=DataObjects"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:viewModels="clr-namespace:UserInterface.ViewModels"
              xmlns:settingViewComponents="clr-namespace:UserInterface.Views.UserControls.SettingViewComponents"
              xmlns:userControls="clr-namespace:UserInterface.Views.UserControls"
+             xmlns:viewModels="clr-namespace:UserInterface.ViewModels"
              d:DesignHeight="600"
              d:DesignWidth="300"
              mc:Ignorable="d">

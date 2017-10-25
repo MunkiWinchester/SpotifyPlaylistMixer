@@ -17,9 +17,28 @@ namespace UserInterface.ViewModels
     public class CurrentPlaybackViewModel : ObservableObject
     {
         private readonly SpotifyLocalHelper _spotify;
+
+        private TimeSpan _currentLength;
         private Dispatcher _dispatcher;
 
+        private ImageSource _image;
+
+        private bool _isConnected;
+
+        private bool _isPlaying;
+
+        private TimeSpan _lenght;
+
+        private double _progress;
+
         private Track _track;
+
+        public CurrentPlaybackViewModel()
+        {
+            _spotify = new SpotifyLocalHelper();
+            IsConnected = false;
+        }
+
         public Track Track
         {
             get => _track;
@@ -30,7 +49,6 @@ namespace UserInterface.ViewModels
             }
         }
 
-        private bool _isConnected;
         public bool IsConnected
         {
             get => _isConnected;
@@ -41,7 +59,6 @@ namespace UserInterface.ViewModels
             }
         }
 
-        private bool _isPlaying;
         public bool IsPlaying
         {
             get => _isPlaying;
@@ -52,7 +69,6 @@ namespace UserInterface.ViewModels
             }
         }
 
-        private ImageSource _image;
         public ImageSource Image
         {
             get => _image;
@@ -63,7 +79,6 @@ namespace UserInterface.ViewModels
             }
         }
 
-        private TimeSpan _lenght;
         public TimeSpan Length
         {
             get => _lenght;
@@ -74,7 +89,6 @@ namespace UserInterface.ViewModels
             }
         }
 
-        private TimeSpan _currentLength;
         public TimeSpan CurrentLength
         {
             get => _currentLength;
@@ -85,7 +99,6 @@ namespace UserInterface.ViewModels
             }
         }
 
-        private double _progress;
         public double Progress
         {
             get => _progress;
@@ -98,10 +111,8 @@ namespace UserInterface.ViewModels
 
         public RelayCommand<string> NavigateUriCommand => new RelayCommand<string>(NavigateUri);
 
-        public CurrentPlaybackViewModel()
+        public void InitializeViewModel()
         {
-            IsConnected = false;
-            _spotify = new SpotifyLocalHelper();
             _spotify.Connect();
             _spotify.OnTrackChange += SpotifyOnOnTrackChange;
             _spotify.OnTrackTimeChange += SpotifyOnOnTrackTimeChange;
@@ -127,7 +138,7 @@ namespace UserInterface.ViewModels
 
         public void NavigateUri(string uri)
         {
-            if(!string.IsNullOrWhiteSpace(uri))
+            if (!string.IsNullOrWhiteSpace(uri))
                 Process.Start(uri);
         }
 
@@ -137,7 +148,8 @@ namespace UserInterface.ViewModels
             if (!_spotify.IsConnected)
             {
                 IsConnected = false;
-                var result = MessageBox.Show(@"Couldn't connect to the spotify client. Retry?", @"Spotify", MessageBoxButton.YesNo);
+                var result = MessageBox.Show(@"Couldn't connect to the spotify client. Retry?", @"Spotify",
+                    MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
                     _spotify.Connect();

@@ -68,7 +68,7 @@ namespace Business.Business
 
         public static void SaveConfig(Config config, string file, string path = null)
         {
-            if(!string.IsNullOrWhiteSpace(path))
+            if (!string.IsNullOrWhiteSpace(path))
                 file = CheckPath(path, file);
 
             var json = JsonConvert.SerializeObject(config, Formatting.Indented);

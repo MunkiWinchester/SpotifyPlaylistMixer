@@ -30,7 +30,8 @@ namespace UserInterface
     {
         public NegatedBooleanToVisibilityConverter() :
             base(Visibility.Collapsed, Visibility.Visible)
-        { }
+        {
+        }
     }
 
     public class SelectedItemToContentConverter : IMultiValueConverter
@@ -39,9 +40,7 @@ namespace UserInterface
         {
             // first value is selected menu item, second value is selected option item
             if (values != null && values.Length > 1)
-            {
                 return values[0] ?? values[1];
-            }
             return null;
         }
 

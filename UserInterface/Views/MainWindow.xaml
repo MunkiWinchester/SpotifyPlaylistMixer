@@ -12,8 +12,9 @@
                       Height="700"
                       MinWidth="445"
                       MinHeight="400"
-                      BorderBrush="{DynamicResource AccentColorBrush}"
+                      BorderBrush="{StaticResource AccentColorBrush}"
                       BorderThickness="1"
+                      Loaded="MainWindow_OnLoaded"
                       NonActiveWindowTitleBrush="{Binding ElementName=MetroWindow, Path=WindowTitleBrush}"
                       ShowIconOnTitleBar="False"
                       mc:Ignorable="d">
@@ -46,16 +47,21 @@
                         <ColumnDefinition Width="48" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <ContentControl Grid.Column="0"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Content="{Binding Icon}"
-                                    Focusable="False"
-                                    Foreground="{DynamicResource IdealForegroundColorBrush}" />
+                    <Rectangle Grid.Column="0"
+                               Width="25"
+                               Height="25"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Fill="{StaticResource IdealForegroundColorBrush}"
+                               Focusable="False">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush Stretch="Uniform" Visual="{Binding Icon}" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
                     <TextBlock Grid.Column="1"
                                VerticalAlignment="Center"
                                FontSize="16"
-                               Foreground="{DynamicResource IdealForegroundColorBrush}"
+                               Foreground="{StaticResource IdealForegroundColorBrush}"
                                Text="{Binding Label}" />
                 </Grid>
                 <DataTemplate.Triggers>
@@ -85,35 +91,35 @@
             </controls:HamburgerMenu.Content>
             <controls:HamburgerMenu.ItemsSource>
                 <controls:HamburgerMenuItemCollection>
-                    <userControls:CustomHamburgerMenuIconItem Icon="{DynamicResource appbar_control_play}"
+                    <userControls:CustomHamburgerMenuIconItem Icon="{StaticResource appbar_control_play}"
                                                               Label="Playlist"
                                                               ToolTip="Show the playlist view">
                         <userControls:CustomHamburgerMenuIconItem.Tag>
                             <userControls:PlaylistView />
                         </userControls:CustomHamburgerMenuIconItem.Tag>
                     </userControls:CustomHamburgerMenuIconItem>
-                    <userControls:CustomHamburgerMenuIconItem Icon="{DynamicResource appbar_magnify}"
+                    <userControls:CustomHamburgerMenuIconItem Icon="{StaticResource appbar_magnify}"
                                                               Label="Details"
                                                               ToolTip="Show the details view">
                         <userControls:CustomHamburgerMenuIconItem.Tag>
                             <userControls:DetailsGridView />
                         </userControls:CustomHamburgerMenuIconItem.Tag>
                     </userControls:CustomHamburgerMenuIconItem>
-                    <userControls:CustomHamburgerMenuIconItem Icon="{DynamicResource appbar_settings}"
+                    <userControls:CustomHamburgerMenuIconItem Icon="{StaticResource appbar_settings}"
                                                               Label="Settings"
                                                               ToolTip="Show the settings view">
                         <userControls:CustomHamburgerMenuIconItem.Tag>
                             <userControls:SettingView />
                         </userControls:CustomHamburgerMenuIconItem.Tag>
                     </userControls:CustomHamburgerMenuIconItem>
-                    <userControls:CustomHamburgerMenuIconItem Icon="{DynamicResource appbar_gauge_50}"
+                    <userControls:CustomHamburgerMenuIconItem Icon="{StaticResource appbar_gauge_50}"
                                                               Label="Generation"
                                                               ToolTip="Show the generation view">
                         <userControls:CustomHamburgerMenuIconItem.Tag>
                             <userControls:GeneratePlaylistView />
                         </userControls:CustomHamburgerMenuIconItem.Tag>
                     </userControls:CustomHamburgerMenuIconItem>
-                    <userControls:CustomHamburgerMenuIconItem Icon="{DynamicResource appbar_social_spotify}"
+                    <userControls:CustomHamburgerMenuIconItem Icon="{StaticResource appbar_social_spotify}"
                                                               Label="Track Info"
                                                               ToolTip="Show the track info view">
                         <userControls:CustomHamburgerMenuIconItem.Tag>
@@ -129,19 +135,19 @@
                             <RowDefinition Height="48" />
                             <RowDefinition />
                         </Grid.RowDefinitions>
-                        <Border Grid.Row="0" Background="{DynamicResource MahApps.Metro.HamburgerMenu.PaneBackgroundBrush}">
+                        <Border Grid.Row="0" Background="{StaticResource MahApps.Metro.HamburgerMenu.PaneBackgroundBrush}">
                             <TextBlock x:Name="Header"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
                                        FontSize="24"
-                                       Foreground="{DynamicResource IdealForegroundColorBrush}"
+                                       Foreground="{StaticResource IdealForegroundColorBrush}"
                                        Text="{Binding Label}" />
                         </Border>
                         <ContentControl x:Name="TheContent"
                                         Grid.Row="1"
                                         Content="{Binding Tag}"
                                         Focusable="False"
-                                        Foreground="{DynamicResource BlackBrush}" />
+                                        Foreground="{StaticResource BlackBrush}" />
                     </Grid>
                 </DataTemplate>
             </controls:HamburgerMenu.ContentTemplate>

@@ -22,7 +22,7 @@
             <userInterface:NegatedBooleanToVisibilityConverter x:Key="NegatedBooleanToVisibilityConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
-    <Viewbox>
+    <Viewbox Margin="10">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -181,4 +181,3 @@
         </Grid>
     </Viewbox>
 </UserControl>
-
