@@ -1,0 +1,184 @@
+﻿<UserControl x:Class="UserInterface.Views.UserControls.CurrentPlaybackView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:userInterface="clr-namespace:UserInterface"
+             xmlns:viewModels="clr-namespace:UserInterface.ViewModels"
+             d:DesignHeight="500"
+             d:DesignWidth="400"
+             IsEnabled="{Binding IsConnected}"
+             Loaded="CurrentPlaybackView_OnLoaded"
+             mc:Ignorable="d">
+    <UserControl.DataContext>
+        <viewModels:CurrentPlaybackViewModel />
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <userInterface:NegatedBooleanToVisibilityConverter x:Key="NegatedBooleanToVisibilityConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Viewbox>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    MaxWidth="320"
+                    MaxHeight="320"
+                    BorderBrush="{StaticResource AccentBaseColorBrush}"
+                    BorderThickness="2">
+                <Image Source="{Binding Image}" Stretch="UniformToFill" />
+            </Border>
+            <Label Grid.Row="3"
+                   Grid.Column="1"
+                   HorizontalAlignment="Right"
+                   Content="Title:" />
+            <Label Grid.Row="4"
+                   Grid.Column="1"
+                   HorizontalAlignment="Right"
+                   Content="Artist:" />
+            <Label Grid.Row="5"
+                   Grid.Column="1"
+                   HorizontalAlignment="Right"
+                   Content="Album:" />
+            <TextBlock Grid.Row="3" Grid.Column="2">
+                <Hyperlink Command="{Binding NavigateUriCommand}"
+                           CommandParameter="{Binding Track.TrackResource.Uri}"
+                           Foreground="{StaticResource AccentBaseColorBrush}"
+                           NavigateUri="{Binding Track.TrackResource.Uri}"
+                           ToolTip="{Binding Track.TrackResource.Uri}">
+                    <Label Content="{Binding Track.TrackResource.Name}" />
+                </Hyperlink>
+            </TextBlock>
+            <TextBlock Grid.Row="4" Grid.Column="2">
+                <Hyperlink Command="{Binding NavigateUriCommand}"
+                           CommandParameter="{Binding Track.ArtistResource.Uri}"
+                           Foreground="{StaticResource AccentBaseColorBrush}"
+                           NavigateUri="{Binding Track.ArtistResource.Uri}"
+                           ToolTip="{Binding Track.ArtistResource.Uri}">
+                    <Label Content="{Binding Track.ArtistResource.Name}" />
+                </Hyperlink>
+            </TextBlock>
+            <TextBlock Grid.Row="5" Grid.Column="2">
+                <Hyperlink Command="{Binding NavigateUriCommand}"
+                           CommandParameter="{Binding Track.AlbumResource.Uri}"
+                           Foreground="{StaticResource AccentBaseColorBrush}"
+                           NavigateUri="{Binding Track.AlbumResource.Uri}"
+                           ToolTip="{Binding Track.AlbumResource.Uri}">
+                    <Label Content="{Binding Track.AlbumResource.Name}" />
+                </Hyperlink>
+            </TextBlock>
+            <Grid Grid.Row="1"
+                  Grid.Column="1"
+                  Grid.ColumnSpan="2">
+                <ProgressBar Height="20"
+                             MinWidth="110"
+                             Value="{Binding Progress}" />
+                <Label HorizontalAlignment="Left"
+                       Content="{Binding CurrentLength}"
+                       Foreground="Black" />
+                <Label HorizontalAlignment="Right"
+                       Content="{Binding Length}"
+                       Foreground="Black" />
+            </Grid>
+            <Grid Grid.Row="2"
+                  Grid.Column="1"
+                  Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="0"
+                        Grid.Column="0"
+                        Width="40"
+                        Height="40"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Style="{DynamicResource MetroCircleButtonStyle}">
+                    <Button.Content>
+                        <Rectangle Width="17"
+                                   Height="17"
+                                   Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Uniform" Visual="{DynamicResource appbar_control_skip_backward}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                    </Button.Content>
+                </Button>
+                <Button Grid.Row="0"
+                        Grid.Column="1"
+                        Width="50"
+                        Height="50"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Style="{DynamicResource MetroCircleButtonStyle}"
+                        Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Button.Content>
+                        <Rectangle Width="25"
+                                   Height="25"
+                                   Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Uniform" Visual="{DynamicResource appbar_control_pause}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                    </Button.Content>
+                </Button>
+                <Button Grid.Row="0"
+                        Grid.Column="1"
+                        Width="50"
+                        Height="50"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Style="{DynamicResource MetroCircleButtonStyle}"
+                        Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}">
+                    <Button.Content>
+                        <Rectangle Width="25"
+                                   Height="25"
+                                   Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Uniform" Visual="{DynamicResource appbar_control_play}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                    </Button.Content>
+                </Button>
+                <Button Grid.Row="0"
+                        Grid.Column="2"
+                        Width="40"
+                        Height="40"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Style="{DynamicResource MetroCircleButtonStyle}">
+                    <Button.Content>
+                        <Rectangle Width="17"
+                                   Height="17"
+                                   Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Uniform" Visual="{DynamicResource appbar_control_skip_forward}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                    </Button.Content>
+                </Button>
+            </Grid>
+        </Grid>
+    </Viewbox>
+</UserControl>
+

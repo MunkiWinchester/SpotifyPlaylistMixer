@@ -5,10 +5,13 @@
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:userControls="clr-namespace:UserInterface.Views.UserControls"
+                      xmlns:userInterface="clr-namespace:UserInterface"
                       x:Name="MetroWindow"
                       Title="Spotify Mixer"
                       Width="600"
                       Height="700"
+                      MinWidth="445"
+                      MinHeight="400"
                       BorderBrush="{DynamicResource AccentColorBrush}"
                       BorderThickness="1"
                       NonActiveWindowTitleBrush="{Binding ElementName=MetroWindow, Path=WindowTitleBrush}"
@@ -33,18 +36,115 @@
             </Rectangle>
         </controls:WindowCommands>
     </controls:MetroWindow.LeftWindowCommands>
-    <TabControl>
-        <TabItem Header="Playlist">
-            <userControls:PlaylistView />
-        </TabItem>
-        <TabItem Header="Details">
-            <userControls:DetailsGridView />
-        </TabItem>
-        <TabItem Header="Settings">
-            <userControls:SettingView />
-        </TabItem>
-        <TabItem Header="Generation">
-            <userControls:GeneratePlaylistView />
-        </TabItem>
-    </TabControl>
+    <Grid>
+        <Grid.Resources>
+            <DataTemplate x:Key="MenuItemTemplate" DataType="{x:Type userControls:CustomHamburgerMenuIconItem}">
+                <Grid x:Name="RootGrid"
+                      Height="48"
+                      Background="Transparent">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="48" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <ContentControl Grid.Column="0"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Content="{Binding Icon}"
+                                    Focusable="False"
+                                    Foreground="{DynamicResource IdealForegroundColorBrush}" />
+                    <TextBlock Grid.Column="1"
+                               VerticalAlignment="Center"
+                               FontSize="16"
+                               Foreground="{DynamicResource IdealForegroundColorBrush}"
+                               Text="{Binding Label}" />
+                </Grid>
+                <DataTemplate.Triggers>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:HamburgerMenu}}, Path=IsPaneOpen}" Value="False">
+                        <Setter TargetName="RootGrid" Property="ToolTip" Value="{Binding ToolTip, Mode=OneWay}" />
+                    </DataTrigger>
+                </DataTemplate.Triggers>
+            </DataTemplate>
+            <userInterface:SelectedItemToContentConverter x:Key="SelectedItemToContentConverter" />
+        </Grid.Resources>
+        <controls:HamburgerMenu x:Name="HamburgerMenuControl"
+                                DisplayMode="CompactInline"
+                                Foreground="{StaticResource IdealForegroundColorBrush}"
+                                IsPaneOpen="False"
+                                ItemTemplate="{StaticResource MenuItemTemplate}"
+                                OptionsItemTemplate="{StaticResource MenuItemTemplate}"
+                                PaneBackground="{StaticResource MahApps.Metro.HamburgerMenu.PaneBackgroundBrush}">
+            <controls:HamburgerMenu.Content>
+                <MultiBinding Converter="{StaticResource SelectedItemToContentConverter}">
+                    <Binding Mode="OneWay"
+                             Path="SelectedItem"
+                             RelativeSource="{RelativeSource Self}" />
+                    <Binding Mode="OneWay"
+                             Path="SelectedOptionsItem"
+                             RelativeSource="{RelativeSource Self}" />
+                </MultiBinding>
+            </controls:HamburgerMenu.Content>
+            <controls:HamburgerMenu.ItemsSource>
+                <controls:HamburgerMenuItemCollection>
+                    <userControls:CustomHamburgerMenuIconItem Icon="{DynamicResource appbar_control_play}"
+                                                              Label="Playlist"
+                                                              ToolTip="Show the playlist view">
+                        <userControls:CustomHamburgerMenuIconItem.Tag>
+                            <userControls:PlaylistView />
+                        </userControls:CustomHamburgerMenuIconItem.Tag>
+                    </userControls:CustomHamburgerMenuIconItem>
+                    <userControls:CustomHamburgerMenuIconItem Icon="{DynamicResource appbar_magnify}"
+                                                              Label="Details"
+                                                              ToolTip="Show the details view">
+                        <userControls:CustomHamburgerMenuIconItem.Tag>
+                            <userControls:DetailsGridView />
+                        </userControls:CustomHamburgerMenuIconItem.Tag>
+                    </userControls:CustomHamburgerMenuIconItem>
+                    <userControls:CustomHamburgerMenuIconItem Icon="{DynamicResource appbar_settings}"
+                                                              Label="Settings"
+                                                              ToolTip="Show the settings view">
+                        <userControls:CustomHamburgerMenuIconItem.Tag>
+                            <userControls:SettingView />
+                        </userControls:CustomHamburgerMenuIconItem.Tag>
+                    </userControls:CustomHamburgerMenuIconItem>
+                    <userControls:CustomHamburgerMenuIconItem Icon="{DynamicResource appbar_gauge_50}"
+                                                              Label="Generation"
+                                                              ToolTip="Show the generation view">
+                        <userControls:CustomHamburgerMenuIconItem.Tag>
+                            <userControls:GeneratePlaylistView />
+                        </userControls:CustomHamburgerMenuIconItem.Tag>
+                    </userControls:CustomHamburgerMenuIconItem>
+                    <userControls:CustomHamburgerMenuIconItem Icon="{DynamicResource appbar_social_spotify}"
+                                                              Label="Track Info"
+                                                              ToolTip="Show the track info view">
+                        <userControls:CustomHamburgerMenuIconItem.Tag>
+                            <userControls:CurrentPlaybackView />
+                        </userControls:CustomHamburgerMenuIconItem.Tag>
+                    </userControls:CustomHamburgerMenuIconItem>
+                </controls:HamburgerMenuItemCollection>
+            </controls:HamburgerMenu.ItemsSource>
+            <controls:HamburgerMenu.ContentTemplate>
+                <DataTemplate DataType="{x:Type userControls:CustomHamburgerMenuIconItem}">
+                    <Grid x:Name="TheContentGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="48" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" Background="{DynamicResource MahApps.Metro.HamburgerMenu.PaneBackgroundBrush}">
+                            <TextBlock x:Name="Header"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="24"
+                                       Foreground="{DynamicResource IdealForegroundColorBrush}"
+                                       Text="{Binding Label}" />
+                        </Border>
+                        <ContentControl x:Name="TheContent"
+                                        Grid.Row="1"
+                                        Content="{Binding Tag}"
+                                        Focusable="False"
+                                        Foreground="{DynamicResource BlackBrush}" />
+                    </Grid>
+                </DataTemplate>
+            </controls:HamburgerMenu.ContentTemplate>
+        </controls:HamburgerMenu>
+    </Grid>
 </controls:MetroWindow>

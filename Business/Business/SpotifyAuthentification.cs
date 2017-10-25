@@ -21,8 +21,8 @@ namespace Business.Business
                 "http://localhost",
                 8000,
                 "7fa845408d634311aff87a53a3b08f12",
-                Scope.UserReadPrivate | Scope.UserReadEmail | Scope.PlaylistReadPrivate | Scope.UserLibraryRead |
-                Scope.UserFollowRead | Scope.UserReadBirthdate | Scope.UserTopRead | Scope.PlaylistModifyPublic);
+                Scope.UserReadPrivate | Scope.PlaylistReadPrivate | Scope.UserLibraryRead |
+                Scope.UserFollowRead | Scope.UserTopRead | Scope.PlaylistModifyPublic);
 
             try
             {
