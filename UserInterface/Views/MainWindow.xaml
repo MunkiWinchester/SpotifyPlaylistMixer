@@ -14,6 +14,7 @@
                       MinHeight="400"
                       BorderBrush="{StaticResource AccentColorBrush}"
                       BorderThickness="1"
+                      Closing="MainWindow_OnClosing"
                       Loaded="MainWindow_OnLoaded"
                       NonActiveWindowTitleBrush="{Binding ElementName=MetroWindow, Path=WindowTitleBrush}"
                       ShowIconOnTitleBar="False"
@@ -41,10 +42,10 @@
         <Grid.Resources>
             <DataTemplate x:Key="MenuItemTemplate" DataType="{x:Type userControls:CustomHamburgerMenuIconItem}">
                 <Grid x:Name="RootGrid"
-                      Height="48"
+                      Height="40"
                       Background="Transparent">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="48" />
+                        <ColumnDefinition Width="40" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <Rectangle Grid.Column="0"
@@ -73,10 +74,14 @@
             <userInterface:SelectedItemToContentConverter x:Key="SelectedItemToContentConverter" />
         </Grid.Resources>
         <controls:HamburgerMenu x:Name="HamburgerMenuControl"
+                                CompactPaneLength="40"
                                 DisplayMode="CompactInline"
                                 Foreground="{StaticResource IdealForegroundColorBrush}"
+                                HamburgerHeight="40"
+                                HamburgerWidth="40"
                                 IsPaneOpen="False"
                                 ItemTemplate="{StaticResource MenuItemTemplate}"
+                                OpenPaneLength="125"
                                 OptionsItemTemplate="{StaticResource MenuItemTemplate}"
                                 PaneBackground="{StaticResource MahApps.Metro.HamburgerMenu.PaneBackgroundBrush}">
             <controls:HamburgerMenu.Content>
@@ -91,14 +96,14 @@
             </controls:HamburgerMenu.Content>
             <controls:HamburgerMenu.ItemsSource>
                 <controls:HamburgerMenuItemCollection>
-                    <userControls:CustomHamburgerMenuIconItem Icon="{StaticResource appbar_control_play}"
+                    <userControls:CustomHamburgerMenuIconItem Icon="{StaticResource appbar_magnify}"
                                                               Label="Playlist"
                                                               ToolTip="Show the playlist view">
                         <userControls:CustomHamburgerMenuIconItem.Tag>
                             <userControls:PlaylistView />
                         </userControls:CustomHamburgerMenuIconItem.Tag>
                     </userControls:CustomHamburgerMenuIconItem>
-                    <userControls:CustomHamburgerMenuIconItem Icon="{StaticResource appbar_magnify}"
+                    <userControls:CustomHamburgerMenuIconItem Icon="{StaticResource appbar_interface_list}"
                                                               Label="Details"
                                                               ToolTip="Show the details view">
                         <userControls:CustomHamburgerMenuIconItem.Tag>
@@ -112,15 +117,15 @@
                             <userControls:SettingView />
                         </userControls:CustomHamburgerMenuIconItem.Tag>
                     </userControls:CustomHamburgerMenuIconItem>
-                    <userControls:CustomHamburgerMenuIconItem Icon="{StaticResource appbar_gauge_50}"
+                    <userControls:CustomHamburgerMenuIconItem Icon="{StaticResource appbar_tools}"
                                                               Label="Generation"
                                                               ToolTip="Show the generation view">
                         <userControls:CustomHamburgerMenuIconItem.Tag>
                             <userControls:GeneratePlaylistView />
                         </userControls:CustomHamburgerMenuIconItem.Tag>
                     </userControls:CustomHamburgerMenuIconItem>
-                    <userControls:CustomHamburgerMenuIconItem Icon="{StaticResource appbar_social_spotify}"
-                                                              Label="Track Info"
+                    <userControls:CustomHamburgerMenuIconItem Icon="{StaticResource appbar_music}"
+                                                              Label="Playback"
                                                               ToolTip="Show the track info view">
                         <userControls:CustomHamburgerMenuIconItem.Tag>
                             <userControls:CurrentPlaybackView />
@@ -132,7 +137,7 @@
                 <DataTemplate DataType="{x:Type userControls:CustomHamburgerMenuIconItem}">
                     <Grid x:Name="TheContentGrid">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="48" />
+                            <RowDefinition Height="40" />
                             <RowDefinition />
                         </Grid.RowDefinitions>
                         <Border Grid.Row="0" Background="{StaticResource MahApps.Metro.HamburgerMenu.PaneBackgroundBrush}">
