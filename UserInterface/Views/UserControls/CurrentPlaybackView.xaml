@@ -22,11 +22,16 @@
             <userInterface:NegatedBooleanToVisibilityConverter x:Key="NegatedBooleanToVisibilityConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid x:Name="ParentGrid" Margin="10">
+    <Grid x:Name="ParentGrid"
+          Margin="10"
+          SizeChanged="ParentGrid_SizeChanged">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition x:Name="FirstMainColumn" Width="*" />
-            <ColumnDefinition x:Name="SecondMainColumn" Width="4*" />
-            <ColumnDefinition x:Name="ThirdMainColum" Width="*" />
+            <ColumnDefinition x:Name="FirstMainColumn"
+                              Width="*" />
+            <ColumnDefinition x:Name="SecondMainColumn"
+                              Width="4*" />
+            <ColumnDefinition x:Name="ThirdMainColum"
+                              Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*" />
@@ -44,11 +49,14 @@
             <Viewbox x:Name="ImageViewBox"
                      Grid.Row="0"
                      HorizontalAlignment="Center">
-                <Border BorderBrush="{StaticResource AccentBaseColorBrush}" BorderThickness="3">
-                    <Image Source="{Binding Image}" Stretch="UniformToFill" />
+                <Border BorderBrush="{StaticResource AccentBaseColorBrush}"
+                        BorderThickness="3">
+                    <Image Source="{Binding Image}"
+                           Stretch="UniformToFill" />
                 </Border>
             </Viewbox>
-            <Grid x:Name="ProgressBarGrid" Grid.Row="1">
+            <Grid x:Name="ProgressBarGrid"
+                  Grid.Row="1">
                 <ProgressBar Height="20"
                              MinWidth="110"
                              Value="{Binding Progress}" />
@@ -77,14 +85,16 @@
                     Height="40"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
+                    BorderThickness="1"
                     Command="{Binding PreviousCommand}"
                     Style="{DynamicResource MetroCircleButtonStyle}">
                 <Button.Content>
-                    <Rectangle Width="17"
-                               Height="17"
+                    <Rectangle Width="15"
+                               Height="15"
                                Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
                         <Rectangle.OpacityMask>
-                            <VisualBrush Stretch="Uniform" Visual="{DynamicResource appbar_control_skip_backward}" />
+                            <VisualBrush Stretch="Uniform"
+                                         Visual="{DynamicResource appbar_control_skip_backward}" />
                         </Rectangle.OpacityMask>
                     </Rectangle>
                 </Button.Content>
@@ -99,15 +109,18 @@
                     Style="{DynamicResource MetroCircleButtonStyle}"
                     Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Button.Content>
-                    <Rectangle Width="25"
-                               Height="25"
+                    <Rectangle Width="20"
+                               Height="20"
                                Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
                         <Rectangle.OpacityMask>
-                            <VisualBrush Stretch="Uniform" Visual="{DynamicResource appbar_control_pause}" />
+                            <VisualBrush Stretch="Uniform"
+                                         Visual="{DynamicResource appbar_control_pause}" />
                         </Rectangle.OpacityMask>
                     </Rectangle>
                 </Button.Content>
             </Button>
+            <!--  TODO: Play/Pause Symbol per DataTrigger  -->
+            <!--  TODO: Rahmenentfernen (Thickness 0) Farbe von den Symbolen per Trigger (hoover)  -->
             <Button Grid.Row="0"
                     Grid.Column="1"
                     Width="50"
@@ -118,11 +131,12 @@
                     Style="{DynamicResource MetroCircleButtonStyle}"
                     Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}">
                 <Button.Content>
-                    <Rectangle Width="25"
-                               Height="25"
+                    <Rectangle Width="20"
+                               Height="20"
                                Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
                         <Rectangle.OpacityMask>
-                            <VisualBrush Stretch="Uniform" Visual="{DynamicResource appbar_control_play}" />
+                            <VisualBrush Stretch="Uniform"
+                                         Visual="{DynamicResource appbar_control_play}" />
                         </Rectangle.OpacityMask>
                     </Rectangle>
                 </Button.Content>
@@ -133,76 +147,87 @@
                     Height="40"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
+                    BorderThickness="1"
                     Command="{Binding NextCommand}"
                     Style="{DynamicResource MetroCircleButtonStyle}">
                 <Button.Content>
-                    <Rectangle Width="17"
-                               Height="17"
+                    <Rectangle Width="15"
+                               Height="15"
                                Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
                         <Rectangle.OpacityMask>
-                            <VisualBrush Stretch="Uniform" Visual="{DynamicResource appbar_control_skip_forward}" />
+                            <VisualBrush Stretch="Uniform"
+                                         Visual="{DynamicResource appbar_control_skip_forward}" />
                         </Rectangle.OpacityMask>
                     </Rectangle>
                 </Button.Content>
             </Button>
         </Grid>
-        <Grid x:Name="LabelsGrid"
+        <Grid x:Name="LayoutRoot"
               Grid.Row="2"
               Grid.Column="0"
               Grid.ColumnSpan="3"
+              Width="{Binding ContainerWidth}"
               HorizontalAlignment="Center">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" HorizontalAlignment="Center">
-                <Hyperlink BaselineAlignment="TextBottom"
-                           Command="{Binding NavigateUriCommand}"
-                           CommandParameter="{Binding Track.TrackResource.Uri}"
-                           Foreground="{StaticResource AccentColorBrush}"
-                           NavigateUri="{Binding Track.TrackResource.Uri}"
-                           TextDecorations="{x:Null}"
-                           ToolTip="{Binding Track.TrackResource.Uri}">
-                    <TextBlock FontSize="18"
-                               FontWeight="Bold"
-                               Text="{Binding Track.TrackResource.Name}"
-                               TextAlignment="Center"
-                               TextWrapping="Wrap" />
-                </Hyperlink>
-            </TextBlock>
-            <TextBlock Grid.Row="1"
-                       Margin="0,4,0,0"
-                       HorizontalAlignment="Center">
-                <Hyperlink BaselineAlignment="TextBottom"
-                           Command="{Binding NavigateUriCommand}"
-                           CommandParameter="{Binding Track.ArtistResource.Uri}"
-                           Foreground="{StaticResource AccentColorBrush2}"
-                           NavigateUri="{Binding Track.ArtistResource.Uri}"
-                           TextDecorations="{x:Null}"
-                           ToolTip="{Binding Track.ArtistResource.Uri}">
-                    <TextBlock FontSize="18"
-                               FontWeight="Normal"
-                               Text="{Binding Track.ArtistResource.Name}"
-                               TextAlignment="Center"
-                               TextWrapping="Wrap" />
-                </Hyperlink>
-            </TextBlock>
-            <TextBlock Grid.Row="2"
-                       Margin="0,4,0,0"
-                       HorizontalAlignment="Center">
-                <Hyperlink Command="{Binding NavigateUriCommand}"
-                           CommandParameter="{Binding Track.AlbumResource.Uri}"
-                           Foreground="{StaticResource AccentColorBrush3}"
-                           NavigateUri="{Binding Track.AlbumResource.Uri}"
-                           TextDecorations="{x:Null}"
-                           ToolTip="{Binding Track.AlbumResource.Uri}">
-                    <TextBlock FontSize="14"
-                               Text="{Binding Track.AlbumResource.Name}"
-                               TextAlignment="Center"
-                               TextWrapping="Wrap" />
-                </Hyperlink>
-            </TextBlock>
+            <Viewbox Stretch="Fill"
+                     StretchDirection="Both">
+                <Grid x:Name="LabelsGrid"
+                      Width="{Binding ContainerWidth}"
+                      HorizontalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0"
+                               HorizontalAlignment="Center">
+                        <Hyperlink BaselineAlignment="TextBottom"
+                                   Command="{Binding NavigateUriCommand}"
+                                   CommandParameter="{Binding Track.TrackResource.Uri}"
+                                   Foreground="{StaticResource AccentColorBrush}"
+                                   NavigateUri="{Binding Track.TrackResource.Uri}"
+                                   TextDecorations="{x:Null}"
+                                   ToolTip="{Binding Track.TrackResource.Uri}">
+                            <TextBlock FontSize="18"
+                                       FontWeight="Bold"
+                                       Text="{Binding Track.TrackResource.Name}"
+                                       TextAlignment="Center"
+                                       TextWrapping="Wrap" />
+                        </Hyperlink>
+                    </TextBlock>
+                    <TextBlock Grid.Row="1"
+                               Margin="0,4,0,0"
+                               HorizontalAlignment="Center">
+                        <Hyperlink BaselineAlignment="TextBottom"
+                                   Command="{Binding NavigateUriCommand}"
+                                   CommandParameter="{Binding Track.ArtistResource.Uri}"
+                                   Foreground="{StaticResource AccentColorBrush2}"
+                                   NavigateUri="{Binding Track.ArtistResource.Uri}"
+                                   TextDecorations="{x:Null}"
+                                   ToolTip="{Binding Track.ArtistResource.Uri}">
+                            <TextBlock FontSize="18"
+                                       FontWeight="Normal"
+                                       Text="{Binding Track.ArtistResource.Name}"
+                                       TextAlignment="Center"
+                                       TextWrapping="Wrap" />
+                        </Hyperlink>
+                    </TextBlock>
+                    <TextBlock Grid.Row="2"
+                               Margin="0,4,0,0"
+                               HorizontalAlignment="Center">
+                        <Hyperlink Command="{Binding NavigateUriCommand}"
+                                   CommandParameter="{Binding Track.AlbumResource.Uri}"
+                                   Foreground="{StaticResource AccentColorBrush3}"
+                                   NavigateUri="{Binding Track.AlbumResource.Uri}"
+                                   TextDecorations="{x:Null}"
+                                   ToolTip="{Binding Track.AlbumResource.Uri}">
+                            <TextBlock FontSize="14"
+                                       Text="{Binding Track.AlbumResource.Name}"
+                                       TextAlignment="Center"
+                                       TextWrapping="Wrap" />
+                        </Hyperlink>
+                    </TextBlock>
+                </Grid>
+            </Viewbox>
         </Grid>
     </Grid>
 </UserControl>

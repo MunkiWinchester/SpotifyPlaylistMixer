@@ -22,5 +22,14 @@ namespace UserInterface.Views.UserControls
                 vm.LoadValues(Dispatcher);
             }
         }
+
+        private void ParentGrid_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            var vm = (CurrentPlaybackViewModel)DataContext;
+            if (vm != null)
+            {
+                vm.ContainerWidth = e.NewSize.Width;
+            }
+        }
     }
 }

@@ -33,6 +33,8 @@ namespace UserInterface.ViewModels
 
         private Track _track;
 
+        private double _containerWidth;
+
         public CurrentPlaybackViewModel()
         {
             _spotify = new SpotifyLocalHelper();
@@ -105,6 +107,16 @@ namespace UserInterface.ViewModels
             set
             {
                 _progress = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public double ContainerWidth
+        {
+            get => _containerWidth;
+            set
+            {
+                _containerWidth = value;
                 OnPropertyChanged();
             }
         }
