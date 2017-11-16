@@ -47,8 +47,7 @@ namespace UserInterface
 
         private static void ActivateOtherWindow()
         {
-            // TODO: Don't like the hard coded title of the start window..
-            var other = FindWindow(null, "Spotify Mixer");
+            var other = FindWindow(null, Views.MainWindow.WindowTitle);
             if (other != IntPtr.Zero)
             {
                 SetForegroundWindow(other);

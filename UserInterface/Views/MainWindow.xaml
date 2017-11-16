@@ -7,7 +7,6 @@
                       xmlns:userControls="clr-namespace:UserInterface.Views.UserControls"
                       xmlns:userInterface="clr-namespace:UserInterface"
                       x:Name="MetroWindow"
-                      Title="Spotify Mixer"
                       Width="600"
                       Height="700"
                       MinWidth="300"

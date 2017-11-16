@@ -9,9 +9,12 @@ namespace UserInterface.Views
     /// </summary>
     public partial class MainWindow
     {
+        public new const string WindowTitle = "Spotify Mixer";
+
         public MainWindow()
         {
             InitializeComponent();
+            Title = WindowTitle;
 
             Top = Settings.Default.Top;
             Left = Settings.Default.Left;
