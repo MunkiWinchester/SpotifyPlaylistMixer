@@ -78,7 +78,7 @@ namespace UserInterface.ViewModels
 
         public void SearchInCurrentPlaylist()
         {
-            var searchTerm = SearchTerm;
+            var searchTerm = SearchTerm?.ToLower();
             if (string.IsNullOrWhiteSpace(searchTerm))
             {
                 SelectedPlaylist = _originalPlaylist;

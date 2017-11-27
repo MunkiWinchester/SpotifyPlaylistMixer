@@ -1,0 +1,2413 @@
+[
+  {
+    "User": "Andreas",
+    "Artists": [
+      "Poisonblack"
+    ],
+    "ArtistsString": "Poisonblack",
+    "Track": "Home Is Where The Sty Is",
+    "TrackId": "2BYMBnZVHxxtwcnqpBfY2f",
+    "Genres": [
+      "finnish metal",
+      "gothic metal",
+      "gothic symphonic metal",
+      "melodic death metal"
+    ],
+    "GenresString": "finnish metal; gothic metal; gothic symphonic metal; melodic death metal"
+  },
+  {
+    "User": "Andreas",
+    "Artists": [
+      "Chrome Division"
+    ],
+    "ArtistsString": "Chrome Division",
+    "Track": "Ghost Riders in the Sky",
+    "TrackId": "72B073iX9CfEApbkrJShnE",
+    "Genres": [
+      "norwegian metal"
+    ],
+    "GenresString": "norwegian metal"
+  },
+  {
+    "User": "Andreas",
+    "Artists": [
+      "Earshot"
+    ],
+    "ArtistsString": "Earshot",
+    "Track": "Wait",
+    "TrackId": "45R6DmpsaoqLujIn6qPTPH",
+    "Genres": [
+      "alternative metal",
+      "hard alternative",
+      "industrial metal",
+      "nu metal",
+      "post-grunge",
+      "rap metal",
+      "rap rock"
+    ],
+    "GenresString": "alternative metal; hard alternative; industrial metal; nu metal; post-grunge; rap metal; rap rock"
+  },
+  {
+    "User": "Andreas",
+    "Artists": [
+      "Beartooth"
+    ],
+    "ArtistsString": "Beartooth",
+    "Track": "In Between",
+    "TrackId": "58jVSXqb2cypfC6fwxrulm",
+    "Genres": [
+      "columbus ohio indie",
+      "emo",
+      "metalcore",
+      "pop punk",
+      "post-screamo",
+      "rap metal",
+      "screamo"
+    ],
+    "GenresString": "columbus ohio indie; emo; metalcore; pop punk; post-screamo; rap metal; screamo"
+  },
+  {
+    "User": "Andreas",
+    "Artists": [
+      "Blessed By A Broken Heart"
+    ],
+    "ArtistsString": "Blessed By A Broken Heart",
+    "Track": "Move Your Body",
+    "TrackId": "4DsIR3smuYhX01eCLFa3An",
+    "Genres": [
+      "canadian metal",
+      "christian hardcore",
+      "christian metal",
+      "melodic metalcore",
+      "metalcore"
+    ],
+    "GenresString": "canadian metal; christian hardcore; christian metal; melodic metalcore; metalcore"
+  },
+  {
+    "User": "Andreas",
+    "Artists": [
+      "Týr"
+    ],
+    "ArtistsString": "Týr",
+    "Track": "Hold The Heathen Hammer High",
+    "TrackId": "6KAH7TVSUQfHUWJ2KGzCWM",
+    "Genres": [
+      "folk metal",
+      "power metal",
+      "viking metal"
+    ],
+    "GenresString": "folk metal; power metal; viking metal"
+  },
+  {
+    "User": "Andreas",
+    "Artists": [
+      "Freedom Call"
+    ],
+    "ArtistsString": "Freedom Call",
+    "Track": "Warriors",
+    "TrackId": "4VFMF2musxuZm3Lr8pgbd4",
+    "Genres": [
+      "german metal",
+      "metal",
+      "neo classical metal",
+      "power metal",
+      "progressive metal",
+      "speed metal",
+      "symphonic metal",
+      "viking metal"
+    ],
+    "GenresString": "german metal; metal; neo classical metal; power metal; progressive metal; speed metal; symphonic metal; viking metal"
+  },
+  {
+    "User": "Andreas",
+    "Artists": [
+      "Hadouken!"
+    ],
+    "ArtistsString": "Hadouken!",
+    "Track": "M.A.D",
+    "TrackId": "2XzjOjTHFvZgdIhoWvZjVX",
+    "Genres": [
+      "alternative dance",
+      "dance-punk",
+      "new rave"
+    ],
+    "GenresString": "alternative dance; dance-punk; new rave"
+  },
+  {
+    "User": "Andreas",
+    "Artists": [
+      "Six Feet Under"
+    ],
+    "ArtistsString": "Six Feet Under",
+    "Track": "TNT",
+    "TrackId": "0Ox3pTGk5Dg3iN9neOJ8kP",
+    "Genres": [
+      "alternative metal",
+      "brutal death metal",
+      "death metal",
+      "deathgrind",
+      "grindcore",
+      "groove metal",
+      "melodic metalcore",
+      "metal",
+      "nu metal",
+      "rap metal",
+      "rap rock",
+      "speed metal",
+      "technical death metal",
+      "thrash metal"
+    ],
+    "GenresString": "alternative metal; brutal death metal; death metal; deathgrind; grindcore; groove metal; melodic metalcore; metal; nu metal; rap metal; rap rock; speed metal; technical death metal; thrash metal"
+  },
+  {
+    "User": "Andreas",
+    "Artists": [
+      "We Butter The Bread With Butter"
+    ],
+    "ArtistsString": "We Butter The Bread With Butter",
+    "Track": "Der kleine Vampir",
+    "TrackId": "3dWLVYZoY6IWDGbhztrUqe",
+    "Genres": [
+      "death core",
+      "melodic metalcore",
+      "metalcore",
+      "screamo"
+    ],
+    "GenresString": "death core; melodic metalcore; metalcore; screamo"
+  },
+  {
+    "User": "Andreas",
+    "Artists": [
+      "Molotov"
+    ],
+    "ArtistsString": "Molotov",
+    "Track": "Dance And Dense Denso",
+    "TrackId": "6IfMZeHEN9c7szM9OwGzYe",
+    "Genres": [
+      "latin alternative",
+      "latin hip hop",
+      "rock en espanol"
+    ],
+    "GenresString": "latin alternative; latin hip hop; rock en espanol"
+  },
+  {
+    "User": "Andreas",
+    "Artists": [
+      "Dance With the Dead"
+    ],
+    "ArtistsString": "Dance With the Dead",
+    "Track": "Riot",
+    "TrackId": "5k3VFeS8Icp6OCc7qsW2ls",
+    "Genres": [
+      "deep chiptune",
+      "retro electro"
+    ],
+    "GenresString": "deep chiptune; retro electro"
+  },
+  {
+    "User": "Andreas",
+    "Artists": [
+      "Death Come Cover Me"
+    ],
+    "ArtistsString": "Death Come Cover Me",
+    "Track": "Niggas In Paris Metal version",
+    "TrackId": "79KTKi7aOajF1KUzcGbyLB",
+    "Genres": [
+      "post-screamo"
+    ],
+    "GenresString": "post-screamo"
+  },
+  {
+    "User": "Andreas",
+    "Artists": [
+      "A Day To Remember"
+    ],
+    "ArtistsString": "A Day To Remember",
+    "Track": "I'm Made of Wax, Larry, What Are You Made Of?",
+    "TrackId": "1fTNpl2mxqHVlLqRNbyDhR",
+    "Genres": [
+      "alternative metal",
+      "metalcore",
+      "pop punk",
+      "rap metal",
+      "screamo"
+    ],
+    "GenresString": "alternative metal; metalcore; pop punk; rap metal; screamo"
+  },
+  {
+    "User": "Andreas",
+    "Artists": [
+      "The Dreadnoughts"
+    ],
+    "ArtistsString": "The Dreadnoughts",
+    "Track": "Sleep Is For The Weak",
+    "TrackId": "2jJwEjUt89eMfxRqO4WOOH",
+    "Genres": [
+      "celtic rock",
+      "steampunk"
+    ],
+    "GenresString": "celtic rock; steampunk"
+  },
+  {
+    "User": "Andreas",
+    "Artists": [
+      "Five Finger Death Punch"
+    ],
+    "ArtistsString": "Five Finger Death Punch",
+    "Track": "Bad Company",
+    "TrackId": "6lq2Md99XWG4TnVNP9cNm0",
+    "Genres": [
+      "alternative metal",
+      "groove metal",
+      "nu metal",
+      "post-grunge"
+    ],
+    "GenresString": "alternative metal; groove metal; nu metal; post-grunge"
+  },
+  {
+    "User": "Andreas",
+    "Artists": [
+      "Terminal Choice"
+    ],
+    "ArtistsString": "Terminal Choice",
+    "Track": "Killer",
+    "TrackId": "6csiQnKygd2pxlDdm31hFr",
+    "Genres": [
+      "aggrotech",
+      "dark wave",
+      "ebm",
+      "electro-industrial",
+      "futurepop",
+      "industrial metal",
+      "neue deutsche harte"
+    ],
+    "GenresString": "aggrotech; dark wave; ebm; electro-industrial; futurepop; industrial metal; neue deutsche harte"
+  },
+  {
+    "User": "Andreas",
+    "Artists": [
+      "T.M.Revolution"
+    ],
+    "ArtistsString": "T.M.Revolution",
+    "Track": "Resonance",
+    "TrackId": "2kiHhszkih0WhF9fnsYbCV",
+    "Genres": [
+      "anime",
+      "japanese r&b",
+      "j-dance",
+      "j-metal",
+      "j-pop",
+      "j-poprock",
+      "j-rock",
+      "otacore",
+      "world christmas"
+    ],
+    "GenresString": "anime; japanese r&b; j-dance; j-metal; j-pop; j-poprock; j-rock; otacore; world christmas"
+  },
+  {
+    "User": "Andreas",
+    "Artists": [
+      "Evergreen Terrace"
+    ],
+    "ArtistsString": "Evergreen Terrace",
+    "Track": "Chaney Can't Quite Riff Like Helmet's Page Hamilton",
+    "TrackId": "0Czv4guRdFGrQWSxWeLmkJ",
+    "Genres": [
+      "christian hardcore",
+      "death core",
+      "melodic hardcore",
+      "melodic metalcore",
+      "metalcore"
+    ],
+    "GenresString": "christian hardcore; death core; melodic hardcore; melodic metalcore; metalcore"
+  },
+  {
+    "User": "Andreas",
+    "Artists": [
+      "Judge D"
+    ],
+    "ArtistsString": "Judge D",
+    "Track": "Nuthin Left",
+    "TrackId": "2Yi2BE87fq72QsPki4eZLu",
+    "Genres": [
+      "rap metal",
+      "rap rock"
+    ],
+    "GenresString": "rap metal; rap rock"
+  },
+  {
+    "User": "Andreas",
+    "Artists": [
+      "Deez Nuts"
+    ],
+    "ArtistsString": "Deez Nuts",
+    "Track": "Band of Brothers",
+    "TrackId": "1o0m5PodWw0mGYMrD9GaoF",
+    "Genres": [
+      "hardcore",
+      "metalcore",
+      "rap metal"
+    ],
+    "GenresString": "hardcore; metalcore; rap metal"
+  },
+  {
+    "User": "Andreas",
+    "Artists": [
+      "Daddy-Rock"
+    ],
+    "ArtistsString": "Daddy-Rock",
+    "Track": "Rockstar",
+    "TrackId": "7EIbw4i6zFYA2kuDYWgRly",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Andreas",
+    "Artists": [
+      "Gothminister"
+    ],
+    "ArtistsString": "Gothminister",
+    "Track": "Darkside",
+    "TrackId": "5Ad4lMeso4GPSbofdzD3iH",
+    "Genres": [
+      "aggrotech",
+      "dark wave",
+      "ebm",
+      "electro-industrial",
+      "futurepop",
+      "gothic metal",
+      "industrial metal",
+      "neue deutsche harte",
+      "norwegian metal"
+    ],
+    "GenresString": "aggrotech; dark wave; ebm; electro-industrial; futurepop; gothic metal; industrial metal; neue deutsche harte; norwegian metal"
+  },
+  {
+    "User": "Andreas",
+    "Artists": [
+      "From Ashes to New"
+    ],
+    "ArtistsString": "From Ashes to New",
+    "Track": "Land of Make Believe",
+    "TrackId": "5kNd7C80u0P3g3eSxJkJ1Y",
+    "Genres": [
+      "alternative metal",
+      "nu metal",
+      "post-grunge",
+      "rap metal",
+      "rap rock"
+    ],
+    "GenresString": "alternative metal; nu metal; post-grunge; rap metal; rap rock"
+  },
+  {
+    "User": "Andreas",
+    "Artists": [
+      "Priestess"
+    ],
+    "ArtistsString": "Priestess",
+    "Track": "Lay Down",
+    "TrackId": "2HaDds0IU8Iy1hSb6L7VoT",
+    "Genres": [
+      "canadian metal",
+      "retro metal"
+    ],
+    "GenresString": "canadian metal; retro metal"
+  },
+  {
+    "User": "Andreas",
+    "Artists": [
+      "KMFDM",
+      "Skold"
+    ],
+    "ArtistsString": "KMFDM; Skold",
+    "Track": "Bloodsport",
+    "TrackId": "6CJQ7W917URllKq20O9cN8",
+    "Genres": [
+      "alternative metal",
+      "ebm",
+      "ebm",
+      "electro-industrial",
+      "electro-industrial",
+      "electronic",
+      "industrial",
+      "industrial",
+      "industrial metal",
+      "industrial metal",
+      "industrial rock",
+      "industrial rock",
+      "neue deutsche harte",
+      "nu metal"
+    ],
+    "GenresString": "alternative metal; ebm; ebm; electro-industrial; electro-industrial; electronic; industrial; industrial; industrial metal; industrial metal; industrial rock; industrial rock; neue deutsche harte; nu metal"
+  },
+  {
+    "User": "Andreas",
+    "Artists": [
+      "Dirtyphonics"
+    ],
+    "ArtistsString": "Dirtyphonics",
+    "Track": "Walk in the Fire",
+    "TrackId": "3waqTVDqVaOBpMHJr4Evqd",
+    "Genres": [
+      "bass trap",
+      "brostep",
+      "catstep",
+      "complextro",
+      "drum and bass",
+      "edm",
+      "electro house",
+      "electronic trap",
+      "filthstep",
+      "jump up",
+      "liquid funk",
+      "moombahton",
+      "zapstep"
+    ],
+    "GenresString": "bass trap; brostep; catstep; complextro; drum and bass; edm; electro house; electronic trap; filthstep; jump up; liquid funk; moombahton; zapstep"
+  },
+  {
+    "User": "Andreas",
+    "Artists": [
+      "BrokenRail"
+    ],
+    "ArtistsString": "BrokenRail",
+    "Track": "Memory",
+    "TrackId": "1Z5rNEbxOW1ROlikBEk2W9",
+    "Genres": [
+      "hard alternative"
+    ],
+    "GenresString": "hard alternative"
+  },
+  {
+    "User": "Andreas",
+    "Artists": [
+      "Parasite Inc."
+    ],
+    "ArtistsString": "Parasite Inc.",
+    "Track": "The Pulse of the Dead",
+    "TrackId": "292W9zKZwUiw5D0Qc1Bh9d",
+    "Genres": [
+      "melodic death metal"
+    ],
+    "GenresString": "melodic death metal"
+  },
+  {
+    "User": "Andreas",
+    "Artists": [
+      "Damn Seagulls"
+    ],
+    "ArtistsString": "Damn Seagulls",
+    "Track": "Once Upon a Time",
+    "TrackId": "5Iv28vS5JPEFryJnVunkwr",
+    "Genres": [
+      "suomi rock"
+    ],
+    "GenresString": "suomi rock"
+  },
+  {
+    "User": "Björn",
+    "Artists": [
+      "Norther"
+    ],
+    "ArtistsString": "Norther",
+    "Track": "Frozen Angel",
+    "TrackId": "0qwHMBslXUZo7ePfVYnU5X",
+    "Genres": [
+      "finnish metal",
+      "folk metal",
+      "gothic metal",
+      "melodic death metal",
+      "metal",
+      "power metal",
+      "symphonic black metal",
+      "viking metal"
+    ],
+    "GenresString": "finnish metal; folk metal; gothic metal; melodic death metal; metal; power metal; symphonic black metal; viking metal"
+  },
+  {
+    "User": "Björn",
+    "Artists": [
+      "Gatecreeper"
+    ],
+    "ArtistsString": "Gatecreeper",
+    "Track": "Sweltering Madness",
+    "TrackId": "2oRQbvPBZWsqSvVzzVR2Or",
+    "Genres": [
+      "chaotic hardcore",
+      "grindcore",
+      "mathcore",
+      "post-doom metal",
+      "sludge metal"
+    ],
+    "GenresString": "chaotic hardcore; grindcore; mathcore; post-doom metal; sludge metal"
+  },
+  {
+    "User": "Björn",
+    "Artists": [
+      "Stone Sour"
+    ],
+    "ArtistsString": "Stone Sour",
+    "Track": "Taipei Person/Allah Tea",
+    "TrackId": "0m9xl23pyUMGrxwP1YdSe2",
+    "Genres": [
+      "alternative metal",
+      "alternative rock",
+      "groove metal",
+      "nu metal",
+      "post-grunge",
+      "rap metal",
+      "rap rock",
+      "rock"
+    ],
+    "GenresString": "alternative metal; alternative rock; groove metal; nu metal; post-grunge; rap metal; rap rock; rock"
+  },
+  {
+    "User": "Björn",
+    "Artists": [
+      "Corrosion Of Conformity"
+    ],
+    "ArtistsString": "Corrosion Of Conformity",
+    "Track": "Cast the First Stone",
+    "TrackId": "4z5kMjbQVkgkpmB7yBZjuw",
+    "Genres": [
+      "alternative metal",
+      "alternative rock",
+      "crossover thrash",
+      "doom metal",
+      "funk rock",
+      "groove metal",
+      "grunge",
+      "hard rock",
+      "industrial metal",
+      "industrial rock",
+      "metal",
+      "nu metal",
+      "post-grunge",
+      "rap metal",
+      "rap rock",
+      "rock",
+      "sludge metal",
+      "speed metal",
+      "stoner metal",
+      "stoner rock",
+      "thrash metal"
+    ],
+    "GenresString": "alternative metal; alternative rock; crossover thrash; doom metal; funk rock; groove metal; grunge; hard rock; industrial metal; industrial rock; metal; nu metal; post-grunge; rap metal; rap rock; rock; sludge metal; speed metal; stoner metal; stoner rock; thrash metal"
+  },
+  {
+    "User": "Björn",
+    "Artists": [
+      "Cerberus"
+    ],
+    "ArtistsString": "Cerberus",
+    "Track": "Lust for Blood",
+    "TrackId": "7GMa3cdf5rbs35Rp62ngwK",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Björn",
+    "Artists": [
+      "Sinsaenum"
+    ],
+    "ArtistsString": "Sinsaenum",
+    "Track": "Ashes",
+    "TrackId": "2f8gJsls77HENDaHKh8pF7",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Björn",
+    "Artists": [
+      "Aephanemer"
+    ],
+    "ArtistsString": "Aephanemer",
+    "Track": "Path of the Wolf",
+    "TrackId": "6hNsonyV2UDByTYfvioXRI",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Björn",
+    "Artists": [
+      "Zimmers Hole"
+    ],
+    "ArtistsString": "Zimmers Hole",
+    "Track": "When You Were Shouting at the Devil...We Were In League With Satan",
+    "TrackId": "6CjjAOX5k0J3hKypzOJyrH",
+    "Genres": [
+      "canadian metal"
+    ],
+    "GenresString": "canadian metal"
+  },
+  {
+    "User": "Björn",
+    "Artists": [
+      "Toothgrinder"
+    ],
+    "ArtistsString": "Toothgrinder",
+    "Track": "Blue",
+    "TrackId": "20JR1pbX3EMbNNNk4aunMc",
+    "Genres": [
+      "djent"
+    ],
+    "GenresString": "djent"
+  },
+  {
+    "User": "Björn",
+    "Artists": [
+      "Before The Dawn"
+    ],
+    "ArtistsString": "Before The Dawn",
+    "Track": "Deadsong",
+    "TrackId": "70uBwhlKqPLWDPu49q9Rut",
+    "Genres": [
+      "finnish metal",
+      "gothic metal",
+      "melodic death metal",
+      "melodic metalcore",
+      "metal",
+      "viking metal"
+    ],
+    "GenresString": "finnish metal; gothic metal; melodic death metal; melodic metalcore; metal; viking metal"
+  },
+  {
+    "User": "Björn",
+    "Artists": [
+      "Gruesome"
+    ],
+    "ArtistsString": "Gruesome",
+    "Track": "Savage Land",
+    "TrackId": "4sifBPCWPaefEEJnsib7Ym",
+    "Genres": [
+      "death metal",
+      "deathgrind",
+      "goregrind",
+      "grindcore",
+      "technical death metal"
+    ],
+    "GenresString": "death metal; deathgrind; goregrind; grindcore; technical death metal"
+  },
+  {
+    "User": "Björn",
+    "Artists": [
+      "Bad Wolves"
+    ],
+    "ArtistsString": "Bad Wolves",
+    "Track": "Learn to Live",
+    "TrackId": "1njFGEoSbgf0Lvjb4lBnng",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Björn",
+    "Artists": [
+      "Eastern High"
+    ],
+    "ArtistsString": "Eastern High",
+    "Track": "Bottled Insanity",
+    "TrackId": "69AfUx0A98Uyma337nGg1k",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Björn",
+    "Artists": [
+      "Dream Evil"
+    ],
+    "ArtistsString": "Dream Evil",
+    "Track": "The Book of Heavy Metal (March of the Metallians)",
+    "TrackId": "07Vk1JPd5MgBJxdrMpnLNh",
+    "Genres": [
+      "hard rock",
+      "melodic death metal",
+      "metal",
+      "neo classical metal",
+      "power metal",
+      "progressive metal",
+      "speed metal",
+      "viking metal"
+    ],
+    "GenresString": "hard rock; melodic death metal; metal; neo classical metal; power metal; progressive metal; speed metal; viking metal"
+  },
+  {
+    "User": "Björn",
+    "Artists": [
+      "Chris Cerulli",
+      "Shannon Lucas",
+      "The Iron Son"
+    ],
+    "ArtistsString": "Chris Cerulli; Shannon Lucas; The Iron Son",
+    "Track": "Unleash Hell (feat. Chris Cerulli & Shannon Lucas)",
+    "TrackId": "29jaKkhy1JHNRNkNyrloaS",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Björn",
+    "Artists": [
+      "Pete Cottrell",
+      "Rob Scallon"
+    ],
+    "ArtistsString": "Pete Cottrell; Rob Scallon",
+    "Track": "Gas Mask Catalogue",
+    "TrackId": "55hh4QP1qENwjj7GHR3XPa",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Björn",
+    "Artists": [
+      "Destruction"
+    ],
+    "ArtistsString": "Destruction",
+    "Track": "Confused Mind",
+    "TrackId": "0f3PhrbAwcZjfEehKDiKDU",
+    "Genres": [
+      "black thrash",
+      "crossover thrash",
+      "death metal",
+      "german metal",
+      "groove metal",
+      "hard rock",
+      "latin metal",
+      "metal",
+      "nwobhm",
+      "power metal",
+      "speed metal",
+      "thrash metal"
+    ],
+    "GenresString": "black thrash; crossover thrash; death metal; german metal; groove metal; hard rock; latin metal; metal; nwobhm; power metal; speed metal; thrash metal"
+  },
+  {
+    "User": "Björn",
+    "Artists": [
+      "Obey The Brave"
+    ],
+    "ArtistsString": "Obey The Brave",
+    "Track": "Raise Your Voice",
+    "TrackId": "3uU1saxAw48eFILqKPVjbK",
+    "Genres": [
+      "canadian metal",
+      "death core",
+      "melodic metalcore",
+      "metalcore",
+      "rap metal"
+    ],
+    "GenresString": "canadian metal; death core; melodic metalcore; metalcore; rap metal"
+  },
+  {
+    "User": "Björn",
+    "Artists": [
+      "Auðn"
+    ],
+    "ArtistsString": "Auðn",
+    "Track": "Í Hálmstráið Held",
+    "TrackId": "5eZU6ZcPK99isvgyUTs8jg",
+    "Genres": [
+      "voidgaze"
+    ],
+    "GenresString": "voidgaze"
+  },
+  {
+    "User": "Björn",
+    "Artists": [
+      "Winds of Plague"
+    ],
+    "ArtistsString": "Winds of Plague",
+    "Track": "Never Alone",
+    "TrackId": "73KlmZW7U3nDIwbI4356Tl",
+    "Genres": [
+      "death core",
+      "melodic metalcore",
+      "metalcore"
+    ],
+    "GenresString": "death core; melodic metalcore; metalcore"
+  },
+  {
+    "User": "Björn",
+    "Artists": [
+      "Celeste"
+    ],
+    "ArtistsString": "Celeste",
+    "Track": "Cette chute brutale",
+    "TrackId": "4SEtm5QNYTWKGCq342KDJb",
+    "Genres": [
+      "post-doom metal"
+    ],
+    "GenresString": "post-doom metal"
+  },
+  {
+    "User": "Björn",
+    "Artists": [
+      "Cradle Of Filth"
+    ],
+    "ArtistsString": "Cradle Of Filth",
+    "Track": "Macabre, This Banquet",
+    "TrackId": "5vU7cphXn2kKwhLIH2EJAt",
+    "Genres": [
+      "alternative metal",
+      "black metal",
+      "death metal",
+      "gothic metal",
+      "groove metal",
+      "industrial metal",
+      "melodic death metal",
+      "melodic metalcore",
+      "metal",
+      "nu metal",
+      "symphonic black metal"
+    ],
+    "GenresString": "alternative metal; black metal; death metal; gothic metal; groove metal; industrial metal; melodic death metal; melodic metalcore; metal; nu metal; symphonic black metal"
+  },
+  {
+    "User": "Björn",
+    "Artists": [
+      "Noumena"
+    ],
+    "ArtistsString": "Noumena",
+    "Track": "Metsän viha",
+    "TrackId": "6dkFjNdXRY4RyFISUTbmRB",
+    "Genres": [
+      "finnish metal",
+      "folk metal",
+      "gothic metal",
+      "melodic death metal",
+      "viking metal"
+    ],
+    "GenresString": "finnish metal; folk metal; gothic metal; melodic death metal; viking metal"
+  },
+  {
+    "User": "Björn",
+    "Artists": [
+      "The Infernal Sea"
+    ],
+    "ArtistsString": "The Infernal Sea",
+    "Track": "Skinwalker",
+    "TrackId": "7AEKbPaVa8VvV0hGnuJHNa",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Björn",
+    "Artists": [
+      "D. Randall Blythe",
+      "Westfield Massacre"
+    ],
+    "ArtistsString": "D. Randall Blythe; Westfield Massacre",
+    "Track": "Underneath the Skin (feat. D. Randall Blythe)",
+    "TrackId": "336lKDsrEIq7VKpJns9KAA",
+    "Genres": [
+      "groove metal"
+    ],
+    "GenresString": "groove metal"
+  },
+  {
+    "User": "Björn",
+    "Artists": [
+      "Hideous Divinity"
+    ],
+    "ArtistsString": "Hideous Divinity",
+    "Track": "Ages Die",
+    "TrackId": "5wFbQiGmpmwstKuqxKvoss",
+    "Genres": [
+      "brutal death metal",
+      "death metal",
+      "deathgrind",
+      "technical brutal death metal",
+      "technical death metal"
+    ],
+    "GenresString": "brutal death metal; death metal; deathgrind; technical brutal death metal; technical death metal"
+  },
+  {
+    "User": "Björn",
+    "Artists": [
+      "Kill the Kong"
+    ],
+    "ArtistsString": "Kill the Kong",
+    "Track": "Juggernaut (Wolfpack)",
+    "TrackId": "43TDdAeIa6rQVHvjKxRtIC",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Björn",
+    "Artists": [
+      "Cloak"
+    ],
+    "ArtistsString": "Cloak",
+    "Track": "To Venomous Depths / Where No Light Shines",
+    "TrackId": "2vgGPGUC5Ep0ECJ8YY2xxV",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Björn",
+    "Artists": [
+      "Cavalera Conspiracy"
+    ],
+    "ArtistsString": "Cavalera Conspiracy",
+    "Track": "Spectral War",
+    "TrackId": "28nbzsM8sZklR4bh7yhmRV",
+    "Genres": [
+      "alternative metal",
+      "crossover thrash",
+      "death metal",
+      "groove metal",
+      "melodic metalcore",
+      "metal",
+      "metalcore",
+      "nu metal",
+      "rap metal",
+      "rap rock",
+      "speed metal",
+      "thrash metal"
+    ],
+    "GenresString": "alternative metal; crossover thrash; death metal; groove metal; melodic metalcore; metal; metalcore; nu metal; rap metal; rap rock; speed metal; thrash metal"
+  },
+  {
+    "User": "Björn",
+    "Artists": [
+      "Shadow of Intent"
+    ],
+    "ArtistsString": "Shadow of Intent",
+    "Track": "The Prelude to Bereavement",
+    "TrackId": "559Y7yDP8HXuuVb3FGHxGf",
+    "Genres": [
+      "death core",
+      "progressive deathcore"
+    ],
+    "GenresString": "death core; progressive deathcore"
+  },
+  {
+    "User": "Eike",
+    "Artists": [
+      "Kill the Kong"
+    ],
+    "ArtistsString": "Kill the Kong",
+    "Track": "Bring the Heat",
+    "TrackId": "7I9UPGw1UjRgONgv2bZ3e9",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Eike",
+    "Artists": [
+      "Byzantine"
+    ],
+    "ArtistsString": "Byzantine",
+    "Track": "Vile Maxim",
+    "TrackId": "1jdAPI5325xM0oPM4ThvWR",
+    "Genres": [
+      "groove metal",
+      "melodic metalcore",
+      "metalcore"
+    ],
+    "GenresString": "groove metal; melodic metalcore; metalcore"
+  },
+  {
+    "User": "Eike",
+    "Artists": [
+      "A Night In Texas"
+    ],
+    "ArtistsString": "A Night In Texas",
+    "Track": "Population Extermination",
+    "TrackId": "5UGpJYz4uJSN92Xxs7Z9Bo",
+    "Genres": [
+      "death core",
+      "progressive deathcore"
+    ],
+    "GenresString": "death core; progressive deathcore"
+  },
+  {
+    "User": "Eike",
+    "Artists": [
+      "Venom Prison"
+    ],
+    "ArtistsString": "Venom Prison",
+    "Track": "Abysmal Agony",
+    "TrackId": "6RpRwfpkJnan3mQZw9Q3GD",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Eike",
+    "Artists": [
+      "GG Allin"
+    ],
+    "ArtistsString": "GG Allin",
+    "Track": "Bite It You Scum",
+    "TrackId": "7JQKj4FveKAYgk1UzW8Vo3",
+    "Genres": [
+      "crossover thrash",
+      "hardcore punk",
+      "oi",
+      "punk"
+    ],
+    "GenresString": "crossover thrash; hardcore punk; oi; punk"
+  },
+  {
+    "User": "Eike",
+    "Artists": [
+      "The Devil's Bastards"
+    ],
+    "ArtistsString": "The Devil's Bastards",
+    "Track": "To the Lost",
+    "TrackId": "1PMBnOk0XR6vzWgya1oO67",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Eike",
+    "Artists": [
+      "The Order Of Elijah"
+    ],
+    "ArtistsString": "The Order Of Elijah",
+    "Track": "New Line Of Defense",
+    "TrackId": "1QsnlQSOWjEjzygvTm5LZc",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Eike",
+    "Artists": [
+      "ATLAS (FIN)"
+    ],
+    "ArtistsString": "ATLAS (FIN)",
+    "Track": "Borealis",
+    "TrackId": "4cujmfd3VtIhD2Had3B8Bt",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Eike",
+    "Artists": [
+      "Decapitated"
+    ],
+    "ArtistsString": "Decapitated",
+    "Track": "Spheres of Madness",
+    "TrackId": "4lNznSUjByH5zWpPZFFeff",
+    "Genres": [
+      "black metal",
+      "brutal death metal",
+      "death core",
+      "death metal",
+      "deathgrind",
+      "grindcore",
+      "groove metal",
+      "jazz metal",
+      "melodic death metal",
+      "melodic metalcore",
+      "metal",
+      "metalcore",
+      "speed metal",
+      "technical death metal",
+      "thrash metal"
+    ],
+    "GenresString": "black metal; brutal death metal; death core; death metal; deathgrind; grindcore; groove metal; jazz metal; melodic death metal; melodic metalcore; metal; metalcore; speed metal; technical death metal; thrash metal"
+  },
+  {
+    "User": "Eike",
+    "Artists": [
+      "Brojob",
+      "Cj Mcmahon",
+      "Tyler Shelton"
+    ],
+    "ArtistsString": "Brojob; Cj Mcmahon; Tyler Shelton",
+    "Track": "Tickle War (feat. Cj Mcmahon & Tyler Shelton)",
+    "TrackId": "2g2YLY8q0b18nH5KvSWYAG",
+    "Genres": [
+      "progressive deathcore"
+    ],
+    "GenresString": "progressive deathcore"
+  },
+  {
+    "User": "Eike",
+    "Artists": [
+      "Scarpoint"
+    ],
+    "ArtistsString": "Scarpoint",
+    "Track": "Open Your Eyes",
+    "TrackId": "4gliD3lnMnrkiK7P18YuWq",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Eike",
+    "Artists": [
+      "Carach Angren"
+    ],
+    "ArtistsString": "Carach Angren",
+    "Track": "The Sighting Is a Portent of Doom",
+    "TrackId": "7HGxJ1IIC9tDcjI30Nr8da",
+    "Genres": [
+      "black metal",
+      "death metal",
+      "folk metal",
+      "melodic death metal",
+      "metal",
+      "pagan black metal",
+      "symphonic black metal",
+      "viking metal"
+    ],
+    "GenresString": "black metal; death metal; folk metal; melodic death metal; metal; pagan black metal; symphonic black metal; viking metal"
+  },
+  {
+    "User": "Eike",
+    "Artists": [
+      "Osiah"
+    ],
+    "ArtistsString": "Osiah",
+    "Track": "Perennial Agony",
+    "TrackId": "7gK8OaB7PMD7qaVamZHrfs",
+    "Genres": [
+      "death core",
+      "progressive deathcore"
+    ],
+    "GenresString": "death core; progressive deathcore"
+  },
+  {
+    "User": "Eike",
+    "Artists": [
+      "At Rest"
+    ],
+    "ArtistsString": "At Rest",
+    "Track": "Dance of the Witch",
+    "TrackId": "7IQc2cjFhxtH8x5DH3KMrI",
+    "Genres": [
+      "brutal deathcore",
+      "progressive deathcore"
+    ],
+    "GenresString": "brutal deathcore; progressive deathcore"
+  },
+  {
+    "User": "Eike",
+    "Artists": [
+      "Terror"
+    ],
+    "ArtistsString": "Terror",
+    "Track": "Keepers of the Faith",
+    "TrackId": "6CkAvo0TDvHRiqH6nJNW9o",
+    "Genres": [
+      "christian hardcore",
+      "crossover thrash",
+      "hardcore",
+      "melodic metalcore",
+      "metalcore",
+      "rap metal",
+      "straight edge"
+    ],
+    "GenresString": "christian hardcore; crossover thrash; hardcore; melodic metalcore; metalcore; rap metal; straight edge"
+  },
+  {
+    "User": "Eike",
+    "Artists": [
+      "Vredehammer"
+    ],
+    "ArtistsString": "Vredehammer",
+    "Track": "Spawn Tyrant",
+    "TrackId": "3lUhpbHJfsEB9oSImROIm7",
+    "Genres": [
+      "cryptic black metal"
+    ],
+    "GenresString": "cryptic black metal"
+  },
+  {
+    "User": "Eike",
+    "Artists": [
+      "Benighted"
+    ],
+    "ArtistsString": "Benighted",
+    "Track": "Du riechst so gut - Rammstein",
+    "TrackId": "6GEpx3qTOUTk6ljyiszRkv",
+    "Genres": [
+      "brutal death metal",
+      "death core",
+      "death metal",
+      "deathgrind",
+      "goregrind",
+      "grindcore",
+      "technical death metal"
+    ],
+    "GenresString": "brutal death metal; death core; death metal; deathgrind; goregrind; grindcore; technical death metal"
+  },
+  {
+    "User": "Eike",
+    "Artists": [
+      "Adema"
+    ],
+    "ArtistsString": "Adema",
+    "Track": "Immortal",
+    "TrackId": "4pawqkNZXTbqrYAd0I5Wtb",
+    "Genres": [
+      "alternative metal",
+      "groove metal",
+      "industrial metal",
+      "industrial rock",
+      "metalcore",
+      "nu metal",
+      "post-grunge",
+      "rap metal",
+      "rap rock"
+    ],
+    "GenresString": "alternative metal; groove metal; industrial metal; industrial rock; metalcore; nu metal; post-grunge; rap metal; rap rock"
+  },
+  {
+    "User": "Eike",
+    "Artists": [
+      "Power Trip"
+    ],
+    "ArtistsString": "Power Trip",
+    "Track": "Executioner's Tax (Swing of the Axe)",
+    "TrackId": "1kbwEcixFWVj5dFO9Kso3J",
+    "Genres": [
+      "chaotic hardcore",
+      "crossover thrash",
+      "hardcore",
+      "post-doom metal"
+    ],
+    "GenresString": "chaotic hardcore; crossover thrash; hardcore; post-doom metal"
+  },
+  {
+    "User": "Eike",
+    "Artists": [
+      "Wovenwar"
+    ],
+    "ArtistsString": "Wovenwar",
+    "Track": "All Rise",
+    "TrackId": "08v3kOuxQgkZg0PAIpueAh",
+    "Genres": [
+      "christian metal",
+      "melodic death metal",
+      "melodic metalcore",
+      "metal",
+      "metalcore",
+      "post-screamo"
+    ],
+    "GenresString": "christian metal; melodic death metal; melodic metalcore; metal; metalcore; post-screamo"
+  },
+  {
+    "User": "Eike",
+    "Artists": [
+      "The Raven Age"
+    ],
+    "ArtistsString": "The Raven Age",
+    "Track": "Angel In Disgrace",
+    "TrackId": "4qxXNYWAnjQhLDy0fAg9bL",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Eike",
+    "Artists": [
+      "Fit For An Autopsy"
+    ],
+    "ArtistsString": "Fit For An Autopsy",
+    "Track": "Absolute Hope Absolute Hell",
+    "TrackId": "0DeuovF8cMMSZBtmxD07aQ",
+    "Genres": [
+      "brutal deathcore",
+      "death core",
+      "djent",
+      "mathcore",
+      "melodic metalcore",
+      "metalcore",
+      "progressive deathcore",
+      "rap metal"
+    ],
+    "GenresString": "brutal deathcore; death core; djent; mathcore; melodic metalcore; metalcore; progressive deathcore; rap metal"
+  },
+  {
+    "User": "Eike",
+    "Artists": [
+      "Don Huonot"
+    ],
+    "ArtistsString": "Don Huonot",
+    "Track": "Seireeni - Single Mix",
+    "TrackId": "3YJXX3wHiXsSdrINtDvqNg",
+    "Genres": [
+      "finnish pop",
+      "suomi rock"
+    ],
+    "GenresString": "finnish pop; suomi rock"
+  },
+  {
+    "User": "Eike",
+    "Artists": [
+      "Emperor"
+    ],
+    "ArtistsString": "Emperor",
+    "Track": "I Am The Black Wizards",
+    "TrackId": "1dgjxAansD6ZOiXPjLvREU",
+    "Genres": [
+      "atmospheric black metal",
+      "avantgarde metal",
+      "black metal",
+      "death metal",
+      "doom metal",
+      "jazz metal",
+      "melodic death metal",
+      "metal",
+      "norwegian metal",
+      "pagan black metal",
+      "symphonic black metal",
+      "technical death metal",
+      "thrash metal",
+      "viking metal",
+      "voidgaze"
+    ],
+    "GenresString": "atmospheric black metal; avantgarde metal; black metal; death metal; doom metal; jazz metal; melodic death metal; metal; norwegian metal; pagan black metal; symphonic black metal; technical death metal; thrash metal; viking metal; voidgaze"
+  },
+  {
+    "User": "Eike",
+    "Artists": [
+      "Monuments"
+    ],
+    "ArtistsString": "Monuments",
+    "Track": "Origin of Escape",
+    "TrackId": "0i1RF2ipRfrAVv5GDRYjHS",
+    "Genres": [
+      "death core",
+      "djent",
+      "jazz metal",
+      "mathcore"
+    ],
+    "GenresString": "death core; djent; jazz metal; mathcore"
+  },
+  {
+    "User": "Eike",
+    "Artists": [
+      "King Parrot"
+    ],
+    "ArtistsString": "King Parrot",
+    "Track": "Shit On The Liver",
+    "TrackId": "6Lmz5fj6m5n4enHmYAZJXG",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Eike",
+    "Artists": [
+      "Daddy-Rock"
+    ],
+    "ArtistsString": "Daddy-Rock",
+    "Track": "Rockstar",
+    "TrackId": "7EIbw4i6zFYA2kuDYWgRly",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Eike",
+    "Artists": [
+      "Belphegor"
+    ],
+    "ArtistsString": "Belphegor",
+    "Track": "Conjuring The Dead",
+    "TrackId": "1lhOZXunfrclT3o57mJUAD",
+    "Genres": [
+      "black metal",
+      "brutal death metal",
+      "death metal",
+      "deathgrind",
+      "grindcore",
+      "heavy christmas",
+      "melodic death metal",
+      "metal",
+      "pagan black metal",
+      "symphonic black metal",
+      "technical death metal",
+      "thrash metal",
+      "viking metal"
+    ],
+    "GenresString": "black metal; brutal death metal; death metal; deathgrind; grindcore; heavy christmas; melodic death metal; metal; pagan black metal; symphonic black metal; technical death metal; thrash metal; viking metal"
+  },
+  {
+    "User": "Eike",
+    "Artists": [
+      "Uncured"
+    ],
+    "ArtistsString": "Uncured",
+    "Track": "Stygian Valley",
+    "TrackId": "7r5GLsR4hCUrBAtRBdvJuj",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Eike",
+    "Artists": [
+      "Totalt Jävla Mörker"
+    ],
+    "ArtistsString": "Totalt Jävla Mörker",
+    "Track": "Kall Värld",
+    "TrackId": "6DJNqa17EqwNbr3VhYa5Ua",
+    "Genres": [
+      "crust punk",
+      "swedish punk"
+    ],
+    "GenresString": "crust punk; swedish punk"
+  },
+  {
+    "User": "Philipp",
+    "Artists": [
+      "Haftbefehl"
+    ],
+    "ArtistsString": "Haftbefehl",
+    "Track": "069",
+    "TrackId": "1B2s3CpX2PV0YN7DkLSQ4b",
+    "Genres": [
+      "deep german hip hop",
+      "german hip hop"
+    ],
+    "GenresString": "deep german hip hop; german hip hop"
+  },
+  {
+    "User": "Philipp",
+    "Artists": [
+      "Shakka"
+    ],
+    "ArtistsString": "Shakka",
+    "Track": "Say Nada",
+    "TrackId": "0IUfPLqoV9VPo43pt9XaSh",
+    "Genres": [
+      "grime"
+    ],
+    "GenresString": "grime"
+  },
+  {
+    "User": "Philipp",
+    "Artists": [
+      "Capone-N-Noreaga"
+    ],
+    "ArtistsString": "Capone-N-Noreaga",
+    "Track": "Invincible",
+    "TrackId": "0N4fNFFYFRGbdEFs8iI3pl",
+    "Genres": [
+      "east coast hip hop",
+      "gangster rap",
+      "hardcore hip hop",
+      "hip hop"
+    ],
+    "GenresString": "east coast hip hop; gangster rap; hardcore hip hop; hip hop"
+  },
+  {
+    "User": "Philipp",
+    "Artists": [
+      "Lil Phil",
+      "MC Hans"
+    ],
+    "ArtistsString": "Lil Phil; MC Hans",
+    "Track": "Flumz",
+    "TrackId": "3BBhvEyTaLY0unvFQimf6B",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Philipp",
+    "Artists": [
+      "Sierra Kidd"
+    ],
+    "ArtistsString": "Sierra Kidd",
+    "Track": "Xanny",
+    "TrackId": "1qjjWNjMmK631J5xjb4yxE",
+    "Genres": [
+      "deep german hip hop",
+      "german hip hop"
+    ],
+    "GenresString": "deep german hip hop; german hip hop"
+  },
+  {
+    "User": "Philipp",
+    "Artists": [
+      "D-Double"
+    ],
+    "ArtistsString": "D-Double",
+    "Track": "Intro",
+    "TrackId": "4vw3C4Ro3OUD0MNmROKm6e",
+    "Genres": [
+      "deep dutch hip hop",
+      "dutch hip hop"
+    ],
+    "GenresString": "deep dutch hip hop; dutch hip hop"
+  },
+  {
+    "User": "Philipp",
+    "Artists": [
+      "DRAM"
+    ],
+    "ArtistsString": "DRAM",
+    "Track": "Cash Machine",
+    "TrackId": "6GG2tkV9PRYGN5rniXPFXZ",
+    "Genres": [
+      "dwn trap",
+      "hip hop",
+      "pop rap",
+      "rap",
+      "southern hip hop",
+      "trap music",
+      "underground hip hop"
+    ],
+    "GenresString": "dwn trap; hip hop; pop rap; rap; southern hip hop; trap music; underground hip hop"
+  },
+  {
+    "User": "Philipp",
+    "Artists": [
+      "Caramelo"
+    ],
+    "ArtistsString": "Caramelo",
+    "Track": "Silberner Wagen",
+    "TrackId": "526tL3fD8pktmLGShZKYKD",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Philipp",
+    "Artists": [
+      "6LACK"
+    ],
+    "ArtistsString": "6LACK",
+    "Track": "PRBLMS",
+    "TrackId": "4AtZRwSR8BOTTQg5ihSggt",
+    "Genres": [
+      "dwn trap",
+      "hip hop",
+      "indie r&b",
+      "pop rap",
+      "rap",
+      "southern hip hop",
+      "trap music"
+    ],
+    "GenresString": "dwn trap; hip hop; indie r&b; pop rap; rap; southern hip hop; trap music"
+  },
+  {
+    "User": "Philipp",
+    "Artists": [
+      "Hef"
+    ],
+    "ArtistsString": "Hef",
+    "Track": "Shooter",
+    "TrackId": "2pxgzWsKsQkvQH67qCzDEr",
+    "Genres": [
+      "deep dutch hip hop",
+      "dutch hip hop"
+    ],
+    "GenresString": "deep dutch hip hop; dutch hip hop"
+  },
+  {
+    "User": "Philipp",
+    "Artists": [
+      "Izzy Bizu",
+      "Kano",
+      "The Heavytrackerz"
+    ],
+    "ArtistsString": "Izzy Bizu; Kano; The Heavytrackerz",
+    "Track": "White Tiger - The Heavytrackerz Remix",
+    "TrackId": "4YiuAyMc91o9HvhEWUOvsB",
+    "Genres": [
+      "deep indie r&b",
+      "grime",
+      "grime",
+      "house",
+      "indie r&b",
+      "uk garage"
+    ],
+    "GenresString": "deep indie r&b; grime; grime; house; indie r&b; uk garage"
+  },
+  {
+    "User": "Philipp",
+    "Artists": [
+      "Cahiips"
+    ],
+    "ArtistsString": "Cahiips",
+    "Track": "C'est risqué",
+    "TrackId": "3StVuaVlsCbUz8Z0DvDKKI",
+    "Genres": [
+      "trap francais"
+    ],
+    "GenresString": "trap francais"
+  },
+  {
+    "User": "Philipp",
+    "Artists": [
+      "Fatlip"
+    ],
+    "ArtistsString": "Fatlip",
+    "Track": "What's Up Fatlip",
+    "TrackId": "5N5WZOiDFjoxfejS2CnEqM",
+    "Genres": [
+      "alternative hip hop",
+      "hip hop",
+      "turntablism"
+    ],
+    "GenresString": "alternative hip hop; hip hop; turntablism"
+  },
+  {
+    "User": "Philipp",
+    "Artists": [
+      "Den 10",
+      "Smoke Dza"
+    ],
+    "ArtistsString": "Den 10; Smoke Dza",
+    "Track": "Substance Abuse",
+    "TrackId": "6K0LB4XItoRSkKZSkVTS4d",
+    "Genres": [
+      "alternative hip hop",
+      "dirty south rap",
+      "hardcore hip hop",
+      "hip hop",
+      "pop rap",
+      "rap",
+      "soul flow",
+      "southern hip hop",
+      "trap music",
+      "underground hip hop"
+    ],
+    "GenresString": "alternative hip hop; dirty south rap; hardcore hip hop; hip hop; pop rap; rap; soul flow; southern hip hop; trap music; underground hip hop"
+  },
+  {
+    "User": "Philipp",
+    "Artists": [
+      "Pietju Bell"
+    ],
+    "ArtistsString": "Pietju Bell",
+    "Track": "Als Je Wist Dan Je Weet",
+    "TrackId": "6n2Hr4ieid3D9ajnGX3pdp",
+    "Genres": [
+      "deep dutch hip hop",
+      "dutch hip hop"
+    ],
+    "GenresString": "deep dutch hip hop; dutch hip hop"
+  },
+  {
+    "User": "Philipp",
+    "Artists": [
+      "ODZ"
+    ],
+    "ArtistsString": "ODZ",
+    "Track": "Gamla tider",
+    "TrackId": "6NDfUBzva9eE1JRkV5ZlZD",
+    "Genres": [
+      "deep swedish hip hop",
+      "swedish hip hop"
+    ],
+    "GenresString": "deep swedish hip hop; swedish hip hop"
+  },
+  {
+    "User": "Philipp",
+    "Artists": [
+      "A^K"
+    ],
+    "ArtistsString": "A^K",
+    "Track": "Sippin' Yak",
+    "TrackId": "6wpQHwEstzhDddcy4dpVNr",
+    "Genres": [
+      "japanese jazztronica"
+    ],
+    "GenresString": "japanese jazztronica"
+  },
+  {
+    "User": "Philipp",
+    "Artists": [
+      "Disiz La Peste"
+    ],
+    "ArtistsString": "Disiz La Peste",
+    "Track": "Autre espèce",
+    "TrackId": "0gdwNqpqlkgyszpz696WT2",
+    "Genres": [
+      "francoton",
+      "french hip hop",
+      "french pop",
+      "french reggae",
+      "trap francais"
+    ],
+    "GenresString": "francoton; french hip hop; french pop; french reggae; trap francais"
+  },
+  {
+    "User": "Philipp",
+    "Artists": [
+      "5-D",
+      "Bronze Whale"
+    ],
+    "ArtistsString": "5-D; Bronze Whale",
+    "Track": "Shrubbery",
+    "TrackId": "7koDkpPn92SL8RmD0CkGVv",
+    "Genres": [
+      "vapor twitch"
+    ],
+    "GenresString": "vapor twitch"
+  },
+  {
+    "User": "Philipp",
+    "Artists": [
+      "Awon & Dephlow"
+    ],
+    "ArtistsString": "Awon & Dephlow",
+    "Track": "You Know My Name (Prod. Phoniks)",
+    "TrackId": "7GXOx021EDwSPNNw2Nb9uS",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Philipp",
+    "Artists": [
+      "Desiigner",
+      "Kanye West"
+    ],
+    "ArtistsString": "Desiigner; Kanye West",
+    "Track": "Tiimmy Turner - Remix",
+    "TrackId": "2vwvGMStv1nEuoOTd4xgMu",
+    "Genres": [
+      "dwn trap",
+      "hip hop",
+      "pop",
+      "pop christmas",
+      "pop rap",
+      "pop rap",
+      "rap",
+      "rap",
+      "southern hip hop",
+      "trap music",
+      "underground hip hop"
+    ],
+    "GenresString": "dwn trap; hip hop; pop; pop christmas; pop rap; pop rap; rap; rap; southern hip hop; trap music; underground hip hop"
+  },
+  {
+    "User": "Philipp",
+    "Artists": [
+      "Ares"
+    ],
+    "ArtistsString": "Ares",
+    "Track": "Lakeside",
+    "TrackId": "0C5pL82Ol4qmzkxT15CfRM",
+    "Genres": [
+      "deep dutch hip hop",
+      "dutch hip hop"
+    ],
+    "GenresString": "deep dutch hip hop; dutch hip hop"
+  },
+  {
+    "User": "Philipp",
+    "Artists": [
+      "Lord Finesse"
+    ],
+    "ArtistsString": "Lord Finesse",
+    "Track": "Hip 2 Da Game",
+    "TrackId": "2GLmjAMVDysGdJLZAjN10S",
+    "Genres": [
+      "alternative hip hop",
+      "east coast hip hop",
+      "hardcore hip hop",
+      "hip hop",
+      "turntablism"
+    ],
+    "GenresString": "alternative hip hop; east coast hip hop; hardcore hip hop; hip hop; turntablism"
+  },
+  {
+    "User": "Philipp",
+    "Artists": [
+      "NAV"
+    ],
+    "ArtistsString": "NAV",
+    "Track": "Up",
+    "TrackId": "5qbcsZMwL0x46sX7VO37Ye",
+    "Genres": [
+      "dwn trap",
+      "pop rap",
+      "rap",
+      "southern hip hop",
+      "trap music"
+    ],
+    "GenresString": "dwn trap; pop rap; rap; southern hip hop; trap music"
+  },
+  {
+    "User": "Philipp",
+    "Artists": [
+      "UKNWN"
+    ],
+    "ArtistsString": "UKNWN",
+    "Track": "Chirp",
+    "TrackId": "3wCKaMACBOV1ZgpmEaJz6n",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Philipp",
+    "Artists": [
+      "Berner",
+      "Mistah F.A.B."
+    ],
+    "ArtistsString": "Berner; Mistah F.A.B.",
+    "Track": "Changes",
+    "TrackId": "401JFBtYIJ2uiIafWHEfQt",
+    "Genres": [
+      "gangster rap",
+      "hyphy",
+      "hyphy",
+      "pop rap",
+      "rap",
+      "southern hip hop",
+      "trap music",
+      "underground hip hop",
+      "west coast trap",
+      "west coast trap"
+    ],
+    "GenresString": "gangster rap; hyphy; hyphy; pop rap; rap; southern hip hop; trap music; underground hip hop; west coast trap; west coast trap"
+  },
+  {
+    "User": "Philipp",
+    "Artists": [
+      "Hippie Sabotage"
+    ],
+    "ArtistsString": "Hippie Sabotage",
+    "Track": "Devil Eyes",
+    "TrackId": "7MiZjKawmXTsTNePyTfPyL",
+    "Genres": [
+      "electronic trap",
+      "vapor twitch"
+    ],
+    "GenresString": "electronic trap; vapor twitch"
+  },
+  {
+    "User": "Philipp",
+    "Artists": [
+      "Ronnie Flex"
+    ],
+    "ArtistsString": "Ronnie Flex",
+    "Track": "Wat Niet Wat Wel",
+    "TrackId": "1LRvdckas8ctZZ7OjfaaqA",
+    "Genres": [
+      "deep dutch hip hop",
+      "dutch hip hop"
+    ],
+    "GenresString": "deep dutch hip hop; dutch hip hop"
+  },
+  {
+    "User": "Philipp",
+    "Artists": [
+      "Khary",
+      "Mazde"
+    ],
+    "ArtistsString": "Khary; Mazde",
+    "Track": "Neverland",
+    "TrackId": "27yEubTlfDi8cEm4u4dYAr",
+    "Genres": [
+      "bass trap",
+      "chillhop",
+      "deep underground hip hop",
+      "tropical house",
+      "vapor soul",
+      "vapor twitch"
+    ],
+    "GenresString": "bass trap; chillhop; deep underground hip hop; tropical house; vapor soul; vapor twitch"
+  },
+  {
+    "User": "Philipp",
+    "Artists": [
+      "Jafé",
+      "Paulina",
+      "Russ"
+    ],
+    "ArtistsString": "Jafé; Paulina; Russ",
+    "Track": "Willy Wonka (feat. Paulina & Jafé)",
+    "TrackId": "0OwqNxhVtO6lSw2XAxdhgX",
+    "Genres": [
+      "pop rap",
+      "rap",
+      "trap music"
+    ],
+    "GenresString": "pop rap; rap; trap music"
+  },
+  {
+    "User": "Sabine",
+    "Artists": [
+      "12 Stones"
+    ],
+    "ArtistsString": "12 Stones",
+    "Track": "We Are One",
+    "TrackId": "3w9TdBjPFimw3QSNOnBpV9",
+    "Genres": [
+      "alternative metal",
+      "christian alternative rock",
+      "christian rock",
+      "nu metal",
+      "post-grunge",
+      "rap metal",
+      "rap rock"
+    ],
+    "GenresString": "alternative metal; christian alternative rock; christian rock; nu metal; post-grunge; rap metal; rap rock"
+  },
+  {
+    "User": "Sabine",
+    "Artists": [
+      "Scar The Martyr"
+    ],
+    "ArtistsString": "Scar The Martyr",
+    "Track": "Blood Host",
+    "TrackId": "2Y4V0ULxOW5ETI2JhnWFlb",
+    "Genres": [
+      "alternative metal",
+      "groove metal",
+      "nu metal"
+    ],
+    "GenresString": "alternative metal; groove metal; nu metal"
+  },
+  {
+    "User": "Sabine",
+    "Artists": [
+      "Blue Smock Nancy"
+    ],
+    "ArtistsString": "Blue Smock Nancy",
+    "Track": "Unsettling Differences",
+    "TrackId": "5BOm94atF7pCMeiHjhWdkg",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Sabine",
+    "Artists": [
+      "Adrian Ost ( Powerman 5000 )",
+      "Riggs ( x-Rob Zombie )",
+      "Scum of the Earth"
+    ],
+    "ArtistsString": "Adrian Ost ( Powerman 5000 ); Riggs ( x-Rob Zombie ); Scum of the Earth",
+    "Track": "Bombshell from Hell",
+    "TrackId": "1L6YVF1UsmSPbwhTVLjOjz",
+    "Genres": [
+      "alternative metal",
+      "groove metal",
+      "industrial metal",
+      "nu metal"
+    ],
+    "GenresString": "alternative metal; groove metal; industrial metal; nu metal"
+  },
+  {
+    "User": "Sabine",
+    "Artists": [
+      "Disciple"
+    ],
+    "ArtistsString": "Disciple",
+    "Track": "Game On",
+    "TrackId": "3QjKcs8POEZQHgkwmBUS87",
+    "Genres": [
+      "ccm",
+      "christian alternative rock",
+      "christian hip hop",
+      "christian metal",
+      "christian music",
+      "christian rock"
+    ],
+    "GenresString": "ccm; christian alternative rock; christian hip hop; christian metal; christian music; christian rock"
+  },
+  {
+    "User": "Sabine",
+    "Artists": [
+      "I Prevail"
+    ],
+    "ArtistsString": "I Prevail",
+    "Track": "Come And Get It",
+    "TrackId": "44M12pkcMqqdbNNooHCZ6C",
+    "Genres": [
+      "alternative metal",
+      "pop punk",
+      "rap metal",
+      "screamo"
+    ],
+    "GenresString": "alternative metal; pop punk; rap metal; screamo"
+  },
+  {
+    "User": "Sabine",
+    "Artists": [
+      "From Ashes to New"
+    ],
+    "ArtistsString": "From Ashes to New",
+    "Track": "My Fight",
+    "TrackId": "5HDG2PPLki6wowJvZbAH9d",
+    "Genres": [
+      "alternative metal",
+      "nu metal",
+      "post-grunge",
+      "rap metal",
+      "rap rock"
+    ],
+    "GenresString": "alternative metal; nu metal; post-grunge; rap metal; rap rock"
+  },
+  {
+    "User": "Sabine",
+    "Artists": [
+      "Blind Witness"
+    ],
+    "ArtistsString": "Blind Witness",
+    "Track": "All Alone",
+    "TrackId": "5p3tWk2JgqhqF7Dfgpl46x",
+    "Genres": [
+      "canadian metal",
+      "death core",
+      "melodic metalcore",
+      "metalcore"
+    ],
+    "GenresString": "canadian metal; death core; melodic metalcore; metalcore"
+  },
+  {
+    "User": "Sabine",
+    "Artists": [
+      "Ministry"
+    ],
+    "ArtistsString": "Ministry",
+    "Track": "No W Redux",
+    "TrackId": "0dE3izdmhx1wfvO63ohzdw",
+    "Genres": [
+      "alternative metal",
+      "alternative rock",
+      "ebm",
+      "funk rock",
+      "groove metal",
+      "grunge",
+      "hard rock",
+      "industrial",
+      "industrial metal",
+      "industrial rock",
+      "new wave",
+      "nu metal",
+      "rap metal",
+      "rap rock",
+      "rock"
+    ],
+    "GenresString": "alternative metal; alternative rock; ebm; funk rock; groove metal; grunge; hard rock; industrial; industrial metal; industrial rock; new wave; nu metal; rap metal; rap rock; rock"
+  },
+  {
+    "User": "Sabine",
+    "Artists": [
+      "SR-71"
+    ],
+    "ArtistsString": "SR-71",
+    "Track": "Goodbye",
+    "TrackId": "1lVHnLjYNIPO5PtQVA4qsQ",
+    "Genres": [
+      "alternative metal",
+      "nu metal",
+      "pop christmas",
+      "pop punk",
+      "pop rock",
+      "post-grunge",
+      "punk christmas",
+      "skate punk"
+    ],
+    "GenresString": "alternative metal; nu metal; pop christmas; pop punk; pop rock; post-grunge; punk christmas; skate punk"
+  },
+  {
+    "User": "Sabine",
+    "Artists": [
+      "Breaking Point"
+    ],
+    "ArtistsString": "Breaking Point",
+    "Track": "One Of A Kind",
+    "TrackId": "1eCcqCDoZX5Xs4VGTbbk3n",
+    "Genres": [
+      "alternative metal",
+      "nu metal",
+      "post-grunge",
+      "wrestling"
+    ],
+    "GenresString": "alternative metal; nu metal; post-grunge; wrestling"
+  },
+  {
+    "User": "Sabine",
+    "Artists": [
+      "Fozzy",
+      "M. Shadows"
+    ],
+    "ArtistsString": "Fozzy; M. Shadows",
+    "Track": "Sandpaper",
+    "TrackId": "47uma6EF0K36plPI4SekYM",
+    "Genres": [
+      "alternative metal",
+      "post-grunge",
+      "wrestling"
+    ],
+    "GenresString": "alternative metal; post-grunge; wrestling"
+  },
+  {
+    "User": "Sabine",
+    "Artists": [
+      "Tetsuya Shibata"
+    ],
+    "ArtistsString": "Tetsuya Shibata",
+    "Track": "Shall Never Surrender (End Credits)",
+    "TrackId": "1m3PWGSQgqmuWyhOYyQTl1",
+    "Genres": [
+      "video game music"
+    ],
+    "GenresString": "video game music"
+  },
+  {
+    "User": "Sabine",
+    "Artists": [
+      "Betzefer"
+    ],
+    "ArtistsString": "Betzefer",
+    "Track": "The Devil Went Down to the Holy Land",
+    "TrackId": "12xJnESkqnkY2q6rkF3Vqj",
+    "Genres": [
+      "groove metal"
+    ],
+    "GenresString": "groove metal"
+  },
+  {
+    "User": "Sabine",
+    "Artists": [
+      "Downstait"
+    ],
+    "ArtistsString": "Downstait",
+    "Track": "Bad",
+    "TrackId": "4R8uUd1SZx58eIS4pWz3BU",
+    "Genres": [
+      "hard alternative",
+      "wrestling"
+    ],
+    "GenresString": "hard alternative; wrestling"
+  },
+  {
+    "User": "Sabine",
+    "Artists": [
+      "Righteous Vendetta"
+    ],
+    "ArtistsString": "Righteous Vendetta",
+    "Track": "War Is Killing Us All",
+    "TrackId": "1Z5gM4r4V0W6Lct3k27Pwi",
+    "Genres": [
+      "post-screamo"
+    ],
+    "GenresString": "post-screamo"
+  },
+  {
+    "User": "Sabine",
+    "Artists": [
+      "CFO$",
+      "Dylan Owen"
+    ],
+    "ArtistsString": "CFO$; Dylan Owen",
+    "Track": "This Life (SmackDown Theme)",
+    "TrackId": "4jdfHnyvm2s7nESIAxVZXp",
+    "Genres": [
+      "deep underground hip hop",
+      "underground pop rap",
+      "wrestling"
+    ],
+    "GenresString": "deep underground hip hop; underground pop rap; wrestling"
+  },
+  {
+    "User": "Sabine",
+    "Artists": [
+      "The Clay People"
+    ],
+    "ArtistsString": "The Clay People",
+    "Track": "Awake",
+    "TrackId": "75pOY82V2BHXyUU2gP6dSW",
+    "Genres": [
+      "industrial metal",
+      "industrial rock"
+    ],
+    "GenresString": "industrial metal; industrial rock"
+  },
+  {
+    "User": "Sabine",
+    "Artists": [
+      "Jet Black Stare"
+    ],
+    "ArtistsString": "Jet Black Stare",
+    "Track": "Ready To Roll",
+    "TrackId": "39WNCxUmAe5nyx41dNYW8A",
+    "Genres": [
+      "alternative metal",
+      "grunge pop",
+      "hard alternative",
+      "post-grunge"
+    ],
+    "GenresString": "alternative metal; grunge pop; hard alternative; post-grunge"
+  },
+  {
+    "User": "Sabine",
+    "Artists": [
+      "Onslaught"
+    ],
+    "ArtistsString": "Onslaught",
+    "Track": "Pain",
+    "TrackId": "2aKHcLPcP9ICJetnCTQRWR",
+    "Genres": [
+      "black thrash",
+      "crossover thrash",
+      "death metal",
+      "groove metal",
+      "metal",
+      "nwobhm",
+      "speed metal",
+      "thrash metal"
+    ],
+    "GenresString": "black thrash; crossover thrash; death metal; groove metal; metal; nwobhm; speed metal; thrash metal"
+  },
+  {
+    "User": "Sabine",
+    "Artists": [
+      "Beartooth"
+    ],
+    "ArtistsString": "Beartooth",
+    "Track": "Aggressive",
+    "TrackId": "1lkNUTuprqFB8Dcl4llYiv",
+    "Genres": [
+      "columbus ohio indie",
+      "emo",
+      "metalcore",
+      "pop punk",
+      "post-screamo",
+      "rap metal",
+      "screamo"
+    ],
+    "GenresString": "columbus ohio indie; emo; metalcore; pop punk; post-screamo; rap metal; screamo"
+  },
+  {
+    "User": "Sabine",
+    "Artists": [
+      "Motörhead",
+      "WWE"
+    ],
+    "ArtistsString": "Motörhead; WWE",
+    "Track": "Line In The Sand (Evolution)",
+    "TrackId": "0D7cKCiJTPBFIxV9bQ5Iev",
+    "Genres": [
+      "album rock",
+      "alternative metal",
+      "alternative rock",
+      "classic rock",
+      "groove metal",
+      "hard rock",
+      "metal",
+      "nwobhm",
+      "rock",
+      "speed metal",
+      "wrestling",
+      "wrestling"
+    ],
+    "GenresString": "album rock; alternative metal; alternative rock; classic rock; groove metal; hard rock; metal; nwobhm; rock; speed metal; wrestling; wrestling"
+  },
+  {
+    "User": "Sabine",
+    "Artists": [
+      "Xplore Yesterday"
+    ],
+    "ArtistsString": "Xplore Yesterday",
+    "Track": "Shepherd of Fire",
+    "TrackId": "6EsErOsmWDy0cBB1dU3byh",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Sabine",
+    "Artists": [
+      "Body Count"
+    ],
+    "ArtistsString": "Body Count",
+    "Track": "The Gears of War",
+    "TrackId": "7eyKXwAjcovpzldSEvjEXh",
+    "Genres": [
+      "alternative metal",
+      "crossover thrash",
+      "funk metal",
+      "funk rock",
+      "groove metal",
+      "hardcore",
+      "metal",
+      "nu metal",
+      "rap metal",
+      "rap rock",
+      "thrash metal"
+    ],
+    "GenresString": "alternative metal; crossover thrash; funk metal; funk rock; groove metal; hardcore; metal; nu metal; rap metal; rap rock; thrash metal"
+  },
+  {
+    "User": "Sabine",
+    "Artists": [
+      "Crush 40"
+    ],
+    "ArtistsString": "Crush 40",
+    "Track": "I Am... All Of Me",
+    "TrackId": "216q9ldL7Lu9X1zxy9e4H3",
+    "Genres": [
+      "antiviral pop",
+      "j-metal",
+      "otacore",
+      "video game music"
+    ],
+    "GenresString": "antiviral pop; j-metal; otacore; video game music"
+  },
+  {
+    "User": "Sabine",
+    "Artists": [
+      "BrokenRail"
+    ],
+    "ArtistsString": "BrokenRail",
+    "Track": "Memory",
+    "TrackId": "1Z5rNEbxOW1ROlikBEk2W9",
+    "Genres": [
+      "hard alternative"
+    ],
+    "GenresString": "hard alternative"
+  },
+  {
+    "User": "Sabine",
+    "Artists": [
+      "Brennan Heart",
+      "Zatox"
+    ],
+    "ArtistsString": "Brennan Heart; Zatox",
+    "Track": "Fight The Resistance",
+    "TrackId": "6e6Pt7VtOSbzUFLxhg9Ig6",
+    "Genres": [
+      "deep hardstyle",
+      "hardstyle",
+      "hardstyle"
+    ],
+    "GenresString": "deep hardstyle; hardstyle; hardstyle"
+  },
+  {
+    "User": "Sabine",
+    "Artists": [
+      "Circle of Dust"
+    ],
+    "ArtistsString": "Circle of Dust",
+    "Track": "Contagion",
+    "TrackId": "7rpdAx6hcrrI9MQkFLETRa",
+    "Genres": [
+      "industrial metal",
+      "industrial rock"
+    ],
+    "GenresString": "industrial metal; industrial rock"
+  },
+  {
+    "User": "Sabine",
+    "Artists": [
+      "Cold Kingdom"
+    ],
+    "ArtistsString": "Cold Kingdom",
+    "Track": "Let It Burn",
+    "TrackId": "74XK6loeWil2omwM9VMZdi",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Sabine",
+    "Artists": [
+      "Rev Theory"
+    ],
+    "ArtistsString": "Rev Theory",
+    "Track": "Light It Up",
+    "TrackId": "1o5kUcODWoTo3mdCbLogtT",
+    "Genres": [
+      "alternative metal",
+      "nu metal",
+      "post-grunge",
+      "rap metal",
+      "rap rock",
+      "wrestling"
+    ],
+    "GenresString": "alternative metal; nu metal; post-grunge; rap metal; rap rock; wrestling"
+  }
+]
