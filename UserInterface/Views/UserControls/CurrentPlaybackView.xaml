@@ -35,28 +35,135 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*" />
-            <RowDefinition Height="55" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid x:Name="ImageAndProgressBarGrid"
               Grid.Row="0"
-              Grid.Column="1"
+              Grid.Column="0"
+              Grid.ColumnSpan="3"
               HorizontalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition />
+                <RowDefinition Height="55" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Viewbox x:Name="ImageViewBox"
                      Grid.Row="0"
+                     Grid.RowSpan="3"
+                     Grid.ColumnSpan="3"
                      HorizontalAlignment="Center">
                 <Border BorderBrush="{StaticResource AccentBaseColorBrush}"
+                        x:Name="Border"
                         BorderThickness="3">
                     <Image Source="{Binding Image}"
                            Stretch="UniformToFill" />
                 </Border>
             </Viewbox>
+            <Grid x:Name="PlayControlsGrid"
+                  Grid.Row="1"
+                  HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="40" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="0"
+                        Grid.Column="0"
+                        Width="40"
+                        Height="40"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        BorderThickness="1"
+                        Command="{Binding PreviousCommand}"
+                        Style="{DynamicResource MetroCircleButtonStyle}">
+                    <Button.Content>
+                        <Rectangle Width="15"
+                                   Height="15"
+                                   Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Uniform"
+                                             Visual="{DynamicResource appbar_control_skip_backward}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                    </Button.Content>
+                    <Button.Background>
+                        <SolidColorBrush Color="Black" Opacity="0.5" />
+                    </Button.Background>
+                </Button>
+                <Button Grid.Row="0"
+                        Grid.Column="1"
+                        Width="50"
+                        Height="50"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Command="{Binding PlayPauseCommand}"
+                        Style="{DynamicResource MetroCircleButtonStyle}"
+                        Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Button.Content>
+                        <Rectangle Width="20"
+                                   Height="20"
+                                   Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Uniform"
+                                             Visual="{DynamicResource appbar_control_pause}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                    </Button.Content>
+                    <Button.Background>
+                        <SolidColorBrush Color="Black" Opacity="0.5" />
+                    </Button.Background>
+                </Button>
+                <!--  TODO: Play/Pause Symbol per DataTrigger  -->
+                <!--  TODO: Rahmenentfernen (Thickness 0) Farbe von den Symbolen per Trigger (hoover)  -->
+                <Button Grid.Row="0"
+                        Grid.Column="1"
+                        Width="50"
+                        Height="50"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Command="{Binding PlayPauseCommand}"
+                        Style="{DynamicResource MetroCircleButtonStyle}"
+                        Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}">
+                    <Button.Content>
+                        <Rectangle Width="20"
+                                   Height="20"
+                                   Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Uniform"
+                                             Visual="{DynamicResource appbar_control_play}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                    </Button.Content>
+                    <Button.Background>
+                        <SolidColorBrush Color="Black" Opacity="0.5" />
+                    </Button.Background>
+                </Button>
+                <Button Grid.Row="0"
+                        Grid.Column="2"
+                        Width="40"
+                        Height="40"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        BorderThickness="1"
+                        Command="{Binding NextCommand}"
+                        Style="{DynamicResource MetroCircleButtonStyle}">
+                    <Button.Content>
+                        <Rectangle Width="15"
+                                   Height="15"
+                                   Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
+                            <Rectangle.OpacityMask>
+                                <VisualBrush Stretch="Uniform"
+                                             Visual="{DynamicResource appbar_control_skip_forward}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                    </Button.Content>
+                    <Button.Background>
+                        <SolidColorBrush Color="Black" Opacity="0.5" />
+                    </Button.Background>
+                </Button>
+            </Grid>
             <Grid x:Name="ProgressBarGrid"
-                  Grid.Row="1">
+                  Grid.Row="2">
                 <ProgressBar Height="20"
                              MinWidth="110"
                              Value="{Binding Progress}" />
@@ -70,100 +177,8 @@
                        Foreground="Black" />
             </Grid>
         </Grid>
-        <Grid x:Name="PlayControlsGrid"
-              Grid.Row="1"
-              Grid.Column="1"
-              HorizontalAlignment="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="40" />
-                <ColumnDefinition Width="50" />
-                <ColumnDefinition Width="40" />
-            </Grid.ColumnDefinitions>
-            <Button Grid.Row="0"
-                    Grid.Column="0"
-                    Width="40"
-                    Height="40"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Center"
-                    BorderThickness="1"
-                    Command="{Binding PreviousCommand}"
-                    Style="{DynamicResource MetroCircleButtonStyle}">
-                <Button.Content>
-                    <Rectangle Width="15"
-                               Height="15"
-                               Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
-                        <Rectangle.OpacityMask>
-                            <VisualBrush Stretch="Uniform"
-                                         Visual="{DynamicResource appbar_control_skip_backward}" />
-                        </Rectangle.OpacityMask>
-                    </Rectangle>
-                </Button.Content>
-            </Button>
-            <Button Grid.Row="0"
-                    Grid.Column="1"
-                    Width="50"
-                    Height="50"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Center"
-                    Command="{Binding PlayPauseCommand}"
-                    Style="{DynamicResource MetroCircleButtonStyle}"
-                    Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <Button.Content>
-                    <Rectangle Width="20"
-                               Height="20"
-                               Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
-                        <Rectangle.OpacityMask>
-                            <VisualBrush Stretch="Uniform"
-                                         Visual="{DynamicResource appbar_control_pause}" />
-                        </Rectangle.OpacityMask>
-                    </Rectangle>
-                </Button.Content>
-            </Button>
-            <!--  TODO: Play/Pause Symbol per DataTrigger  -->
-            <!--  TODO: Rahmenentfernen (Thickness 0) Farbe von den Symbolen per Trigger (hoover)  -->
-            <Button Grid.Row="0"
-                    Grid.Column="1"
-                    Width="50"
-                    Height="50"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Center"
-                    Command="{Binding PlayPauseCommand}"
-                    Style="{DynamicResource MetroCircleButtonStyle}"
-                    Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}">
-                <Button.Content>
-                    <Rectangle Width="20"
-                               Height="20"
-                               Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
-                        <Rectangle.OpacityMask>
-                            <VisualBrush Stretch="Uniform"
-                                         Visual="{DynamicResource appbar_control_play}" />
-                        </Rectangle.OpacityMask>
-                    </Rectangle>
-                </Button.Content>
-            </Button>
-            <Button Grid.Row="0"
-                    Grid.Column="2"
-                    Width="40"
-                    Height="40"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    BorderThickness="1"
-                    Command="{Binding NextCommand}"
-                    Style="{DynamicResource MetroCircleButtonStyle}">
-                <Button.Content>
-                    <Rectangle Width="15"
-                               Height="15"
-                               Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}">
-                        <Rectangle.OpacityMask>
-                            <VisualBrush Stretch="Uniform"
-                                         Visual="{DynamicResource appbar_control_skip_forward}" />
-                        </Rectangle.OpacityMask>
-                    </Rectangle>
-                </Button.Content>
-            </Button>
-        </Grid>
         <Grid x:Name="LayoutRoot"
-              Grid.Row="2"
+              Grid.Row="1"
               Grid.Column="0"
               Grid.ColumnSpan="3"
               Width="{Binding ContainerWidth}"
