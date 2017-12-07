@@ -1,0 +1,74 @@
+{
+    "SourcePlaylists": [
+        {
+            "Identifier": "37i9dQZF1E9OoY6QD3Lnpc",
+            "Name": "Your Top Songs 2017",
+            "Owner": {
+                "Identifier": "spotify",
+                "Name": "spotify"
+            }
+        },
+        {
+            "Identifier": "37i9dQZF1E9YY4jh0OBEeF",
+            "Name": "Your Top Songs 2017",
+            "Owner": {
+                "Identifier": "spotify",
+                "Name": "spotify"
+            }
+        },
+        {
+            "Identifier": "37i9dQZF1E9K7jcU61fits",
+            "Name": "Your Top Songs 2017",
+            "Owner": {
+                "Identifier": "spotify",
+                "Name": "spotify"
+            }
+        },
+        {
+            "Identifier": "37i9dQZF1E9QzbTHWsTTW7",
+            "Name": "Your Top Songs 2017",
+            "Owner": {
+                "Identifier": "spotify",
+                "Name": "spotify"
+            }
+        },
+        {
+            "Identifier": "37i9dQZF1E9Tet2Kjhjtks",
+            "Name": "Your Top Songs 2017",
+            "Owner": {
+                "Identifier": "spotify",
+                "Name": "spotify"
+            }
+        }
+    ],
+    "TargetPlaylist": {
+        "Identifier": "58eBrQoRln9NWLeFe788zP",
+        "Name": "EMP-ERP Mix of 2017",
+        "Owner": {
+            "Identifier": "munki666",
+            "Name": "Eike"
+        }
+    },
+    "Users": [
+        {
+            "Identifier": "munki666",
+            "Name": "Eike"
+        },
+        {
+            "Identifier": "1129153595",
+            "Name": "Philipp"
+        },
+        {
+            "Identifier": "1121873909",
+            "Name": "Björn"
+        },
+        {
+            "Identifier": "invader_zim85",
+            "Name": "Andreas"
+        },
+        {
+            "Identifier": "1127921002",
+            "Name": "Kevin"
+        }
+    ]
+}
