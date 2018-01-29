@@ -119,11 +119,15 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converter.cs" />
+    <Compile Include="ViewModels\AnalyzePlaylistViewModel.cs" />
     <Compile Include="ViewModels\CurrentPlaybackViewModel.cs" />
     <Compile Include="ViewModels\DetailsGridViewModel.cs" />
     <Compile Include="ViewModels\GeneratePlaylistViewModel.cs" />
     <Compile Include="ViewModels\PlaylistViewModel.cs" />
     <Compile Include="ViewModels\SettingViewModel.cs" />
+    <Compile Include="Views\UserControls\AnalyzePlaylistView.xaml.cs">
+      <DependentUpon>AnalyzePlaylistView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\HamburgerMenuIconItem.cs" />
     <Compile Include="Views\UserControls\CurrentPlaybackView.xaml.cs">
       <DependentUpon>CurrentPlaybackView.xaml</DependentUpon>
@@ -157,6 +161,10 @@
     <Page Include="Resources\IconsNonShared.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\AnalyzePlaylistView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\CurrentPlaybackView.xaml">
       <SubType>Designer</SubType>
@@ -232,6 +240,24 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Examples\EMP-ERP Mix of 2017_04_12_2017.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Examples\EMP-ERP weekly Mix_11_12_2017.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Examples\EMP-ERP weekly Mix_18_12_2017.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Examples\EMP-ERP weekly Mix_25_12_2017.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Examples\EMP-ERP weekly Mix_01_01_2018.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Examples\EMP-ERP weekly Mix_08_01_2018.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Examples\EMP-ERP weekly Mix_29_01_2018.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="Resources\Entypo.ttf" />

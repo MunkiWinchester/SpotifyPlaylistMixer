@@ -39,6 +39,14 @@
                 "Identifier": "spotify",
                 "Name": "spotify"
             }
+        },
+        {
+            "Identifier": "37i9dQZF1E9HdbUEVOTNWu",
+            "Name": "Your Top Songs 2017",
+            "Owner": {
+                "Identifier": "spotify",
+                "Name": "spotify"
+            }
         }
     ],
     "TargetPlaylist": {
@@ -69,6 +77,10 @@
         {
             "Identifier": "1127921002",
             "Name": "Kevin"
+        },
+        {
+            "Identifier": "alestre",
+            "Name": "Alexander"
         }
     ]
 }

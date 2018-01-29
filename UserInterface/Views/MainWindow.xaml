@@ -130,6 +130,13 @@
                             <userControls:CurrentPlaybackView />
                         </userControls:CustomHamburgerMenuIconItem.Tag>
                     </userControls:CustomHamburgerMenuIconItem>
+                    <userControls:CustomHamburgerMenuIconItem Icon="{StaticResource appbar_eye}"
+                                                              Label="Analyze"
+                                                              ToolTip="Show the analyze playlist view">
+                        <userControls:CustomHamburgerMenuIconItem.Tag>
+                            <userControls:AnalyzePlaylistView />
+                        </userControls:CustomHamburgerMenuIconItem.Tag>
+                    </userControls:CustomHamburgerMenuIconItem>
                 </controls:HamburgerMenuItemCollection>
             </controls:HamburgerMenu.ItemsSource>
             <controls:HamburgerMenu.ContentTemplate>
