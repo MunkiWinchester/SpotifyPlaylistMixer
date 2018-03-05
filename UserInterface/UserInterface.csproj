@@ -260,6 +260,27 @@
     <Content Include="Resources\Examples\EMP-ERP weekly Mix_29_01_2018.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Examples\EMP-ERP Mixed Mixes_29_01_2018.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Examples\EMP-ERP weekly Mix_05_02_2018.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Examples\EMP-ERP weekly Mix_12_02_2018.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Examples\EMP-ERP Mixed Mixes_12_02_2018.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Examples\EMP-ERP weekly Mix_19_02_2018.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Examples\EMP-ERP weekly Mix_05_03_2018.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Examples\EMP-ERP weekly Mix_26_02_2018.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Resources\Entypo.ttf" />
     <Resource Include="Resources\WindowsIcons-license.txt" />
     <EmbeddedResource Include="Properties\Resources.resx">

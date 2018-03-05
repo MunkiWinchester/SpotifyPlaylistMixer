@@ -109,6 +109,7 @@
       "groove metal",
       "industrial metal",
       "industrial rock",
+      "melodic death metal",
       "melodic metalcore",
       "metalcore",
       "nu metal",
@@ -116,7 +117,7 @@
       "rap metal",
       "rap rock"
     ],
-    "GenresString": "alternative metal; groove metal; industrial metal; industrial rock; melodic metalcore; metalcore; nu metal; post-grunge; rap metal; rap rock"
+    "GenresString": "alternative metal; groove metal; industrial metal; industrial rock; melodic death metal; melodic metalcore; metalcore; nu metal; post-grunge; rap metal; rap rock"
   },
   {
     "User": "Andreas",
@@ -495,13 +496,12 @@
     "TrackId": "40OqoeE5vT36mcV8kMx1dX",
     "Genres": [
       "brutal death metal",
-      "death core",
       "djent",
       "jazz metal",
       "progressive deathcore",
       "technical death metal"
     ],
-    "GenresString": "brutal death metal; death core; djent; jazz metal; progressive deathcore; technical death metal"
+    "GenresString": "brutal death metal; djent; jazz metal; progressive deathcore; technical death metal"
   },
   {
     "User": "Björn",
@@ -747,12 +747,11 @@
       "ebm",
       "electro-industrial",
       "futurepop",
-      "gothic rock",
       "industrial metal",
       "industrial rock",
       "neue deutsche harte"
     ],
-    "GenresString": "aggrotech; dark wave; ebm; electro-industrial; futurepop; gothic rock; industrial metal; industrial rock; neue deutsche harte"
+    "GenresString": "aggrotech; dark wave; ebm; electro-industrial; futurepop; industrial metal; industrial rock; neue deutsche harte"
   },
   {
     "User": "Björn",
@@ -902,12 +901,11 @@
     "Genres": [
       "j-metal",
       "j-rock",
-      "melodic metalcore",
       "metalcore",
       "screamo",
       "visual kei"
     ],
-    "GenresString": "j-metal; j-rock; melodic metalcore; metalcore; screamo; visual kei"
+    "GenresString": "j-metal; j-rock; metalcore; screamo; visual kei"
   },
   {
     "User": "Björn",
@@ -982,7 +980,6 @@
       "classic rock",
       "funk rock",
       "groove metal",
-      "grunge",
       "hard rock",
       "metal",
       "nu metal",
@@ -991,7 +988,7 @@
       "rock",
       "stoner rock"
     ],
-    "GenresString": "album rock; alternative metal; alternative rock; classic rock; funk rock; groove metal; grunge; hard rock; metal; nu metal; punk; rap rock; rock; stoner rock"
+    "GenresString": "album rock; alternative metal; alternative rock; classic rock; funk rock; groove metal; hard rock; metal; nu metal; punk; rap rock; rock; stoner rock"
   },
   {
     "User": "Eike",
@@ -1036,10 +1033,11 @@
       "psychedelic doom",
       "rock",
       "sludge metal",
+      "space rock",
       "stoner metal",
       "stoner rock"
     ],
-    "GenresString": "alternative metal; alternative rock; blues-rock; funk rock; garage rock; grunge; hard rock; neo-psychedelic; post-grunge; psychedelic doom; rock; sludge metal; stoner metal; stoner rock"
+    "GenresString": "alternative metal; alternative rock; blues-rock; funk rock; garage rock; grunge; hard rock; neo-psychedelic; post-grunge; psychedelic doom; rock; sludge metal; space rock; stoner metal; stoner rock"
   },
   {
     "User": "Eike",
@@ -1490,13 +1488,15 @@
       "alternative rock",
       "comic",
       "funk metal",
+      "funk rock",
       "nu metal",
       "pop punk",
+      "post-grunge",
       "punk",
       "rap metal",
       "rap rock"
     ],
-    "GenresString": "alternative metal; alternative rock; comic; funk metal; nu metal; pop punk; punk; rap metal; rap rock"
+    "GenresString": "alternative metal; alternative rock; comic; funk metal; funk rock; nu metal; pop punk; post-grunge; punk; rap metal; rap rock"
   },
   {
     "User": "Eike",
@@ -1543,10 +1543,9 @@
       "alternative metal",
       "nu metal",
       "post-grunge",
-      "post-screamo",
-      "rap metal"
+      "post-screamo"
     ],
-    "GenresString": "alternative metal; nu metal; post-grunge; post-screamo; rap metal"
+    "GenresString": "alternative metal; nu metal; post-grunge; post-screamo"
   },
   {
     "User": "Sabine",
@@ -1882,11 +1881,10 @@
     "TrackId": "5zHjqNNawa088U0Cfz6Air",
     "Genres": [
       "alternative metal",
-      "post-grunge",
       "rap metal",
       "rap rock"
     ],
-    "GenresString": "alternative metal; post-grunge; rap metal; rap rock"
+    "GenresString": "alternative metal; rap metal; rap rock"
   },
   {
     "User": "Sabine",
@@ -1963,6 +1961,416 @@
     "ArtistsString": "Tanooki Suit",
     "Track": "Lordvessel",
     "TrackId": "5Q95r4NzE20g8RR4KxOdPh",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Alina",
+    "Artists": [
+      "Example",
+      "Felguk"
+    ],
+    "ArtistsString": "Example; Felguk",
+    "Track": "Plastic Smile",
+    "TrackId": "2FFLNyuVIcwktKE85K4v86",
+    "Genres": [
+      "complextro",
+      "dance pop",
+      "disco house",
+      "electro house",
+      "grime",
+      "hip house",
+      "house",
+      "melbourne bounce",
+      "tropical house"
+    ],
+    "GenresString": "complextro; dance pop; disco house; electro house; grime; hip house; house; melbourne bounce; tropical house"
+  },
+  {
+    "User": "Alina",
+    "Artists": [
+      "Mozes And The Firstborn"
+    ],
+    "ArtistsString": "Mozes And The Firstborn",
+    "Track": "Marianne",
+    "TrackId": "7wvwOzRPKNWJqPa2drXHBk",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Alina",
+    "Artists": [
+      "Maskarade",
+      "The Bloody Beetroots"
+    ],
+    "ArtistsString": "Maskarade; The Bloody Beetroots",
+    "Track": "Wolfpack (feat. Maskarade)",
+    "TrackId": "59TyenU5GsKLSLsALDxbIQ",
+    "Genres": [
+      "alternative dance",
+      "complextro",
+      "edm",
+      "electro house",
+      "electronic",
+      "fidget house",
+      "filter house",
+      "new rave"
+    ],
+    "GenresString": "alternative dance; complextro; edm; electro house; electronic; fidget house; filter house; new rave"
+  },
+  {
+    "User": "Alina",
+    "Artists": [
+      "Tessa Violet"
+    ],
+    "ArtistsString": "Tessa Violet",
+    "Track": "Haze",
+    "TrackId": "0nb8EZAhGSMM66lrhLIsml",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Alina",
+    "Artists": [
+      "Atomic Tom"
+    ],
+    "ArtistsString": "Atomic Tom",
+    "Track": "Burn the Witch",
+    "TrackId": "3cB4yACvgefaI1EIkHi7Sv",
+    "Genres": [
+      "brooklyn indie",
+      "stomp pop"
+    ],
+    "GenresString": "brooklyn indie; stomp pop"
+  },
+  {
+    "User": "Alina",
+    "Artists": [
+      "Of Gentlemen & Cowards"
+    ],
+    "ArtistsString": "Of Gentlemen & Cowards",
+    "Track": "One Square",
+    "TrackId": "3WXMB0QNSUiOtwtbrvaw2l",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Alina",
+    "Artists": [
+      "Shawny Sander"
+    ],
+    "ArtistsString": "Shawny Sander",
+    "Track": "Daddy's Girl",
+    "TrackId": "22hHfflgyxmX8Ut1ZVmpBJ",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Alina",
+    "Artists": [
+      "The Boondocks"
+    ],
+    "ArtistsString": "The Boondocks",
+    "Track": "Cigarettes R My Only Friend",
+    "TrackId": "5OYWKOTTeIa2K4aOqI1FEC",
+    "Genres": [
+      "deep flow"
+    ],
+    "GenresString": "deep flow"
+  },
+  {
+    "User": "Alina",
+    "Artists": [
+      "Okta Logue"
+    ],
+    "ArtistsString": "Okta Logue",
+    "Track": "Pitch Black Dark",
+    "TrackId": "1xZ0Wb1zUeazf94eYRWUm7",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Alina",
+    "Artists": [
+      "Harlea"
+    ],
+    "ArtistsString": "Harlea",
+    "Track": "Miss Me",
+    "TrackId": "7CjFPvjt0GvOHKsH5M49yL",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Alina",
+    "Artists": [
+      "COLOUR"
+    ],
+    "ArtistsString": "COLOUR",
+    "Track": "Minus",
+    "TrackId": "6emmV90CunqdI8LWHix71T",
+    "Genres": [
+      "math pop"
+    ],
+    "GenresString": "math pop"
+  },
+  {
+    "User": "Alina",
+    "Artists": [
+      "Broods"
+    ],
+    "ArtistsString": "Broods",
+    "Track": "Conscious",
+    "TrackId": "5aEVumHjIBObFBfNLWTrUV",
+    "Genres": [
+      "etherpop",
+      "indie poptimism",
+      "indie r&b",
+      "indietronica",
+      "metropopolis",
+      "pop",
+      "shimmer pop",
+      "synthpop",
+      "tropical house",
+      "vapor soul"
+    ],
+    "GenresString": "etherpop; indie poptimism; indie r&b; indietronica; metropopolis; pop; shimmer pop; synthpop; tropical house; vapor soul"
+  },
+  {
+    "User": "Alina",
+    "Artists": [
+      "Nelson Can"
+    ],
+    "ArtistsString": "Nelson Can",
+    "Track": "Miracle",
+    "TrackId": "5BwuyaE2fpsVroq8mqVyVf",
+    "Genres": [
+      "danish pop"
+    ],
+    "GenresString": "danish pop"
+  },
+  {
+    "User": "Alina",
+    "Artists": [
+      "Winnie"
+    ],
+    "ArtistsString": "Winnie",
+    "Track": "Let It Die ~always see you there~",
+    "TrackId": "4Wt5SKdsTqCAgP2xqzzj1m",
+    "Genres": [
+      "j-indie"
+    ],
+    "GenresString": "j-indie"
+  },
+  {
+    "User": "Alina",
+    "Artists": [
+      "Vesperteen"
+    ],
+    "ArtistsString": "Vesperteen",
+    "Track": "Shatter in the Night",
+    "TrackId": "1PIKRngjDgmRDrFo72YBNM",
+    "Genres": [
+      "indie rockism"
+    ],
+    "GenresString": "indie rockism"
+  },
+  {
+    "User": "Alina",
+    "Artists": [
+      "Dear Sherlock"
+    ],
+    "ArtistsString": "Dear Sherlock",
+    "Track": "Hell",
+    "TrackId": "5dpd4cxePOKAqxwNAXVMBv",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Alina",
+    "Artists": [
+      "Blood Red Shoes"
+    ],
+    "ArtistsString": "Blood Red Shoes",
+    "Track": "An Animal",
+    "TrackId": "4MmYWFS6bssthCzvJmcs6t",
+    "Genres": [
+      "alternative dance",
+      "alt-indie rock",
+      "dance-punk",
+      "garage rock",
+      "indie rock",
+      "modern rock",
+      "new rave"
+    ],
+    "GenresString": "alternative dance; alt-indie rock; dance-punk; garage rock; indie rock; modern rock; new rave"
+  },
+  {
+    "User": "Alina",
+    "Artists": [
+      "Written by Wolves"
+    ],
+    "ArtistsString": "Written by Wolves",
+    "Track": "Genius",
+    "TrackId": "3MzFFjvLB0PqDuTwJpgVc3",
+    "Genres": [
+      "post-screamo"
+    ],
+    "GenresString": "post-screamo"
+  },
+  {
+    "User": "Alina",
+    "Artists": [
+      "FNDTY"
+    ],
+    "ArtistsString": "FNDTY",
+    "Track": "Never Die",
+    "TrackId": "1SkWyPonu0Il7LqwNSaa5P",
+    "Genres": [
+      "indie psych-pop"
+    ],
+    "GenresString": "indie psych-pop"
+  },
+  {
+    "User": "Alina",
+    "Artists": [
+      "Electric Six"
+    ],
+    "ArtistsString": "Electric Six",
+    "Track": "Down At McDonaldz",
+    "TrackId": "2zE8kjcxY7rtbouWikyV86",
+    "Genres": [
+      "alternative rock",
+      "comic",
+      "dance-punk",
+      "garage rock",
+      "modern rock"
+    ],
+    "GenresString": "alternative rock; comic; dance-punk; garage rock; modern rock"
+  },
+  {
+    "User": "Alina",
+    "Artists": [
+      "ABBY"
+    ],
+    "ArtistsString": "ABBY",
+    "Track": "EMA",
+    "TrackId": "2Bung1MII8Q1Fo8xqgat8E",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Alina",
+    "Artists": [
+      "Al Bairre"
+    ],
+    "ArtistsString": "Al Bairre",
+    "Track": "Don't Say / Go Away",
+    "TrackId": "6hGoyQpN4hW3eUHBd1DM8y",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Alina",
+    "Artists": [
+      "Breathe Carolina"
+    ],
+    "ArtistsString": "Breathe Carolina",
+    "Track": "Bury Me",
+    "TrackId": "3QQvTAGsDkNlScRNuZs6Mb",
+    "Genres": [
+      "big room",
+      "deep big room",
+      "edm",
+      "electro house",
+      "electropowerpop",
+      "emo",
+      "pop punk",
+      "punk christmas",
+      "screamo"
+    ],
+    "GenresString": "big room; deep big room; edm; electro house; electropowerpop; emo; pop punk; punk christmas; screamo"
+  },
+  {
+    "User": "Alina",
+    "Artists": [
+      "Polar Circles"
+    ],
+    "ArtistsString": "Polar Circles",
+    "Track": "Go It Alone",
+    "TrackId": "0koGV5khWoxCBo5Z3YYqOm",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Alina",
+    "Artists": [
+      "Talisco"
+    ],
+    "ArtistsString": "Talisco",
+    "Track": "The Race",
+    "TrackId": "7tdcUw7szxhptZNXSnEAJE",
+    "Genres": [
+      "french indie pop",
+      "french indietronica"
+    ],
+    "GenresString": "french indie pop; french indietronica"
+  },
+  {
+    "User": "Alina",
+    "Artists": [
+      "Jamie Berry",
+      "Octavia Rose"
+    ],
+    "ArtistsString": "Jamie Berry; Octavia Rose",
+    "Track": "Lost In The Rhythm - Original Mix",
+    "TrackId": "35nsl8YiBIYw1YdNmkmhnk",
+    "Genres": [
+      "electro swing",
+      "nu jazz"
+    ],
+    "GenresString": "electro swing; nu jazz"
+  },
+  {
+    "User": "Alina",
+    "Artists": [
+      "Beware Of Darkness"
+    ],
+    "ArtistsString": "Beware Of Darkness",
+    "Track": "Present Past Future",
+    "TrackId": "7rRp1yezioRsorEC11P51P",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Alina",
+    "Artists": [
+      "Faers"
+    ],
+    "ArtistsString": "Faers",
+    "Track": "Last of Our Kind",
+    "TrackId": "3PI5O8KX0Jc9s5dUR9DWRz",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Alina",
+    "Artists": [
+      "Luna Bay"
+    ],
+    "ArtistsString": "Luna Bay",
+    "Track": "Smoke and Mirrors",
+    "TrackId": "6aOBqxcTsUrtPM2cx5GYum",
+    "Genres": [],
+    "GenresString": ""
+  },
+  {
+    "User": "Alina",
+    "Artists": [
+      "FACE"
+    ],
+    "ArtistsString": "FACE",
+    "Track": "Cry",
+    "TrackId": "7I69eGcLHkMqHjxq81AVre",
     "Genres": [],
     "GenresString": ""
   }

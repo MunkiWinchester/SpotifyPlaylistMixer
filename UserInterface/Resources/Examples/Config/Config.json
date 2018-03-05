@@ -26,10 +26,6 @@
     },
     "Users": [
         {
-            "Identifier": "invader_zim85",
-            "Name": "Andreas"
-        },
-        {
             "Identifier": "1121873909",
             "Name": "Björn"
         },
@@ -44,6 +40,14 @@
         {
             "Identifier": "flockana",
             "Name": "Sabine"
+        },
+        {
+            "Identifier": "yawley",
+            "Name": "Alina"
+        },
+        {
+            "Identifier": "darkboft",
+            "Name": "General Account"
         }
     ]
 }

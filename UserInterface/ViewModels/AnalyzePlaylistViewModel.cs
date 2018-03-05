@@ -12,11 +12,12 @@ namespace UserInterface.ViewModels
     public class AnalyzePlaylistViewModel : ObservableObject
     {
         private readonly SpotifyAuthentification _spotifyAuthentification;
-        private FullPlaylist _originalPlaylist;
+        private ObservableCollection<PlaylistElement> _originalPlaylist;
         private string _playlistId;
         private string _userId;
-        private FullPlaylist _selectedPlaylist;
+        private SimplePlaylist _selectedPlaylist;
         private int _totalItems;
+        private List<SimplePlaylist> _playlists;
 
         public string PlaylistId
         {
@@ -24,7 +25,16 @@ namespace UserInterface.ViewModels
             set
             {
                 _playlistId = value;
-                LoadPlaylist();
+                OnPropertyChanged();
+            }
+        }
+
+        public List<SimplePlaylist> Playlists
+        {
+            get => _playlists;
+            set
+            {
+                _playlists = value;
                 OnPropertyChanged();
             }
         }
@@ -39,10 +49,25 @@ namespace UserInterface.ViewModels
             }
         }
 
-        public FullPlaylist SelectedPlaylist
+        public SimplePlaylist SelectedPlaylist
         {
             get => _selectedPlaylist;
-            set => SetField(ref _selectedPlaylist, value);
+            set
+            {
+                _selectedPlaylist = value;
+                LoadPlaylist();
+                OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<PlaylistElement> SelectedFullPlaylist
+        {
+            get => _originalPlaylist;
+            set
+            {
+                _originalPlaylist = value;
+                OnPropertyChanged();
+            }
         }
 
         public string UserId
@@ -51,7 +76,7 @@ namespace UserInterface.ViewModels
             set
             {
                 _userId = value;
-                LoadPlaylist();
+                LoadPlaylists();
                 OnPropertyChanged();
             }
         }
@@ -79,12 +104,46 @@ namespace UserInterface.ViewModels
             }
         }
 
+        public void LoadPlaylists()
+        {
+            if (!string.IsNullOrWhiteSpace(_userId))
+                Playlists = _spotifyAuthentification.GetPlaylists(_userId).ToList();
+        }
+        
         public void LoadPlaylist()
         {
-            if (!string.IsNullOrWhiteSpace(_userId) && !string.IsNullOrWhiteSpace(_playlistId))
+            if (_selectedPlaylist != null)
             {
-                SelectedPlaylist = _spotifyAuthentification.GetPlaylist(_userId, _playlistId);
+                SelectedFullPlaylist =
+                    new ObservableCollection<PlaylistElement>(
+                        AddTracksFromPlaylistToPlaylist(_selectedPlaylist.Owner.Id, _selectedPlaylist.Id));
+                TotalItems = _originalPlaylist.Count;
             }
+        }
+
+        private List<PlaylistElement> AddTracksFromPlaylistToPlaylist(string userIdFrom, string playlistIdFrom)
+        {
+            var list = new List<PlaylistTrack>();
+            var tracks = _spotifyAuthentification.GetPlaylistTracks(userIdFrom, playlistIdFrom);
+            list.AddRange(tracks.Items);
+            while (tracks.HasNextPage())
+            {
+                tracks = _spotifyAuthentification.GetPlaylistTracks(userIdFrom, playlistIdFrom, tracks.Limit,
+                    tracks.Offset + tracks.Limit);
+                list.AddRange(tracks.Items);
+            }
+            tracks = _spotifyAuthentification.GetPlaylistTracks(userIdFrom, playlistIdFrom, tracks.Limit,
+                tracks.Offset + tracks.Limit);
+            list.AddRange(tracks.Items);
+
+            var playlistElements = new List<PlaylistElement>();
+            foreach (var playlistTrack in list)
+            {
+                playlistElements.Add(
+                    _spotifyAuthentification.GetPlaylistElementFromTrack(playlistTrack.Track));
+            }
+
+            return playlistElements;
         }
 
         public void SearchInCurrentPlaylist()
@@ -92,7 +151,7 @@ namespace UserInterface.ViewModels
             var searchTerm = PlaylistId?.ToLower();
             if (string.IsNullOrWhiteSpace(searchTerm))
             {
-                SelectedPlaylist = _originalPlaylist;
+                //SelectedPlaylist = _originalPlaylist;
                 return;
             }
 
