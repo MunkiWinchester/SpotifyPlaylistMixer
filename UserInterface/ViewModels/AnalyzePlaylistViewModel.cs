@@ -90,17 +90,7 @@ namespace UserInterface.ViewModels
         {
             if (_spotifyAuthentification != null)
             {
-                var authenticate = _spotifyAuthentification.RunAuthentication();
-                authenticate.Wait();
-                if (!authenticate.Result)
-                {
-                    var result = MessageBox.Show(@"Couldn't connect to the spotify api. Retry?", @"Spotify",
-                        MessageBoxButton.YesNo);
-                    if (result == MessageBoxResult.Yes)
-                    {
-                        AuthenticateSpotify();
-                    }
-                }
+                _spotifyAuthentification.RunAuthentication();
             }
         }
 

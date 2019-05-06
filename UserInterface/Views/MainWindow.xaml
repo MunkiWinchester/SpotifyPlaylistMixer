@@ -123,13 +123,6 @@
                             <userControls:GeneratePlaylistView />
                         </userControls:CustomHamburgerMenuIconItem.Tag>
                     </userControls:CustomHamburgerMenuIconItem>
-                    <userControls:CustomHamburgerMenuIconItem Icon="{StaticResource appbar_music}"
-                                                              Label="Playback"
-                                                              ToolTip="Show the track info view">
-                        <userControls:CustomHamburgerMenuIconItem.Tag>
-                            <userControls:CurrentPlaybackView />
-                        </userControls:CustomHamburgerMenuIconItem.Tag>
-                    </userControls:CustomHamburgerMenuIconItem>
                     <userControls:CustomHamburgerMenuIconItem Icon="{StaticResource appbar_eye}"
                                                               Label="Analyze"
                                                               ToolTip="Show the analyze playlist view">

@@ -5,13 +5,13 @@ namespace UserInterface.Views.UserControls
 {
     public class CustomHamburgerMenuIconItem : HamburgerMenuIconItem
     {
-        public static readonly DependencyProperty ToolTipProperty
+        public new static readonly DependencyProperty ToolTipProperty
             = DependencyProperty.Register(nameof(ToolTip),
                 typeof(object),
                 typeof(CustomHamburgerMenuIconItem),
                 new PropertyMetadata(null));
 
-        public object ToolTip
+        public new object ToolTip
         {
             get => GetValue(ToolTipProperty);
             set => SetValue(ToolTipProperty, value);

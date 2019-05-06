@@ -14,30 +14,45 @@ namespace Business.Business
     public class SpotifyAuthentification
     {
         private SpotifyWebAPI _spotify;
+        private AuthorizationCodeAuth auth;
 
-        public async Task<bool> RunAuthentication()
+        public void RunAuthentication()
         {
-            var webApiFactory = new WebAPIFactory(
-                "http://localhost",
-                8000,
-                "7fa845408d634311aff87a53a3b08f12",
-                Scope.UserReadPrivate | Scope.PlaylistReadPrivate | Scope.UserLibraryRead |
-                Scope.UserFollowRead | Scope.UserTopRead | Scope.PlaylistModifyPublic);
-
             try
             {
-                Extensions.WriteColoredConsole("Get authorazation!", ConsoleColor.White);
-                _spotify = await webApiFactory.GetWebApi();
+                auth = new AuthorizationCodeAuth(
+                    "7fa845408d634311aff87a53a3b08f12",
+                    // TODO: THIS IS BAD!!
+                    "65c8dc48c66b494c90a9bf93d12765a1",
+                    "http://localhost:8000",
+                    "http://localhost:8000",
+                Scope.UserReadPrivate | Scope.PlaylistReadPrivate | Scope.UserLibraryRead |
+                Scope.UserFollowRead | Scope.UserTopRead | Scope.PlaylistModifyPublic
+                    );
+                //This will be called, if the user cancled/accept the auth-request
+                auth.AuthReceived += Auth_AuthReceived;
+                //a local HTTP Server will be started (Needed for the response)
+                auth.Start();
+                //This will open the spotify auth-page. The user can decline/accept the request
+                auth.OpenBrowser();
             }
-            catch (Exception ex)
+            catch(Exception e)
             {
-                Extensions.WriteColoredConsole(ex.Message, ConsoleColor.Red);
+                Logger.Error("RunAuthentication() failed.", e);
             }
+        }
 
-            if (_spotify != null) return true;
+        private async void Auth_AuthReceived(object sender, AuthorizationCode payload)
+        {
+            AuthorizationCodeAuth auth = (AuthorizationCodeAuth) sender;
+            auth.Stop();
 
-            Extensions.WriteColoredConsole("Authorazation failed!", ConsoleColor.Red);
-            return false;
+            Token token = await auth.ExchangeCode(payload.Code);
+            _spotify = new SpotifyWebAPI
+            {
+                AccessToken = token.AccessToken,
+                TokenType = token.TokenType
+            };
         }
 
         private static void WriteResponse(BasicModel response)

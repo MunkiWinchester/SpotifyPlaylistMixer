@@ -121,9 +121,7 @@ namespace UserInterface.ViewModels
         {
             IsNotBusy = false;
             var spotifyAuthentification = new SpotifyAuthentification();
-            var authenticate = spotifyAuthentification.RunAuthentication();
-            authenticate.Wait();
-            if (!authenticate.Result) return;
+            spotifyAuthentification.RunAuthentication();            
             var playlistHandler = new PlaylistHandler(spotifyAuthentification);
             var creationTask = new Task(() => playlistHandler.CreateMixDerWoche(Config));
             creationTask.Start();
